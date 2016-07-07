@@ -51,7 +51,7 @@ namespace Cribbage.Entities
             if (_players.Count == 4)
                 return false;
 
-            player.Order = _players.Count + 1;
+            player.Order = _players.Count;
             _players.Add(player);
 
             return true;
@@ -63,7 +63,29 @@ namespace Cribbage.Entities
             _deck.Reset();
             _deck.Shuffle();
 
-            
+            int cardLimit = _players.Count > 2 ? 5 * _players.Count : 12;
+            int dealIndex = 0;
+
+            if (_currentDealer == null)
+            {
+                _currentDealer = _players[0];
+                _currentCutter = _players[1];
+                dealIndex = 1;
+            }
+            else
+            {
+                int next = _currentDealer.Order;
+                if (next >= _players.Count)
+                {
+
+                }
+                else
+                {
+
+                }
+
+            }
+
         }
 
         private void ResetPlayerHands()
