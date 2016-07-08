@@ -41,32 +41,38 @@ namespace Cribbage.Entities
             }
         }
 
-        public bool Deal(Hand hand, int count)
+        public Card[] Deal(int count)
         {
             if (count >= _deck.Count)
             {
                 try
                 {
-                    List<Card> cards = new List<Card>();
-                    for (int i = 0; i < count; i++)
-                        cards.Add(new Card(_deck[i].Suit, _deck[i].Value));
-
-                    hand.Draw(cards.ToArray());
+                    Card[] temp = new Card[count];
+                    _deck.CopyTo(0, temp, 0, count);
                     _deck.RemoveRange(0, count);
-                    return true;
+
+                    return temp;
                 }
                 catch
                 {
-                    return false;
+                    return null;
                 }
             }
 
-            return false;
+            return null;
         }
 
-        public void Cut()
+        public void Cut(int index)
         {
+            Card[] temp = new Card[_deck.Count];
 
+            _deck.CopyTo(index, temp, 0, _deck.Count - index);
+            _deck.CopyTo(0, temp, _deck.Count - index, index);
+            _deck.Clear();
+            _deck = temp.ToList();
+
+            _cutCard = _deck[0];
+            _deck.RemoveAt(0);
         }
     }
 }

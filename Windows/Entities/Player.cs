@@ -27,6 +27,9 @@ namespace Cribbage.Entities
         private Hand _crib;
         public Hand Crib { set { _crib = value; } }
 
+        private Card _cardToPlay = null;
+        public Card CardToPlay { get { return _cardToPlay; } }
+
         private int _points;
         public int Points { get { return _points; } }
 
@@ -41,12 +44,10 @@ namespace Cribbage.Entities
         {
         }
 
-        public void Play()
+        public void Play(int? index)
         {
-        }
+            _cardToPlay = index.HasValue ? _hand.Discard(new int[] { index.Value }, false)[0] : null;
 
-        public void Go()
-        {
         }
 
         public void AddCards(Card[] cards)

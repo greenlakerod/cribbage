@@ -22,10 +22,9 @@ namespace Cribbage.Entities
 
     public class Game: IEntityBase
     {
-
+        private Guid _id;
         private Deck _deck;
         private Hand _crib;
-        private Card _cutCard;
         private List<Player> _players;
         private Player _currentPlayer;
         private Player _currentDealer;
@@ -35,15 +34,48 @@ namespace Cribbage.Entities
         private GameState _state;
         private GameStage _stage;
 
-        private Guid _id;
+        public Card CutCard { get { return _deck.CutCard; } }
+
         public Guid Id
         {
             get { return _id; }
             set { _id = value; }
         }
 
-        public void Deal(Player player, int count)
+        public bool Deal(Player player, int count)
         {
+            Card[] cards = _deck.Deal(count);
+
+            if (cards != null)
+            {
+                player.AddCards(cards);
+                return true;
+            }
+            return false;
+        }
+
+        public void Deal()
+        {
+            int cardLimit = _players.Count > 2 ? 5 * _players.Count : 12;
+            int dealIndex = _currentCutter.Order;
+
+            int count = 0;
+            while (count < cardLimit)
+            {
+                if (!Deal(_players[dealIndex], 1))
+                    break;
+
+                dealIndex++;
+                if (dealIndex >= _players.Count)
+                    dealIndex = 0;
+
+                count++;
+            }
+        }
+
+        public void Cut(int index)
+        {
+            _deck.Cut(index);
         }
 
         public bool AddPlayer(Player player)
@@ -63,29 +95,21 @@ namespace Cribbage.Entities
             _deck.Reset();
             _deck.Shuffle();
 
-            int cardLimit = _players.Count > 2 ? 5 * _players.Count : 12;
-            int dealIndex = 0;
-
             if (_currentDealer == null)
             {
                 _currentDealer = _players[0];
                 _currentCutter = _players[1];
-                dealIndex = 1;
             }
             else
             {
-                int next = _currentDealer.Order;
-                if (next >= _players.Count)
-                {
+                _currentDealer = _players[_currentCutter.Order];
 
-                }
-                else
-                {
+                int dealIndex = _currentCutter.Order + 1;
+                if (dealIndex >= _players.Count)
+                    dealIndex = 0;
 
-                }
-
+                _currentCutter = _players[dealIndex];
             }
-
         }
 
         private void ResetPlayerHands()
@@ -99,14 +123,14 @@ namespace Cribbage.Entities
 
         //}
 
-        //public void Play(Player player, Card card)
-        //{
+        public void Play()
+        {
 
-        //}
+        }
 
         //public void Show(Player player)
         //{
-            
+
         //}
     }
 }

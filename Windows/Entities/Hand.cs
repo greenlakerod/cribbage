@@ -19,7 +19,7 @@ namespace Cribbage.Entities
 
         public void Draw(Card[] cards)
         {
-            if (cards.Length > (5 - _cards.Count))
+            if (cards.Length > (_maxCardsAllowed - _cards.Count))
                 throw new InvalidOperationException(string.Format("Can't add {0} cards", cards.Length));
 
             _cards.AddRange(cards);
@@ -27,7 +27,7 @@ namespace Cribbage.Entities
 
         public Card[] Discard(int[] indexes, bool toKitty)
         {
-            //if (toKitty && indexes.Length > 5)
+            //if (toKitty && indexes.Length > _maxCardsAllowed)
             //    throw new InvalidOperationException(string.Format("Can't discard {0} cards", indexes.Length));
 
             List<Card> discards = new List<Card>();
