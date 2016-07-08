@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cribbage.Entities
 {
-    public class Player : IEntityBase
+    public partial class Player : IEntityBase
     {
         private Guid _id;
         public Guid Id
@@ -42,12 +42,14 @@ namespace Cribbage.Entities
 
         public void Show()
         {
+            GameManager.GetGame(_gameId).Show();
         }
 
-        public void Play(int? index)
+        public void Play(int? cardIndex)
         {
-            _cardToPlay = index.HasValue ? _hand.Discard(new int[] { index.Value }, false)[0] : null;
+            _cardToPlay = cardIndex.HasValue ? _hand.Discard(new int[] { cardIndex.Value }, false)[0] : null;
 
+            GameManager.GetGame(_gameId).Play();
         }
 
         public void AddCards(Card[] cards)
