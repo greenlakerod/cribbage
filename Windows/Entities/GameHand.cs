@@ -19,22 +19,33 @@ namespace Cribbage.Entities
             }
 
             private Player.Hand _crib;
-            private Stage _stage;
+            private Stage _stage = Stage.Deal;
             private int _playTotal = 0;
-
 
             public void Play(Player player)
             {
 
+
+                if (player.Points == 120)
+                {
+                    _stage = Stage.Done;
+                    return;
+                }
+                if (_playTotal == 31)
+                    _stage = Stage.Show;
             }
 
             public void Show(Player player)
             {
 
+
+
+                if (player.Points == 120)
+                    _stage = Stage.Done;
             }
         }
 
-        private List<Hand> _hands;
+        private List<Hand> _hands = new List<Hand>();
         private Hand _currentHand;
 
         public void NewHand()

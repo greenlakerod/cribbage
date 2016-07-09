@@ -27,7 +27,11 @@ namespace Cribbage.Entities
 
         private bool _allowMuggins = false;
         private State _state;
-        
+
+        public Game()
+        {
+
+        }
 
         public Card CutCard { get { return _deck.CutCard; } }
 
