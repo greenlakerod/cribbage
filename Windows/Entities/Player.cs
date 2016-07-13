@@ -33,11 +33,11 @@ namespace Cribbage.Entities
         private int _points;
         public int Points { get { return _points; } }
 
-        private int _order;
+        private int _order = 0;
         public int Order
         {
             get { return _order; }
-            set { Order = value; }
+            set { _order = value; }
         }
 
         public void Show()
@@ -45,12 +45,15 @@ namespace Cribbage.Entities
             GameManager.GetGame(_gameId).Show();
         }
 
-        public void Play(int? cardIndex)
+        public void Play(/*int? cardIndex */)
         {
-            _cardToPlay = cardIndex.HasValue ? _hand.Discard(new int[] { cardIndex.Value }, false)[0] : null;
+            //_cardToPlay = cardIndex.HasValue ? _hand.Discard(new int[] { cardIndex.Value }, false)[0] : null;
+            //GameManager.GetGame(_gameId).Play();
 
-            GameManager.GetGame(_gameId).Play();
+
         }
+
+        public void Refute() { }
 
         public void AddCards(Card[] cards)
         {
@@ -61,6 +64,11 @@ namespace Cribbage.Entities
         {
             _crib = null;
             _hand = new Hand();
+        }
+
+        public void AddPoints(int points)
+        {
+            _points += points;
         }
     }
 }

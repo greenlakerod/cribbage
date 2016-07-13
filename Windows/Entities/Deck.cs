@@ -24,7 +24,7 @@ namespace Cribbage.Entities
             _deck.Clear();
             foreach (Suit suit in Enum.GetValues(typeof(Suit)))
             {
-                for (int i = 2; i <= 14; i++)
+                for (int i = 1; i < 14; i++)
                     _deck.Add(new Card(suit, (CardValue)i));
             }
         }

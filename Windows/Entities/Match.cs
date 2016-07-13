@@ -15,9 +15,13 @@ namespace Cribbage.Entities
             set { _id = value; }
         }
 
+        public Nullable<Guid> CurrentGameId { get; set; }
 
+        public ICollection<Game> Games { get; set; }
 
-        private List<Game> _games = new List<Game>();
-        public Game[] Games { get { return _games.ToArray(); } }
+        public Match()
+        {
+            Games = new List<Game>();
+        }
     }
 }

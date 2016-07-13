@@ -17,6 +17,7 @@ namespace Cribbage.Entities
     public enum CardValue
     {
         None = 0,
+        Ace = 1,
         Two = 2,
         Three = 3,
         Four = 4,
@@ -28,8 +29,7 @@ namespace Cribbage.Entities
         Ten = 10,
         Jack = 11,
         Queen = 12,
-        King = 13,
-        Ace = 14
+        King = 13
     }
 
     public class Card

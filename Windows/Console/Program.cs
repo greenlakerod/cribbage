@@ -10,6 +10,7 @@ namespace Cribbage.Console
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

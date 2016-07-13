@@ -8,12 +8,18 @@ namespace Cribbage.Entities
 {
     public partial class Game
     {
-        public class Round
+        public class Hand
         {
-            public Guid Id { get; set; }
+            public enum Stage
+            {
+                Deal = 0,
+                Play = 1,
+                Show = 2,
+                Done = 3
+            }
 
             private Player.Hand _crib;
-            private RoundStage _stage = RoundStage.Deal;
+            private Stage _stage = Stage.Deal;
             private Player _lastPlayer = null;
             private Card _previousCard = null;
             private int _playTotal = 0;
@@ -38,13 +44,13 @@ namespace Cribbage.Entities
                     {
                         player.AddPoints(2);
                         if (_playTotal == 31)
-                            _stage = RoundStage.Show;
+                            _stage = Stage.Show;
 
                         CheckGameWinner(player);
                     }
 
                     //check for pairs, three-of-a-kind, four-of-a-kind
-                    if (_stage == RoundStage.Play)
+                    if (_stage == Stage.Play)
                     {
                         if ((int)currentCard.Value == (int)_previousCard.Value)
                         {
@@ -66,7 +72,7 @@ namespace Cribbage.Entities
                     }
 
                     //check for run
-                    if (_stage == RoundStage.Play && _matchingCardValueCount == 0)
+                    if (_stage == Stage.Play && _matchingCardValueCount == 0)
                     {
 
                     }
@@ -82,7 +88,7 @@ namespace Cribbage.Entities
                     if (_goCount == _playerCount)
                     {
                         _lastPlayer.AddPoints(1);
-                        _stage = RoundStage.Show;
+                        _stage = Stage.Show;
 
                         CheckGameWinner(_lastPlayer);
                     }
@@ -95,25 +101,25 @@ namespace Cribbage.Entities
 
 
                 if (player.Points == 120)
-                    _stage = RoundStage.Done;
+                    _stage = Stage.Done;
             }
 
             private void CheckGameWinner(Player player)
             {
                 if (player.Points >= 120)
-                    _stage = RoundStage.Done;
+                    _stage = Stage.Done;
             }
         }
 
-        private List<Round> _hands = new List<Round>();
-        
+        private List<Hand> _hands = new List<Hand>();
+        private Hand _currentHand;
 
         public void NewHand()
         {
             if (_currentHand != null)
                 _hands.Add(_currentHand);
 
-            _currentHand = new Round();
+            _currentHand = new Hand();
 
             ResetPlayerHands();
             _deck.Reset();

@@ -6,40 +6,33 @@ using System.Threading.Tasks;
 
 namespace Cribbage.Entities
 {
-    
-
     public partial class Game: IEntityBase
     {
-        public enum State
-        {
-            Cancelled = 0,
-            Finished = 1,
-            InProgress = 2
-        }
-
-        private Guid _id;
-        private Deck _deck;
-        
-        private List<Player> _players;
+        private GameState _state;
         private Player _currentPlayer;
         private Player _currentDealer;
         private Player _currentCutter;
+        private Round _currentHand;
+        private Deck _deck;
+        private List<Player> _players;
 
-        private bool _allowMuggins = false;
-        private State _state;
+        public Guid Id { get; set; }
+        public int State { get; set; }
+        public virtual ICollection<Player> Players { get; set; }
+        public Nullable<Guid> CurrentHandId { get; set; }
+        public Nullable<Guid> CurrentPlayerId { get; set; }
+        public Nullable<Guid> CurrentDealerId { get; set; }
+        public Nullable<Guid> CurrentCutterId { get; set; }
+        public bool AllowMuggins { get; set; }
+
+        
 
         public Game()
         {
-
+            Players = new List<Player>();
         }
 
         public Card CutCard { get { return _deck.CutCard; } }
-
-        public Guid Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
 
         public bool Deal(Player player, int count)
         {
@@ -103,5 +96,9 @@ namespace Cribbage.Entities
         {
             _currentHand.Play(_currentPlayer);
         }
+
+        public void Approve() { }
+
+        public void Reject() { }
     }
 }
