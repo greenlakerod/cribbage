@@ -22,10 +22,10 @@ namespace Cribbage.Entities
             set { _gameId = value; }
         }
 
-        private Hand _hand = new Hand();
+        private PlayerHand _hand = new PlayerHand();
 
-        private Hand _crib;
-        public Hand Crib { set { _crib = value; } }
+        private PlayerHand _crib;
+        public PlayerHand Crib { set { _crib = value; } }
 
         private Card _cardToPlay = null;
         public Card CardToPlay { get { return _cardToPlay; } }
@@ -63,7 +63,7 @@ namespace Cribbage.Entities
         public void ResetHand()
         {
             _crib = null;
-            _hand = new Hand();
+            _hand = new PlayerHand();
         }
 
         public void AddPoints(int points)

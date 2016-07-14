@@ -12,13 +12,15 @@ namespace Cribbage.Entities
         private Player _currentPlayer;
         private Player _currentDealer;
         private Player _currentCutter;
-        private Round _currentHand;
+        private GameHand _currentHand;
         private Deck _deck;
         private List<Player> _players;
+        private List<GameHand> _hands = new List<GameHand>();
 
         public Guid Id { get; set; }
         public int State { get; set; }
         public virtual ICollection<Player> Players { get; set; }
+        public virtual ICollection<GameHand> Hands { get; set; }
         public Nullable<Guid> CurrentHandId { get; set; }
         public Nullable<Guid> CurrentPlayerId { get; set; }
         public Nullable<Guid> CurrentDealerId { get; set; }
@@ -100,5 +102,36 @@ namespace Cribbage.Entities
         public void Approve() { }
 
         public void Reject() { }
+
+        
+
+
+        public void NewHand()
+        {
+            if (_currentHand != null)
+                _hands.Add(_currentHand);
+
+            _currentHand = new GameHand();
+
+            ResetPlayerHands();
+            _deck.Reset();
+            _deck.Shuffle();
+
+            if (_currentDealer == null)
+            {
+                _currentDealer = _players[0];
+                _currentCutter = _players[1];
+            }
+            else
+            {
+                _currentDealer = _players[_currentCutter.Order];
+
+                int dealIndex = _currentCutter.Order + 1;
+                if (dealIndex >= _players.Count)
+                    dealIndex = 0;
+
+                _currentCutter = _players[dealIndex];
+            }
+        }
     }
 }
