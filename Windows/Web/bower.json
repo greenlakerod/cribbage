@@ -1,0 +1,10 @@
+{
+  "name": "Cribbage",
+  "main": "Cribbage.js",
+  "authors": [ "Rod Eligio"],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}

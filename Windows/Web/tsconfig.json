@@ -1,0 +1,14 @@
+﻿{
+    "compilerOptions": {
+        "target": "es5",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": "./Cribbage.js",
+        "sourceMap": false,
+        "declaration": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

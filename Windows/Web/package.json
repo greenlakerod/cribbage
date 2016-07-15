@@ -1,0 +1,46 @@
+{
+  "name": "cribbageweb",
+  "version": "1.0.0",
+  "description": "cribbageweb",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenlakerod/cribbage.git"
+  },
+  "keywords": [
+    "cribbage"
+  ],
+  "author": "Rod Eligio",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.13.0",
+    "bower": "~1.7.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "~2.0.0",
+    "gulp-bower": "~0.0.13",
+    "gulp-bower-normalize": "^1.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^3.2.0",
+    "gulp-debug": "^2.0.1",
+    "gulp-inject": "^1.2.0",
+    "gulp-less": "^3.0.0",
+    "gulp-open": "^1.0.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-rev-append": "^0.1.0",
+    "gulp-rimraf": "^0.1.1",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-tsc": "^1.1.0",
+    "gulp-tslint": "^1.4.4",
+    "gulp-typescript": "^2.5.0",
+    "gulp-uglify": "^1.5.0",
+    "gulp-util": "^3.0.0",
+    "gulp-watch": "^4.3.0",
+    "main-bower-files": "^2.11.0",
+    "path": "^0.12.0",
+    "require-dir": "^0.3.0",
+    "run-sequence": "^1.1.0",
+    "superstatic": "^4.0.3",
+    "typescript": "~1.8.10"
+  }
+}
