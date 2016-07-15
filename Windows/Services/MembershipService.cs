@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Cribbage.Data.Configurations;
 using Cribbage.Data.Extensions;
 using System.Security.Principal;
+using Cribbage.Data.Abstract;
 
 namespace Cribbage.Services
 {

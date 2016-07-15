@@ -6,36 +6,22 @@ using System.Threading.Tasks;
 
 namespace Cribbage.Entities
 {
-    public class PlayerHand
+    public class PlayerHand : IEntityBase
     {
-        public class Combination
-        {
-            public Card[] Cards { get; set; }
-            public int[] Values { get; set; }
-            public int Value { get { return Values.Sum(v => v); } }
-
-            public Combination(Card[] cards, int[] values)
-            {
-                Cards = cards;
-                Values = values;
-            }
-        }
-
-        private int _maxCardsAllowed = 5;
-        public int MaxCardsAllowed { set { _maxCardsAllowed = value; } }
-
-        private List<Card> _cards = new List<Card>();
-        private List<Card> _playedCards = new List<Card>();
-
-        private List<Combination> _combinations = new List<Combination>();
-        public Combination[] Combinations { get { return _combinations.ToArray(); } }
+        public Guid Id { get; set; }
+        public Guid GameHandId { get; set; }
+        public Guid UserId { get; set; }
+        public int MaxCardsAllowed { get; set; } //may not need
+        public List<Card> Cards { get; set; }
+        public List<Card> PlayedCards { get; set; }
+        public List<Combination> Combinations { get; set; }
 
         public void Draw(Card[] cards)
         {
-            if (cards.Length > (_maxCardsAllowed - _cards.Count))
+            if (cards.Length > (MaxCardsAllowed - Cards.Count))
                 throw new InvalidOperationException(string.Format("Can't add {0} cards", cards.Length));
 
-            _cards.AddRange(cards);
+            Cards.AddRange(cards);
         }
 
         public Card[] Discard(int[] indexes, bool toKitty)
@@ -46,13 +32,13 @@ namespace Cribbage.Entities
             List<Card> discards = new List<Card>();
             for (int i = 0; i < indexes.Length; i++)
             {
-                Card discard = _cards[i];
+                Card discard = Cards[i];
                 discards.Add(new Card(discard.Suit, discard.Value));
 
                 if (!toKitty)
-                    _playedCards.Add(discard);
+                    PlayedCards.Add(discard);
 
-                _cards.Remove(discard);
+                Cards.Remove(discard);
             }
 
             return discards.ToArray();
@@ -60,8 +46,8 @@ namespace Cribbage.Entities
 
         public void Show()
         {
-            _cards.AddRange(_playedCards);
-            _playedCards.Clear();
+            Cards.AddRange(PlayedCards);
+            PlayedCards.Clear();
         }
     }
 }

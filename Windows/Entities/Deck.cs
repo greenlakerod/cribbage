@@ -9,7 +9,7 @@ namespace Cribbage.Entities
     public class Deck
     {
         static Random _random = new Random();
-        private List<Card> _deck = new List<Card>();
+        private List<Card> _cards = new List<Card>();
 
         private Card _cutCard;
         public Card CutCard { get { return _cutCard; } }
@@ -21,35 +21,35 @@ namespace Cribbage.Entities
 
         public void Reset()
         {
-            _deck.Clear();
+            _cards.Clear();
             foreach (Suit suit in Enum.GetValues(typeof(Suit)))
             {
                 for (int i = 1; i < 14; i++)
-                    _deck.Add(new Card(suit, (CardValue)i));
+                    _cards.Add(new Card(suit, (CardValue)i));
             }
         }
 
         public void Shuffle()
         {
             //http://en.wikipedia.org/wiki/Fisher-Yates_shuffle
-            for (int i = _deck.Count - 1; i > 0; i--)
+            for (int i = _cards.Count - 1; i > 0; i--)
             {
                 int k = _random.Next(i + 1);
-                Card temp = _deck[i];
-                _deck[i] = _deck[k];
-                _deck[k] = temp;
+                Card temp = _cards[i];
+                _cards[i] = _cards[k];
+                _cards[k] = temp;
             }
         }
 
         public Card[] Deal(int count)
         {
-            if (count >= _deck.Count)
+            if (count >= _cards.Count)
             {
                 try
                 {
                     Card[] temp = new Card[count];
-                    _deck.CopyTo(0, temp, 0, count);
-                    _deck.RemoveRange(0, count);
+                    _cards.CopyTo(0, temp, 0, count);
+                    _cards.RemoveRange(0, count);
 
                     return temp;
                 }
@@ -64,15 +64,15 @@ namespace Cribbage.Entities
 
         public void Cut(int index)
         {
-            Card[] temp = new Card[_deck.Count];
+            Card[] temp = new Card[_cards.Count];
 
-            _deck.CopyTo(index, temp, 0, _deck.Count - index);
-            _deck.CopyTo(0, temp, _deck.Count - index, index);
-            _deck.Clear();
-            _deck = temp.ToList();
+            _cards.CopyTo(index, temp, 0, _cards.Count - index);
+            _cards.CopyTo(0, temp, _cards.Count - index, index);
+            _cards.Clear();
+            _cards = temp.ToList();
 
-            _cutCard = _deck[0];
-            _deck.RemoveAt(0);
+            _cutCard = _cards[0];
+            _cards.RemoveAt(0);
         }
     }
 }

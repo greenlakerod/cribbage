@@ -44,6 +44,24 @@ namespace Cribbage.Web.Controllers
 
         }
 
+        public void DisputePlay()
+        {
 
+        }
+
+        public void ShowCards()
+        {
+
+        }
+
+        public void DisputeShow()
+        {
+
+        }
+
+        public void Judge()
+        {
+
+        }
     }
 }

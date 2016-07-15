@@ -1,4 +1,5 @@
-﻿using Cribbage.Data.Repositories;
+﻿using Cribbage.Data.Abstract;
+using Cribbage.Data.Repositories;
 using Cribbage.Entities;
 using System;
 using System.Collections.Generic;

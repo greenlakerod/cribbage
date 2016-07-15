@@ -1,4 +1,5 @@
-﻿using Cribbage.Data.Configurations;
+﻿using Cribbage.Data.Abstract;
+using Cribbage.Data.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,6 @@ using System.Threading.Tasks;
 
 namespace Cribbage.Data.Infrastructure
 {
-    public interface IUnitOfWork
-    {
-        void Commit();
-    }
-
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbFactory _dbFactory;

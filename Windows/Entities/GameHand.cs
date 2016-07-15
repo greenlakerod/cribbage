@@ -92,13 +92,13 @@ namespace Cribbage.Entities
 
 
 
-            if (player.Points == 120)
+            if (player.GameTotal == 120)
                 _stage = GameHandStage.Done;
         }
 
         private void CheckGameWinner(Player player)
         {
-            if (player.Points >= 120)
+            if (player.GameTotal >= 120)
                 _stage = GameHandStage.Done;
         }
     }

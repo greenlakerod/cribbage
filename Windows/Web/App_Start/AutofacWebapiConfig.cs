@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
+using Cribbage.Data.Abstract;
 using Cribbage.Data.Configurations;
 using Cribbage.Data.Infrastructure;
 using Cribbage.Data.Repositories;

@@ -103,9 +103,6 @@ namespace Cribbage.Entities
 
         public void Reject() { }
 
-        
-
-
         public void NewHand()
         {
             if (_currentHand != null)

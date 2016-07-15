@@ -8,14 +8,16 @@ namespace Cribbage.Entities
 {
     public class Card
     {
-        public Suit Suit;
-        public CardValue Value;
+        public Suit Suit { get; set; }
+        public CardValue Value { get; set; }
 
         public Card(Suit suit, CardValue value)
         {
             Value = value;
             Suit = suit;
         }
+
+        public Card() { }
     }
     public class CardComparer : IComparer<Card>
     {

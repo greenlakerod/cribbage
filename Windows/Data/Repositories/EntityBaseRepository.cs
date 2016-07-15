@@ -1,4 +1,5 @@
-﻿using Cribbage.Data.Configurations;
+﻿using Cribbage.Data.Abstract;
+using Cribbage.Data.Configurations;
 using Cribbage.Data.Infrastructure;
 using Cribbage.Entities;
 using System;
@@ -12,18 +13,6 @@ using System.Threading.Tasks;
 
 namespace Cribbage.Data.Repositories
 {
-    public interface IEntityBaseRepository<T> where T : class, IEntityBase, new()
-    {
-        IQueryable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
-        IQueryable<T> All { get; }
-        IQueryable<T> GetAll();
-        T GetSingle(Guid id);
-        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
-        void Add(T entity);
-        void Delete(T entity);
-        void Edit(T entity);
-    }
-
     public class EntityBaseRepository<T> : IEntityBaseRepository<T>
             where T : class, IEntityBase, new()
     {

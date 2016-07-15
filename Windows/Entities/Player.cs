@@ -8,41 +8,22 @@ namespace Cribbage.Entities
 {
     public partial class Player : IEntityBase
     {
-        private Guid _id;
-        public Guid Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-
-        private Guid _gameId;
-        public Guid GameId
-        {
-            get { return _gameId; }
-            set { _gameId = value; }
-        }
-
-        private PlayerHand _hand = new PlayerHand();
-
-        private PlayerHand _crib;
-        public PlayerHand Crib { set { _crib = value; } }
+        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public Guid GameId { get; set; }
+        public Guid GameHandId { get; set; }
+        public int GameTotal { get; set; }
+        public PlayerHand Hand { get; set; }
+        public PlayerHand Crib { get; set; }
+        public int Order { get; set; }
 
         private Card _cardToPlay = null;
         public Card CardToPlay { get { return _cardToPlay; } }
 
-        private int _points;
-        public int Points { get { return _points; } }
-
-        private int _order = 0;
-        public int Order
-        {
-            get { return _order; }
-            set { _order = value; }
-        }
 
         public void Show()
         {
-            GameManager.GetGame(_gameId).Show();
+            GameManager.GetGame(GameId).Show();
         }
 
         public void Play(/*int? cardIndex */)
@@ -57,18 +38,18 @@ namespace Cribbage.Entities
 
         public void AddCards(Card[] cards)
         {
-            _hand.Draw(cards);
+            Hand.Draw(cards);
         }
 
         public void ResetHand()
         {
-            _crib = null;
-            _hand = new PlayerHand();
+            Crib = null;
+            Hand = new PlayerHand();
         }
 
         public void AddPoints(int points)
         {
-            _points += points;
+            GameTotal += points;
         }
     }
 }
