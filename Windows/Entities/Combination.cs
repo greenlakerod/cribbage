@@ -8,14 +8,17 @@ namespace Cribbage.Entities
 {
     public class Combination
     {
-        public Card[] Cards { get; set; }
-        public int[] Values { get; set; }
-        public int Value { get { return Values.Sum(v => v); } }
+        public List<Card> Cards { get; set; }
+        public List<int> Values { get; set; }
+        public List<ScoreType> ScoreTypes { get; set; }
 
-        public Combination(Card[] cards, int[] values)
-        {
-            Cards = cards;
-            Values = values;
-        }
+        //public int Value { get { return Values.Sum(v => v); } }
+
+        //public Combination(Card[] cards, int[] values)
+        //{
+        //    Cards = cards;
+        //    Values = values;
+        //}
+        //public Combination() { }
     }
 }
