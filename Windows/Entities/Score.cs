@@ -8,6 +8,7 @@ namespace Cribbage.Entities
 {
     public enum ScoreType
     {
+        None,
         Go,
         Fifteen,
         Flush,

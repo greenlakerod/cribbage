@@ -8,20 +8,13 @@ namespace Cribbage.Entities
 {
     public class Match : IEntityBase
     {
-        private Guid _id;
-        public Guid Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-
+        public Guid Id { get; set; }
         public Nullable<Guid> CurrentGameId { get; set; }
-
         public ICollection<Game> Games { get; set; }
 
-        public Match()
-        {
-            Games = new List<Game>();
-        }
+        //public Match()
+        //{
+        //    Games = new List<Game>();
+        //}
     }
 }

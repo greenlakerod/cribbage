@@ -8,10 +8,6 @@ namespace Cribbage.Entities
 {
     public class User : IEntityBase
     {
-        public User()
-        {
-            UserRoles = new List<UserRole>();
-        }
         public Guid Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
@@ -21,5 +17,10 @@ namespace Cribbage.Entities
         public DateTime DateCreated { get; set; }
 
         public virtual ICollection<UserRole> UserRoles { get; set; }
+
+        public User()
+        {
+            UserRoles = new List<UserRole>();
+        }
     }
 }

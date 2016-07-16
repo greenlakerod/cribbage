@@ -50,6 +50,7 @@
     <Compile Include="GameManager.cs" />
     <Compile Include="IEntityBase.cs" />
     <Compile Include="Match.cs" />
+    <Compile Include="PlayedCard.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerHand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
