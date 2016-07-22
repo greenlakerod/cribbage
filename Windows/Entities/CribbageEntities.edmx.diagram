@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="284b104369244428bfea1d24ca6491d6" Name="Diagram1">
+        <EntityTypeShape EntityType="Cribbage.Entities.Role" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Cribbage.Entities.User" Width="1.5" PointX="0.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Cribbage.Entities.UserRole" Width="1.5" PointX="2.25" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="Cribbage.Entities.FK_UserRole_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="Cribbage.Entities.FK_UserRole_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Cribbage.Entities.PlayerHand" Width="1.5" PointX="6" PointY="0.5" />
+        <EntityTypeShape EntityType="Cribbage.Entities.Game" Width="1.5" PointX="5.75" PointY="3.375" />
+        <EntityTypeShape EntityType="Cribbage.Entities.Match" Width="1.5" PointX="9.875" PointY="4.375" />
+        <AssociationConnector Association="Cribbage.Entities.FK_Game_Match" />
+        <EntityTypeShape EntityType="Cribbage.Entities.Player" Width="1.5" PointX="3.75" PointY="2.625" />
+        <AssociationConnector Association="Cribbage.Entities.FK_Player_Game" />
+        <AssociationConnector Association="Cribbage.Entities.FK_Player_User" />
+        <EntityTypeShape EntityType="Cribbage.Entities.GameHand" Width="1.5" PointX="8.125" PointY="0.5" />
+        <AssociationConnector Association="Cribbage.Entities.FK_GameHand_Game" />
+        <AssociationConnector Association="Cribbage.Entities.FK_PlayerHand_GameHand" />
+        <AssociationConnector Association="Cribbage.Entities.FK_GameHand_PlayerHand_Crib" />
+        <AssociationConnector Association="Cribbage.Entities.FK_Player_GameHand_LastPlayer" />
+        <AssociationConnector Association="Cribbage.Entities.FK_Player_GameHand_CurrentPlayer" />
+        <AssociationConnector Association="Cribbage.Entities.FK_Player_PlayerHand" />
+        <AssociationConnector Association="Cribbage.Entities.FK_PlayerHand_Player_Crib" />
+        <AssociationConnector Association="Cribbage.Entities.FK_PlayerHand_Player" />
+        <AssociationConnector Association="Cribbage.Entities.FK_GameHand_Game_CurrentHand" />
+        <AssociationConnector Association="Cribbage.Entities.FK_Player_Game_CurrentDealer" />
+        <AssociationConnector Association="Cribbage.Entities.FK_Game_Match_CurrentGame" />
+        <EntityTypeShape EntityType="Cribbage.Entities.Card" Width="1.5" PointX="2.125" PointY="4.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

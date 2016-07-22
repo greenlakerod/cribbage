@@ -1,0 +1,965 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Cribbage.Entities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CribbageEntitiesStoreContainer">
+    <EntitySet Name="Roles" EntityType="Cribbage.Entities.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Cribbage.Entities.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRoles" EntityType="Cribbage.Entities.Store.UserRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PlayerHands" EntityType="Cribbage.Entities.Store.PlayerHands" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Games" EntityType="Cribbage.Entities.Store.Games" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Matches" EntityType="Cribbage.Entities.Store.Matches" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Players" EntityType="Cribbage.Entities.Store.Players" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GameHands" EntityType="Cribbage.Entities.Store.GameHands" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cards" EntityType="Cribbage.Entities.Store.Cards" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_UserRole_Role" Association="Cribbage.Entities.Store.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="Cribbage.Entities.Store.FK_UserRole_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Game_Match" Association="Cribbage.Entities.Store.FK_Game_Match">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Match" EntitySet="Matches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Player_Game" Association="Cribbage.Entities.Store.FK_Player_Game">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Player_User" Association="Cribbage.Entities.Store.FK_Player_User">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GameHand_Game" Association="Cribbage.Entities.Store.FK_GameHand_Game">
+      <End Role="GameHand" EntitySet="GameHands" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerHand_GameHand" Association="Cribbage.Entities.Store.FK_PlayerHand_GameHand">
+      <End Role="GameHand" EntitySet="GameHands" />
+      <End Role="PlayerHand" EntitySet="PlayerHands" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GameHand_PlayerHand_Crib" Association="Cribbage.Entities.Store.FK_GameHand_PlayerHand_Crib">
+      <End Role="PlayerHand" EntitySet="PlayerHands" />
+      <End Role="GameHand" EntitySet="GameHands" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Player_GameHand_LastPlayer" Association="Cribbage.Entities.Store.FK_Player_GameHand_LastPlayer">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="GameHand" EntitySet="GameHands" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Player_GameHand_CurrentPlayer" Association="Cribbage.Entities.Store.FK_Player_GameHand_CurrentPlayer">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="GameHand" EntitySet="GameHands" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Player_PlayerHand" Association="Cribbage.Entities.Store.FK_Player_PlayerHand">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="PlayerHand" EntitySet="PlayerHands" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerHand_Player_Crib" Association="Cribbage.Entities.Store.FK_PlayerHand_Player_Crib">
+      <End Role="PlayerHand" EntitySet="PlayerHands" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerHand_Player" Association="Cribbage.Entities.Store.FK_PlayerHand_Player">
+      <End Role="PlayerHand" EntitySet="PlayerHands" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GameHand_Game_CurrentHand" Association="Cribbage.Entities.Store.FK_GameHand_Game_CurrentHand">
+      <End Role="GameHand" EntitySet="GameHands" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Player_Game_CurrentDealer" Association="Cribbage.Entities.Store.FK_Player_Game_CurrentDealer">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Game_Match_CurrentGame" Association="Cribbage.Entities.Store.FK_Game_Match_CurrentGame">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Match" EntitySet="Matches" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="HashedPassword" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Salt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsLocked" Type="bit" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlayerHands">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GameHandId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PlayerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsCrib" Type="bit" Nullable="false" />
+    <Property Name="CardIds" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlayedCardIds" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MatchId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="AllowMuggins" Type="bit" Nullable="false" />
+    <Property Name="CurrentHandId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CurrentDealerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Index" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Matches">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="CurrentGameId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GameId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GameOrder" Type="int" Nullable="false" />
+    <Property Name="GameTotal" Type="int" Nullable="false" />
+    <Property Name="CribId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CurrentHandId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GameHands">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GameId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="CribId" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LastPlayerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CurrentPlayerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Index" Type="int" Nullable="false" />
+    <Property Name="CutCardId" Type="int" Nullable="false" />
+    <Property Name="CardIds" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlayedCardIds" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GoCount" Type="int" Nullable="false" />
+    <Property Name="MatchingCardValueCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cards">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Suit" Type="int" Nullable="false" />
+    <Property Name="Value" Type="int" Nullable="false" />
+    <Property Name="Points" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_UserRole_Role">
+    <End Role="Role" Type="Cribbage.Entities.Store.Roles" Multiplicity="1" />
+    <End Role="UserRole" Type="Cribbage.Entities.Store.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Role="User" Type="Cribbage.Entities.Store.Users" Multiplicity="1" />
+    <End Role="UserRole" Type="Cribbage.Entities.Store.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Game_Match">
+    <End Role="Game" Type="Cribbage.Entities.Store.Games" Multiplicity="*" />
+    <End Role="Match" Type="Cribbage.Entities.Store.Matches" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Match">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="MatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Player_Game">
+    <End Role="Player" Type="Cribbage.Entities.Store.Players" Multiplicity="*" />
+    <End Role="Game" Type="Cribbage.Entities.Store.Games" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="GameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Player_User">
+    <End Role="Player" Type="Cribbage.Entities.Store.Players" Multiplicity="*" />
+    <End Role="User" Type="Cribbage.Entities.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GameHand_Game">
+    <End Role="GameHand" Type="Cribbage.Entities.Store.GameHands" Multiplicity="*" />
+    <End Role="Game" Type="Cribbage.Entities.Store.Games" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GameHand">
+        <PropertyRef Name="GameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerHand_GameHand">
+    <End Role="GameHand" Type="Cribbage.Entities.Store.GameHands" Multiplicity="1" />
+    <End Role="PlayerHand" Type="Cribbage.Entities.Store.PlayerHands" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GameHand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlayerHand">
+        <PropertyRef Name="GameHandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GameHand_PlayerHand_Crib">
+    <End Role="PlayerHand" Type="Cribbage.Entities.Store.PlayerHands" Multiplicity="0..1" />
+    <End Role="GameHand" Type="Cribbage.Entities.Store.GameHands" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayerHand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GameHand">
+        <PropertyRef Name="CribId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Player_GameHand_LastPlayer">
+    <End Role="Player" Type="Cribbage.Entities.Store.Players" Multiplicity="1" />
+    <End Role="GameHand" Type="Cribbage.Entities.Store.GameHands" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GameHand">
+        <PropertyRef Name="LastPlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Player_GameHand_CurrentPlayer">
+    <End Role="Player" Type="Cribbage.Entities.Store.Players" Multiplicity="1" />
+    <End Role="GameHand" Type="Cribbage.Entities.Store.GameHands" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GameHand">
+        <PropertyRef Name="CurrentPlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Player_PlayerHand">
+    <End Role="Player" Type="Cribbage.Entities.Store.Players" Multiplicity="1" />
+    <End Role="PlayerHand" Type="Cribbage.Entities.Store.PlayerHands" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlayerHand">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerHand_Player_Crib">
+    <End Role="PlayerHand" Type="Cribbage.Entities.Store.PlayerHands" Multiplicity="1" />
+    <End Role="Player" Type="Cribbage.Entities.Store.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayerHand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="CribId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerHand_Player">
+    <End Role="PlayerHand" Type="Cribbage.Entities.Store.PlayerHands" Multiplicity="1" />
+    <End Role="Player" Type="Cribbage.Entities.Store.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayerHand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="CurrentHandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GameHand_Game_CurrentHand">
+    <End Role="GameHand" Type="Cribbage.Entities.Store.GameHands" Multiplicity="1" />
+    <End Role="Game" Type="Cribbage.Entities.Store.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GameHand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="CurrentHandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Player_Game_CurrentDealer">
+    <End Role="Player" Type="Cribbage.Entities.Store.Players" Multiplicity="1" />
+    <End Role="Game" Type="Cribbage.Entities.Store.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="CurrentDealerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Game_Match_CurrentGame">
+    <End Role="Game" Type="Cribbage.Entities.Store.Games" Multiplicity="1" />
+    <End Role="Match" Type="Cribbage.Entities.Store.Matches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Match">
+        <PropertyRef Name="CurrentGameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Cribbage.Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HashedPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="Players" Relationship="Cribbage.Entities.FK_Player_User" FromRole="User" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CribbageEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <EntitySet Name="PlayerHands" EntityType="Cribbage.Entities.PlayerHand" />
+          <EntitySet Name="Games" EntityType="Cribbage.Entities.Game" />
+          <EntitySet Name="Matches" EntityType="Cribbage.Entities.Match" />
+          <AssociationSet Name="FK_Game_Match" Association="Cribbage.Entities.FK_Game_Match">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Match" EntitySet="Matches" />
+          </AssociationSet>
+          <EntitySet Name="Players" EntityType="Cribbage.Entities.Player" />
+          <AssociationSet Name="FK_Player_Game" Association="Cribbage.Entities.FK_Player_Game">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_User" Association="Cribbage.Entities.FK_Player_User">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="GameHands" EntityType="Cribbage.Entities.GameHand" />
+          <AssociationSet Name="FK_GameHand_Game" Association="Cribbage.Entities.FK_GameHand_Game">
+            <End Role="GameHand" EntitySet="GameHands" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerHand_GameHand" Association="Cribbage.Entities.FK_PlayerHand_GameHand">
+            <End Role="GameHand" EntitySet="GameHands" />
+            <End Role="PlayerHand" EntitySet="PlayerHands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHand_PlayerHand_Crib" Association="Cribbage.Entities.FK_GameHand_PlayerHand_Crib">
+            <End Role="PlayerHand" EntitySet="PlayerHands" />
+            <End Role="GameHand" EntitySet="GameHands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_GameHand_LastPlayer" Association="Cribbage.Entities.FK_Player_GameHand_LastPlayer">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="GameHand" EntitySet="GameHands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_GameHand_CurrentPlayer" Association="Cribbage.Entities.FK_Player_GameHand_CurrentPlayer">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="GameHand" EntitySet="GameHands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_PlayerHand" Association="Cribbage.Entities.FK_Player_PlayerHand">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="PlayerHand" EntitySet="PlayerHands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerHand_Player_Crib" Association="Cribbage.Entities.FK_PlayerHand_Player_Crib">
+            <End Role="PlayerHand" EntitySet="PlayerHands" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerHand_Player" Association="Cribbage.Entities.FK_PlayerHand_Player">
+            <End Role="PlayerHand" EntitySet="PlayerHands" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHand_Game_CurrentHand" Association="Cribbage.Entities.FK_GameHand_Game_CurrentHand">
+            <End Role="GameHand" EntitySet="GameHands" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Game_CurrentDealer" Association="Cribbage.Entities.FK_Player_Game_CurrentDealer">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Match_CurrentGame" Association="Cribbage.Entities.FK_Game_Match_CurrentGame">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Match" EntitySet="Matches" />
+          </AssociationSet>
+          <EntitySet Name="Cards" EntityType="Cribbage.Entities.Card" />
+        </EntityContainer>
+        <EntityType Name="PlayerHand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="GameHand" Relationship="Cribbage.Entities.FK_PlayerHand_GameHand" FromRole="PlayerHand" ToRole="GameHand" />
+          <Property Name="GameHandId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Player" Relationship="Cribbage.Entities.FK_Player_PlayerHand" FromRole="PlayerHand" ToRole="Player" />
+          <Property Name="PlayerId" Type="Guid" Nullable="false" />
+          <Property Name="IsCrib" Type="Boolean" Nullable="false" />
+          <Property Name="CardIds" Type="String" Nullable="false" />
+          <Property Name="PlayedCardIds" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Match" Relationship="Cribbage.Entities.FK_Game_Match" FromRole="Game" ToRole="Match" />
+          <Property Name="MatchId" Type="Guid" Nullable="false" />
+          <Property Name="State" Type="Cribbage.Entities.GameState" Nullable="false" />
+          <NavigationProperty Name="Players" Relationship="Cribbage.Entities.FK_Player_Game" FromRole="Game" ToRole="Player" />
+          <Property Name="AllowMuggins" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Hands" Relationship="Cribbage.Entities.FK_GameHand_Game" FromRole="Game" ToRole="GameHand" />
+          <NavigationProperty Name="CurrentHand" Relationship="Cribbage.Entities.FK_GameHand_Game_CurrentHand" FromRole="Game" ToRole="GameHand" />
+          <Property Name="CurrentHandId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="CurrentDealer" Relationship="Cribbage.Entities.FK_Player_Game_CurrentDealer" FromRole="Game" ToRole="Player" />
+          <Property Name="CurrentDealerId" Type="Guid" Nullable="false" />
+          <Property Name="Index" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Games" Relationship="Cribbage.Entities.FK_Game_Match" FromRole="Match" ToRole="Game" />
+          <Property Name="State" Type="Cribbage.Entities.MatchState" Nullable="false" />
+          <NavigationProperty Name="CurrentGame" Relationship="Cribbage.Entities.FK_Game_Match_CurrentGame" FromRole="Match" ToRole="Game" />
+          <Property Name="CurrentGameId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Game_Match">
+          <End Type="Cribbage.Entities.Game" Role="Game" Multiplicity="*" />
+          <End Type="Cribbage.Entities.Match" Role="Match" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Match">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="MatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="GameState">
+          <Member Name="New" Value="0" />
+          <Member Name="InProgress" Value="1" />
+          <Member Name="Cancelled" Value="2" />
+          <Member Name="Finished" Value="3" />
+        </EnumType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Game" Relationship="Cribbage.Entities.FK_Player_Game" FromRole="Player" ToRole="Game" />
+          <Property Name="GameId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Cribbage.Entities.FK_Player_User" FromRole="Player" ToRole="User" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="GameOrder" Type="Int32" Nullable="false" />
+          <Property Name="GameTotal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hands" Relationship="Cribbage.Entities.FK_Player_PlayerHand" FromRole="Player" ToRole="PlayerHand" />
+          <NavigationProperty Name="Crib" Relationship="Cribbage.Entities.FK_PlayerHand_Player_Crib" FromRole="Player" ToRole="PlayerHand" />
+          <Property Name="CribId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="CurrentHand" Relationship="Cribbage.Entities.FK_PlayerHand_Player" FromRole="Player" ToRole="PlayerHand" />
+          <Property Name="CurrentHandId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Player_Game">
+          <End Type="Cribbage.Entities.Player" Role="Player" Multiplicity="*" />
+          <End Type="Cribbage.Entities.Game" Role="Game" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_User">
+          <End Type="Cribbage.Entities.Player" Role="Player" Multiplicity="*" />
+          <End Type="Cribbage.Entities.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="MatchState">
+          <Member Name="New" Value="0" />
+          <Member Name="InProgress" Value="1" />
+          <Member Name="Cancelled" Value="2" />
+          <Member Name="Finished" Value="3" />
+        </EnumType>
+        <EntityType Name="GameHand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Game" Relationship="Cribbage.Entities.FK_GameHand_Game" FromRole="GameHand" ToRole="Game" />
+          <Property Name="GameId" Type="Guid" Nullable="false" />
+          <Property Name="State" Type="Cribbage.Entities.GameHandState" Nullable="false" />
+          <NavigationProperty Name="PlayerHands" Relationship="Cribbage.Entities.FK_PlayerHand_GameHand" FromRole="GameHand" ToRole="PlayerHand" />
+          <NavigationProperty Name="Crib" Relationship="Cribbage.Entities.FK_GameHand_PlayerHand_Crib" FromRole="GameHand" ToRole="PlayerHand" />
+          <Property Name="CribId" Type="Guid" Nullable="true" />
+          <NavigationProperty Name="LastPlayer" Relationship="Cribbage.Entities.FK_Player_GameHand_LastPlayer" FromRole="GameHand" ToRole="Player" />
+          <Property Name="LastPlayerId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="CurrentPlayer" Relationship="Cribbage.Entities.FK_Player_GameHand_CurrentPlayer" FromRole="GameHand" ToRole="Player" />
+          <Property Name="CurrentPlayerId" Type="Guid" Nullable="false" />
+          <Property Name="Index" Type="Int32" Nullable="false" />
+          <Property Name="CutCardId" Type="Int32" Nullable="false" />
+          <Property Name="CardIds" Type="String" Nullable="false" />
+          <Property Name="PlayedCardIds" Type="String" Nullable="false" />
+          <Property Name="GoCount" Type="Int32" Nullable="false" />
+          <Property Name="MatchingCardValueCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_GameHand_Game">
+          <End Type="Cribbage.Entities.GameHand" Role="GameHand" Multiplicity="*" />
+          <End Type="Cribbage.Entities.Game" Role="Game" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameHand">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="GameHandState">
+          <Member Name="Deal" Value="0" />
+          <Member Name="Play" Value="1" />
+          <Member Name="Show" Value="2" />
+          <Member Name="Done" Value="3" />
+        </EnumType>
+        <Association Name="FK_PlayerHand_GameHand">
+          <End Type="Cribbage.Entities.GameHand" Role="GameHand" Multiplicity="1" />
+          <End Type="Cribbage.Entities.PlayerHand" Role="PlayerHand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameHand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlayerHand">
+              <PropertyRef Name="GameHandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHand_PlayerHand_Crib">
+          <End Type="Cribbage.Entities.PlayerHand" Role="PlayerHand" Multiplicity="0..1" />
+          <End Type="Cribbage.Entities.GameHand" Role="GameHand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerHand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameHand">
+              <PropertyRef Name="CribId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_GameHand_LastPlayer">
+          <End Type="Cribbage.Entities.Player" Role="Player" Multiplicity="1" />
+          <End Type="Cribbage.Entities.GameHand" Role="GameHand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameHand">
+              <PropertyRef Name="LastPlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_GameHand_CurrentPlayer">
+          <End Type="Cribbage.Entities.Player" Role="Player" Multiplicity="1" />
+          <End Type="Cribbage.Entities.GameHand" Role="GameHand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameHand">
+              <PropertyRef Name="CurrentPlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_PlayerHand">
+          <End Type="Cribbage.Entities.Player" Role="Player" Multiplicity="1" />
+          <End Type="Cribbage.Entities.PlayerHand" Role="PlayerHand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlayerHand">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayerHand_Player_Crib">
+          <End Type="Cribbage.Entities.PlayerHand" Role="PlayerHand" Multiplicity="1" />
+          <End Type="Cribbage.Entities.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerHand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="CribId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayerHand_Player">
+          <End Type="Cribbage.Entities.PlayerHand" Role="PlayerHand" Multiplicity="1" />
+          <End Type="Cribbage.Entities.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerHand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="CurrentHandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHand_Game_CurrentHand">
+          <End Type="Cribbage.Entities.GameHand" Role="GameHand" Multiplicity="1" />
+          <End Type="Cribbage.Entities.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameHand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="CurrentHandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Game_CurrentDealer">
+          <End Type="Cribbage.Entities.Player" Role="Player" Multiplicity="1" />
+          <End Type="Cribbage.Entities.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="CurrentDealerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Match_CurrentGame">
+          <End Type="Cribbage.Entities.Game" Role="Game" Multiplicity="1" />
+          <End Type="Cribbage.Entities.Match" Role="Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="CurrentGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Suit" Type="Cribbage.Entities.Suit" Nullable="false" />
+          <Property Name="Value" Type="Cribbage.Entities.CardValue" Nullable="false" />
+          <Property Name="Points" Type="Cribbage.Entities.CardScore" Nullable="false" />
+        </EntityType>
+        <EnumType Name="Suit">
+          <Member Name="Clubs" Value="1" />
+          <Member Name="Diamonds" Value="2" />
+          <Member Name="Hearts" Value="3" />
+          <Member Name="Spades" Value="4" />
+        </EnumType>
+        <EnumType Name="CardValue">
+          <Member Name="None" Value="0" />
+          <Member Name="Ace" Value="1" />
+          <Member Name="Two" Value="2" />
+          <Member Name="Three" Value="3" />
+          <Member Name="Four" Value="4" />
+          <Member Name="Five" Value="5" />
+          <Member Name="Six" Value="6" />
+          <Member Name="Seven" Value="7" />
+          <Member Name="Eight" Value="8" />
+          <Member Name="Nine" Value="9" />
+          <Member Name="Ten" Value="10" />
+          <Member Name="Jack" Value="11" />
+          <Member Name="Queen" Value="12" />
+          <Member Name="King" Value="13" />
+        </EnumType>
+        <EnumType Name="CardScore">
+          <Member Name="None" Value="0" />
+          <Member Name="Ace" Value="1" />
+          <Member Name="Two" Value="2" />
+          <Member Name="Three" Value="3" />
+          <Member Name="Four" Value="4" />
+          <Member Name="Five" Value="5" />
+          <Member Name="Six" Value="6" />
+          <Member Name="Seven" Value="7" />
+          <Member Name="Eight" Value="8" />
+          <Member Name="Nine" Value="9" />
+          <Member Name="Ten" Value="10" />
+          <Member Name="Jack" Value="10" />
+          <Member Name="Queen" Value="10" />
+          <Member Name="King" Value="10" />
+        </EnumType>
+        <EnumType Name="ScoreType">
+          <Member Name="None" />
+          <Member Name="Go" />
+          <Member Name="Fifteen" />
+          <Member Name="Flush" />
+          <Member Name="LastCard" />
+          <Member Name="Nibs" />
+          <Member Name="Nobs" />
+          <Member Name="Pair" />
+          <Member Name="Quadruple" />
+          <Member Name="Straight" />
+          <Member Name="ThirtyOne" />
+          <Member Name="Triple" />
+        </EnumType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CribbageEntitiesStoreContainer" CdmEntityContainer="CribbageEntities">
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(Cribbage.Entities.Role)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Cribbage.Entities.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(Cribbage.Entities.UserRole)">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerHands">
+      <EntityTypeMapping TypeName="IsTypeOf(Cribbage.Entities.PlayerHand)">
+        <MappingFragment StoreEntitySet="PlayerHands">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GameHandId" ColumnName="GameHandId" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="IsCrib" ColumnName="IsCrib" />
+          <ScalarProperty Name="CardIds" ColumnName="CardIds" />
+          <ScalarProperty Name="PlayedCardIds" ColumnName="PlayedCardIds" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="IsTypeOf(Cribbage.Entities.Game)">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MatchId" ColumnName="MatchId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="AllowMuggins" ColumnName="AllowMuggins" />
+          <ScalarProperty Name="CurrentHandId" ColumnName="CurrentHandId" />
+          <ScalarProperty Name="CurrentDealerId" ColumnName="CurrentDealerId" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Matches">
+      <EntityTypeMapping TypeName="IsTypeOf(Cribbage.Entities.Match)">
+        <MappingFragment StoreEntitySet="Matches">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="CurrentGameId" ColumnName="CurrentGameId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="IsTypeOf(Cribbage.Entities.Player)">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="GameOrder" ColumnName="GameOrder" />
+          <ScalarProperty Name="GameTotal" ColumnName="GameTotal" />
+          <ScalarProperty Name="CribId" ColumnName="CribId" />
+          <ScalarProperty Name="CurrentHandId" ColumnName="CurrentHandId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameHands">
+      <EntityTypeMapping TypeName="IsTypeOf(Cribbage.Entities.GameHand)">
+        <MappingFragment StoreEntitySet="GameHands">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="CribId" ColumnName="CribId" />
+          <ScalarProperty Name="LastPlayerId" ColumnName="LastPlayerId" />
+          <ScalarProperty Name="CurrentPlayerId" ColumnName="CurrentPlayerId" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="CutCardId" ColumnName="CutCardId" />
+          <ScalarProperty Name="CardIds" ColumnName="CardIds" />
+          <ScalarProperty Name="PlayedCardIds" ColumnName="PlayedCardIds" />
+          <ScalarProperty Name="GoCount" ColumnName="GoCount" />
+          <ScalarProperty Name="MatchingCardValueCount" ColumnName="MatchingCardValueCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cards">
+      <EntityTypeMapping TypeName="IsTypeOf(Cribbage.Entities.Card)">
+        <MappingFragment StoreEntitySet="Cards">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Suit" ColumnName="Suit" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
