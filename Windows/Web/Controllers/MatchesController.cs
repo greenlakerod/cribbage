@@ -15,40 +15,26 @@ using Cribbage.Entities;
 
 namespace Web.Controllers
 {
-    public class UsersController : ODataController
+    public class MatchesController : ODataController
     {
         private CribbageEntities db = new CribbageEntities();
 
-        // GET: odata/Users
+        // GET: odata/Matches
         [EnableQuery]
-        public IQueryable<User> GetUsers()
+        public IQueryable<Match> GetMatches()
         {
-            return db.Users;
+            return db.Matches;
         }
 
-        // GET: odata/Users(5)
+        // GET: odata/Matches(5)
         [EnableQuery]
-        public SingleResult<User> GetUser([FromODataUri] Guid key)
+        public SingleResult<Match> GetMatch([FromODataUri] Guid key)
         {
-            return SingleResult.Create(db.Users.Where(user => user.Id == key));
+            return SingleResult.Create(db.Matches.Where(match => match.Id == key));
         }
 
-        // GET api/Users?userName="test"
-        [EnableQuery]
-        public IHttpActionResult GetStudent([FromODataUri] string userName)
-        {
-            User user = db.Users.Where(s => s.Username == userName).First();
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            Utils.Censor(user);
-            return Ok(user);
-        }
-
-        // PUT: odata/Users(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Delta<User> patch)
+        // PUT: odata/Matches(5)
+        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Delta<Match> patch)
         {
             Validate(patch.GetEntity());
 
@@ -57,13 +43,13 @@ namespace Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Match match = await db.Matches.FindAsync(key);
+            if (match == null)
             {
                 return NotFound();
             }
 
-            patch.Put(user);
+            patch.Put(match);
 
             try
             {
@@ -71,7 +57,7 @@ namespace Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(key))
+                if (!MatchExists(key))
                 {
                     return NotFound();
                 }
@@ -81,18 +67,18 @@ namespace Web.Controllers
                 }
             }
 
-            return Updated(user);
+            return Updated(match);
         }
 
-        // POST: odata/Users
-        public async Task<IHttpActionResult> Post(User user)
+        // POST: odata/Matches
+        public async Task<IHttpActionResult> Post(Match match)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.Matches.Add(match);
 
             try
             {
@@ -100,7 +86,7 @@ namespace Web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UserExists(user.Id))
+                if (MatchExists(match.Id))
                 {
                     return Conflict();
                 }
@@ -110,12 +96,12 @@ namespace Web.Controllers
                 }
             }
 
-            return Created(user);
+            return Created(match);
         }
 
-        // PATCH: odata/Users(5)
+        // PATCH: odata/Matches(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<User> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<Match> patch)
         {
             Validate(patch.GetEntity());
 
@@ -124,13 +110,13 @@ namespace Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Match match = await db.Matches.FindAsync(key);
+            if (match == null)
             {
                 return NotFound();
             }
 
-            patch.Patch(user);
+            patch.Patch(match);
 
             try
             {
@@ -138,7 +124,7 @@ namespace Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(key))
+                if (!MatchExists(key))
                 {
                     return NotFound();
                 }
@@ -148,36 +134,36 @@ namespace Web.Controllers
                 }
             }
 
-            return Updated(user);
+            return Updated(match);
         }
 
-        // DELETE: odata/Users(5)
+        // DELETE: odata/Matches(5)
         public async Task<IHttpActionResult> Delete([FromODataUri] Guid key)
         {
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Match match = await db.Matches.FindAsync(key);
+            if (match == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.Matches.Remove(match);
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: odata/Users(5)/UserRoles
+        // GET: odata/Matches(5)/Games
         [EnableQuery]
-        public IQueryable<UserRole> GetUserRoles([FromODataUri] Guid key)
+        public IQueryable<Game> GetGames([FromODataUri] Guid key)
         {
-            return db.Users.Where(m => m.Id == key).SelectMany(m => m.UserRoles);
+            return db.Matches.Where(m => m.Id == key).SelectMany(m => m.Games);
         }
 
-        // GET: odata/Users(5)/Players
+        // GET: odata/Matches(5)/CurrentGame
         [EnableQuery]
-        public IQueryable<Player> GetPlayers([FromODataUri] Guid key)
+        public SingleResult<Game> GetCurrentGame([FromODataUri] Guid key)
         {
-            return db.Users.Where(m => m.Id == key).SelectMany(m => m.Players);
+            return SingleResult.Create(db.Matches.Where(m => m.Id == key).Select(m => m.CurrentGame));
         }
 
         protected override void Dispose(bool disposing)
@@ -189,9 +175,9 @@ namespace Web.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(Guid key)
+        private bool MatchExists(Guid key)
         {
-            return db.Users.Count(e => e.Id == key) > 0;
+            return db.Matches.Count(e => e.Id == key) > 0;
         }
     }
 }

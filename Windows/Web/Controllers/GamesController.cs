@@ -15,40 +15,26 @@ using Cribbage.Entities;
 
 namespace Web.Controllers
 {
-    public class UsersController : ODataController
+    public class GamesController : ODataController
     {
         private CribbageEntities db = new CribbageEntities();
 
-        // GET: odata/Users
+        // GET: odata/Games
         [EnableQuery]
-        public IQueryable<User> GetUsers()
+        public IQueryable<Game> GetGames()
         {
-            return db.Users;
+            return db.Games;
         }
 
-        // GET: odata/Users(5)
+        // GET: odata/Games(5)
         [EnableQuery]
-        public SingleResult<User> GetUser([FromODataUri] Guid key)
+        public SingleResult<Game> GetGame([FromODataUri] Guid key)
         {
-            return SingleResult.Create(db.Users.Where(user => user.Id == key));
+            return SingleResult.Create(db.Games.Where(game => game.Id == key));
         }
 
-        // GET api/Users?userName="test"
-        [EnableQuery]
-        public IHttpActionResult GetStudent([FromODataUri] string userName)
-        {
-            User user = db.Users.Where(s => s.Username == userName).First();
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            Utils.Censor(user);
-            return Ok(user);
-        }
-
-        // PUT: odata/Users(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Delta<User> patch)
+        // PUT: odata/Games(5)
+        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Delta<Game> patch)
         {
             Validate(patch.GetEntity());
 
@@ -57,13 +43,13 @@ namespace Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Game game = await db.Games.FindAsync(key);
+            if (game == null)
             {
                 return NotFound();
             }
 
-            patch.Put(user);
+            patch.Put(game);
 
             try
             {
@@ -71,7 +57,7 @@ namespace Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(key))
+                if (!GameExists(key))
                 {
                     return NotFound();
                 }
@@ -81,18 +67,18 @@ namespace Web.Controllers
                 }
             }
 
-            return Updated(user);
+            return Updated(game);
         }
 
-        // POST: odata/Users
-        public async Task<IHttpActionResult> Post(User user)
+        // POST: odata/Games
+        public async Task<IHttpActionResult> Post(Game game)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.Games.Add(game);
 
             try
             {
@@ -100,7 +86,7 @@ namespace Web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UserExists(user.Id))
+                if (GameExists(game.Id))
                 {
                     return Conflict();
                 }
@@ -110,12 +96,12 @@ namespace Web.Controllers
                 }
             }
 
-            return Created(user);
+            return Created(game);
         }
 
-        // PATCH: odata/Users(5)
+        // PATCH: odata/Games(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<User> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<Game> patch)
         {
             Validate(patch.GetEntity());
 
@@ -124,13 +110,13 @@ namespace Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Game game = await db.Games.FindAsync(key);
+            if (game == null)
             {
                 return NotFound();
             }
 
-            patch.Patch(user);
+            patch.Patch(game);
 
             try
             {
@@ -138,7 +124,7 @@ namespace Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(key))
+                if (!GameExists(key))
                 {
                     return NotFound();
                 }
@@ -148,36 +134,57 @@ namespace Web.Controllers
                 }
             }
 
-            return Updated(user);
+            return Updated(game);
         }
 
-        // DELETE: odata/Users(5)
+        // DELETE: odata/Games(5)
         public async Task<IHttpActionResult> Delete([FromODataUri] Guid key)
         {
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Game game = await db.Games.FindAsync(key);
+            if (game == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.Games.Remove(game);
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: odata/Users(5)/UserRoles
+        // GET: odata/Games(5)/Match
         [EnableQuery]
-        public IQueryable<UserRole> GetUserRoles([FromODataUri] Guid key)
+        public SingleResult<Match> GetMatch([FromODataUri] Guid key)
         {
-            return db.Users.Where(m => m.Id == key).SelectMany(m => m.UserRoles);
+            return SingleResult.Create(db.Games.Where(m => m.Id == key).Select(m => m.Match));
         }
 
-        // GET: odata/Users(5)/Players
+        // GET: odata/Games(5)/Players
         [EnableQuery]
         public IQueryable<Player> GetPlayers([FromODataUri] Guid key)
         {
-            return db.Users.Where(m => m.Id == key).SelectMany(m => m.Players);
+            return db.Games.Where(m => m.Id == key).SelectMany(m => m.Players);
+        }
+
+        // GET: odata/Games(5)/Hands
+        [EnableQuery]
+        public IQueryable<GameHand> GetHands([FromODataUri] Guid key)
+        {
+            return db.Games.Where(m => m.Id == key).SelectMany(m => m.Hands);
+        }
+
+        // GET: odata/Games(5)/CurrentHand
+        [EnableQuery]
+        public SingleResult<GameHand> GetCurrentHand([FromODataUri] Guid key)
+        {
+            return SingleResult.Create(db.Games.Where(m => m.Id == key).Select(m => m.CurrentHand));
+        }
+
+        // GET: odata/Games(5)/CurrentDealer
+        [EnableQuery]
+        public SingleResult<Player> GetCurrentDealer([FromODataUri] Guid key)
+        {
+            return SingleResult.Create(db.Games.Where(m => m.Id == key).Select(m => m.CurrentDealer));
         }
 
         protected override void Dispose(bool disposing)
@@ -189,9 +196,9 @@ namespace Web.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(Guid key)
+        private bool GameExists(Guid key)
         {
-            return db.Users.Count(e => e.Id == key) > 0;
+            return db.Games.Count(e => e.Id == key) > 0;
         }
     }
 }

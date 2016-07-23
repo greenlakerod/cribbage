@@ -88,7 +88,6 @@
     <Compile Include="GameHandState.cs">
       <DependentUpon>CribbageEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="GameManager.cs" />
     <Compile Include="GameState.cs">
       <DependentUpon>CribbageEntities.tt</DependentUpon>
     </Compile>
