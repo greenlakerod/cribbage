@@ -11,14 +11,14 @@ namespace Cribbage.Data.Infrastructure
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbFactory _dbFactory;
-        private CribbageContext _dbContext;
+        private CribbageEntitiesContext _dbContext;
 
         public UnitOfWork(IDbFactory dbFactory)
         {
             _dbFactory = dbFactory;
         }
 
-        public CribbageContext DbContext
+        public CribbageEntitiesContext DbContext
         {
             get { return _dbContext ?? (_dbContext = _dbFactory.Init()); }
         }

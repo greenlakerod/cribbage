@@ -61,11 +61,6 @@
     <Compile Include="CardValue.cs">
       <DependentUpon>CribbageEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="CribbageEntities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CribbageEntities.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="CribbageEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

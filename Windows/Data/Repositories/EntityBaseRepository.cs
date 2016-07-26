@@ -16,7 +16,7 @@ namespace Cribbage.Data.Repositories
     public class EntityBaseRepository<T> : IEntityBaseRepository<T>
             where T : class, IEntityBase, new()
     {
-        private CribbageContext _dataContext;
+        private CribbageEntitiesContext _dataContext;
 
         #region Properties
         protected IDbFactory DbFactory
@@ -25,7 +25,7 @@ namespace Cribbage.Data.Repositories
             private set;
         }
 
-        protected CribbageContext DbContext
+        protected CribbageEntitiesContext DbContext
         {
             get { return _dataContext ?? (_dataContext = DbFactory.Init()); }
         }

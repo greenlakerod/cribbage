@@ -11,13 +11,14 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
+using Cribbage.Data.Configurations;
 using Cribbage.Entities;
 
 namespace Web.Controllers
 {
     public class GameHandsController : ODataController
     {
-        private CribbageEntities db = new CribbageEntities();
+        private CribbageEntitiesContext db = new CribbageEntitiesContext();
 
         // GET: odata/GameHands
         [EnableQuery]

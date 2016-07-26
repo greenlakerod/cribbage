@@ -11,13 +11,26 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
+using Cribbage.Data.Configurations;
 using Cribbage.Entities;
 
 namespace Web.Controllers
 {
+    /*
+    The WebApiConfig class may require additional changes to add a route for this controller. Merge these statements into the Register method of the WebApiConfig class as applicable. Note that OData URLs are case sensitive.
+
+    using System.Web.Http.OData.Builder;
+    using System.Web.Http.OData.Extensions;
+    using Cribbage.Entities;
+    ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+    builder.EntitySet<PlayerHand>("PlayerHands");
+    builder.EntitySet<GameHand>("GameHands"); 
+    builder.EntitySet<Player>("Players"); 
+    config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
+    */
     public class PlayerHandsController : ODataController
     {
-        private CribbageEntities db = new CribbageEntities();
+        private CribbageEntitiesContext db = new CribbageEntitiesContext();
 
         // GET: odata/PlayerHands
         [EnableQuery]

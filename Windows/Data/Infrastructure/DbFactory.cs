@@ -10,11 +10,11 @@ namespace Cribbage.Data.Infrastructure
 {
     public class DbFactory : Disposable, IDbFactory
     {
-        CribbageContext _dbContext;
+        CribbageEntitiesContext _dbContext;
 
-        public CribbageContext Init()
+        public CribbageEntitiesContext Init()
         {
-            return _dbContext ?? (_dbContext = new CribbageContext());
+            return _dbContext ?? (_dbContext = new CribbageEntitiesContext());
         }
 
         protected override void DisposeCore()

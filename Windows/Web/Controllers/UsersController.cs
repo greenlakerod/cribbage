@@ -11,13 +11,14 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
+using Cribbage.Data.Configurations;
 using Cribbage.Entities;
 
 namespace Web.Controllers
 {
     public class UsersController : ODataController
     {
-        private CribbageEntities db = new CribbageEntities();
+        private CribbageEntitiesContext db = new CribbageEntitiesContext();
 
         // GET: odata/Users
         [EnableQuery]
@@ -31,20 +32,6 @@ namespace Web.Controllers
         public SingleResult<User> GetUser([FromODataUri] Guid key)
         {
             return SingleResult.Create(db.Users.Where(user => user.Id == key));
-        }
-
-        // GET api/Users?userName="test"
-        [EnableQuery]
-        public IHttpActionResult GetStudent([FromODataUri] string userName)
-        {
-            User user = db.Users.Where(s => s.Username == userName).First();
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            Utils.Censor(user);
-            return Ok(user);
         }
 
         // PUT: odata/Users(5)

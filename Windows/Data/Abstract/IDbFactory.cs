@@ -9,6 +9,6 @@ namespace Cribbage.Data.Abstract
 {
     public interface IDbFactory : IDisposable
     {
-        CribbageContext Init();
+        CribbageEntitiesContext Init();
     }
 }
