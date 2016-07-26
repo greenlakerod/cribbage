@@ -26,6 +26,7 @@ namespace Cribbage.Data.Configurations
         public virtual DbSet<Player> Players { get; set; }
         public virtual DbSet<GameHand> GameHands { get; set; }
         public virtual DbSet<Card> Cards { get; set; }
+        public virtual DbSet<Error> Errors { get; set; }
 
         public virtual void Commit()
         {
@@ -39,6 +40,7 @@ namespace Cribbage.Data.Configurations
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new UserRoleConfiguration());
             modelBuilder.Configurations.Add(new RoleConfiguration());
+            modelBuilder.Configurations.Add(new PlayerConfiguration());
         }
     }
 

@@ -15,6 +15,7 @@
     <EntitySet Name="Players" EntityType="Cribbage.Entities.Store.Players" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GameHands" EntityType="Cribbage.Entities.Store.GameHands" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Cards" EntityType="Cribbage.Entities.Store.Cards" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Errors" EntityType="Cribbage.Entities.Store.Errors" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_UserRole_Role" Association="Cribbage.Entities.Store.FK_UserRole_Role">
       <End Role="Role" EntitySet="Roles" />
       <End Role="UserRole" EntitySet="UserRoles" />
@@ -175,6 +176,15 @@
     <Property Name="Suit" Type="int" Nullable="false" />
     <Property Name="Value" Type="int" Nullable="false" />
     <Property Name="Points" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Errors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AdditionalInfo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_UserRole_Role">
     <End Role="Role" Type="Cribbage.Entities.Store.Roles" Multiplicity="1" />
@@ -502,6 +512,8 @@
             <End Role="Match" EntitySet="Matches" />
           </AssociationSet>
           <EntitySet Name="Cards" EntityType="Cribbage.Entities.Card" />
+          <EntitySet Name="Errors" EntityType="Cribbage.Entities.Error" />
+          <FunctionImport Name="populateCards" />
         </EntityContainer>
         <EntityType Name="PlayerHand">
           <Key>
@@ -513,8 +525,8 @@
           <NavigationProperty Name="Player" Relationship="Cribbage.Entities.FK_Player_PlayerHand" FromRole="PlayerHand" ToRole="Player" />
           <Property Name="PlayerId" Type="Guid" Nullable="false" />
           <Property Name="IsCrib" Type="Boolean" Nullable="false" />
-          <Property Name="CardIds" Type="String" Nullable="false" />
-          <Property Name="PlayedCardIds" Type="String" Nullable="false" />
+          <Property Name="CardIds" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PlayedCardIds" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Game">
           <Key>
@@ -625,8 +637,8 @@
           <Property Name="CurrentPlayerId" Type="Guid" Nullable="false" />
           <Property Name="Index" Type="Int32" Nullable="false" />
           <Property Name="CutCardId" Type="Int32" Nullable="false" />
-          <Property Name="CardIds" Type="String" Nullable="false" />
-          <Property Name="PlayedCardIds" Type="String" Nullable="false" />
+          <Property Name="CardIds" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PlayedCardIds" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="GoCount" Type="Int32" Nullable="false" />
           <Property Name="MatchingCardValueCount" Type="Int32" Nullable="false" />
         </EntityType>
@@ -829,6 +841,15 @@
           <Member Name="ThirtyOne" />
           <Member Name="Triple" />
         </EnumType>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AdditionalInfo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -937,6 +958,16 @@
           <ScalarProperty Name="Suit" ColumnName="Suit" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Points" ColumnName="Points" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Errors">
+      <EntityTypeMapping TypeName="IsTypeOf(Cribbage.Entities.Error)">
+        <MappingFragment StoreEntitySet="Errors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

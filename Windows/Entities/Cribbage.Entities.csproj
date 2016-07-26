@@ -61,6 +61,11 @@
     <Compile Include="CardValue.cs">
       <DependentUpon>CribbageEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="CribbageEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CribbageEntities.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="CribbageEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,6 +78,9 @@
     </Compile>
     <Compile Include="Deck.cs" />
     <Compile Include="EntityExtensions\EntityExtensions.cs" />
+    <Compile Include="Error.cs">
+      <DependentUpon>CribbageEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Game.cs">
       <DependentUpon>CribbageEntities.tt</DependentUpon>
     </Compile>
@@ -143,6 +151,7 @@
       <DependentUpon>CribbageEntities.edmx</DependentUpon>
       <LastGenOutput>CribbageEntities.cs</LastGenOutput>
     </Content>
+    <Content Include="PopulateCards.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

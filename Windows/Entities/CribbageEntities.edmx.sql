@@ -2,6 +2,10 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
+-- Date Created: 07/26/2016 01:20:11
+-- Generated from EDMX file: C:\Users\roderick.eligio\Source\Repos\cribbage\Windows\Entities\CribbageEntities.edmx
+-- --------------------------------------------------
+
 SET QUOTED_IDENTIFIER OFF;
 GO
 USE [Cribbage];
@@ -13,70 +17,67 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_Game_Match]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_Game_Match];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Game_Match_CurrentGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Matches] DROP CONSTRAINT [FK_Game_Match_CurrentGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GameHand_Game]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameHands] DROP CONSTRAINT [FK_GameHand_Game];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GameHand_Game_CurrentHand]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_GameHand_Game_CurrentHand];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GameHand_PlayerHand_Crib]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameHands] DROP CONSTRAINT [FK_GameHand_PlayerHand_Crib];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Player_Game]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Player_Game];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Player_Game_CurrentDealer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_Player_Game_CurrentDealer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Player_GameHand_CurrentPlayer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameHands] DROP CONSTRAINT [FK_Player_GameHand_CurrentPlayer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Player_GameHand_LastPlayer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameHands] DROP CONSTRAINT [FK_Player_GameHand_LastPlayer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Player_PlayerHand]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PlayerHands] DROP CONSTRAINT [FK_Player_PlayerHand];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Player_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Player_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerHand_GameHand]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PlayerHands] DROP CONSTRAINT [FK_PlayerHand_GameHand];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerHand_Player]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_PlayerHand_Player];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerHand_Player_Crib]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_PlayerHand_Player_Crib];
+GO
 IF OBJECT_ID(N'[dbo].[FK_UserRole_Role]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRole_Role];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserRole_User]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRole_User];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Game_Match]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_Game_Match];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Player_Game]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Player_Game];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Player_User]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Player_User];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GameHand_Game]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[GameHands] DROP CONSTRAINT [FK_GameHand_Game];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerHand_GameHand]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PlayerHands] DROP CONSTRAINT [FK_PlayerHand_GameHand];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GameHand_PlayerHand_Crib]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[GameHands] DROP CONSTRAINT [FK_GameHand_PlayerHand_Crib];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Player_GameHand_LastPlayer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[GameHands] DROP CONSTRAINT [FK_Player_GameHand_LastPlayer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Player_GameHand_CurrentPlayer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[GameHands] DROP CONSTRAINT [FK_Player_GameHand_CurrentPlayer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Player_PlayerHand]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PlayerHands] DROP CONSTRAINT [FK_Player_PlayerHand];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerHand_Player_Crib]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_PlayerHand_Player_Crib];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerHand_Player]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_PlayerHand_Player];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GameHand_Game_CurrentHand]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_GameHand_Game_CurrentHand];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Player_Game_CurrentDealer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_Player_Game_CurrentDealer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Game_Match_CurrentGame]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Matches] DROP CONSTRAINT [FK_Game_Match_CurrentGame];
-GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Roles];
+IF OBJECT_ID(N'[dbo].[Cards]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Cards];
 GO
-IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Users];
+IF OBJECT_ID(N'[dbo].[Errors]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Errors];
 GO
-IF OBJECT_ID(N'[dbo].[UserRoles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UserRoles];
-GO
-IF OBJECT_ID(N'[dbo].[PlayerHands]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PlayerHands];
+IF OBJECT_ID(N'[dbo].[GameHands]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GameHands];
 GO
 IF OBJECT_ID(N'[dbo].[Games]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Games];
@@ -84,14 +85,20 @@ GO
 IF OBJECT_ID(N'[dbo].[Matches]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Matches];
 GO
+IF OBJECT_ID(N'[dbo].[PlayerHands]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PlayerHands];
+GO
 IF OBJECT_ID(N'[dbo].[Players]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Players];
 GO
-IF OBJECT_ID(N'[dbo].[GameHands]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[GameHands];
+IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Roles];
 GO
-IF OBJECT_ID(N'[dbo].[Cards]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Cards];
+IF OBJECT_ID(N'[dbo].[UserRoles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserRoles];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
 GO
 
 -- --------------------------------------------------
@@ -194,6 +201,15 @@ CREATE TABLE [dbo].[Cards] (
 );
 GO
 
+-- Creating table 'Errors'
+CREATE TABLE [dbo].[Errors] (
+    [Id] uniqueidentifier  NOT NULL,
+    [Message] nvarchar(max)  NOT NULL,
+    [AdditionalInfo] nvarchar(max)  NOT NULL,
+    [DateCreated] datetime  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -249,6 +265,12 @@ GO
 -- Creating primary key on [Id] in table 'Cards'
 ALTER TABLE [dbo].[Cards]
 ADD CONSTRAINT [PK_Cards]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Errors'
+ALTER TABLE [dbo].[Errors]
+ADD CONSTRAINT [PK_Errors]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 

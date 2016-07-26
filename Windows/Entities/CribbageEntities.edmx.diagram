@@ -30,6 +30,7 @@
         <AssociationConnector Association="Cribbage.Entities.FK_Player_Game_CurrentDealer" />
         <AssociationConnector Association="Cribbage.Entities.FK_Game_Match_CurrentGame" />
         <EntityTypeShape EntityType="Cribbage.Entities.Card" Width="1.5" PointX="2.125" PointY="4.5" />
+        <EntityTypeShape EntityType="Cribbage.Entities.Error" Width="1.5" PointX="0.5" PointY="5.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
