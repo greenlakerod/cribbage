@@ -12,10 +12,8 @@ as
 declare @points table(idx int, id int);
 insert into @points
 values (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10), (11, 10), (12, 10), (13, 10)
-declare @id INT;
 declare @suit INT;
 declare @point INT;
-set @id = 1;
 set @suit = 1;
 while @suit < 5
 begin
@@ -24,8 +22,8 @@ begin
 	while @value < 14
 	begin
 		set @point = (select id from @points where idx = @value);
-		insert into dbo.Cards (suit, [value], points)
-		values (@suit, @value, @point)
+		insert into dbo.Cards (id, suit, [value], points)
+		values (NEWID(), @suit, @value, @point)
 		set @value = @value + 1;
 	end
 

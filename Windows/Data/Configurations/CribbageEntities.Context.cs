@@ -13,7 +13,7 @@ namespace Cribbage.Data.Configurations
     public partial class CribbageEntitiesContext : DbContext
     {
         public CribbageEntitiesContext()
-            : base("name=CribbageEntities")
+            : base("name=Cribbage") //: base("name=CribbageEntities")
         {
         }
 
@@ -35,12 +35,17 @@ namespace Cribbage.Data.Configurations
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Configurations.Add(new UserConfiguration());
-            modelBuilder.Configurations.Add(new UserRoleConfiguration());
-            modelBuilder.Configurations.Add(new RoleConfiguration());
-            modelBuilder.Configurations.Add(new PlayerConfiguration());
+            //modelBuilder.Configurations.Add(new UserConfiguration());
+            //modelBuilder.Configurations.Add(new UserRoleConfiguration());
+            //modelBuilder.Configurations.Add(new RoleConfiguration());
+            //modelBuilder.Configurations.Add(new PlayerConfiguration());
+        }
+
+        public virtual int PopulateCards()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PopulateCards");
         }
     }
 

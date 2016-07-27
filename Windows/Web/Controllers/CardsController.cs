@@ -16,26 +16,26 @@ using Cribbage.Web.Models;
 
 namespace Cribbage.Web.Controllers
 {
-    public class UsersController : ODataController
+    public class CardsController : ODataController
     {
         private CribbageWebContext db = new CribbageWebContext();
 
-        // GET: odata/Users
+        // GET: odata/Cards
         [EnableQuery]
-        public IQueryable<User> GetUsers()
+        public IQueryable<Card> GetCards()
         {
-            return db.Users;
+            return db.Cards;
         }
 
-        // GET: odata/Users(5)
+        // GET: odata/Cards(5)
         [EnableQuery]
-        public SingleResult<User> GetUser([FromODataUri] Guid key)
+        public SingleResult<Card> GetCard([FromODataUri] Guid key)
         {
-            return SingleResult.Create(db.Users.Where(user => user.Id == key));
+            return SingleResult.Create(db.Cards.Where(card => card.Id == key));
         }
 
-        // PUT: odata/Users(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Delta<User> patch)
+        // PUT: odata/Cards(5)
+        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Delta<Card> patch)
         {
             Validate(patch.GetEntity());
 
@@ -44,13 +44,13 @@ namespace Cribbage.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Card card = await db.Cards.FindAsync(key);
+            if (card == null)
             {
                 return NotFound();
             }
 
-            patch.Put(user);
+            patch.Put(card);
 
             try
             {
@@ -58,7 +58,7 @@ namespace Cribbage.Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(key))
+                if (!CardExists(key))
                 {
                     return NotFound();
                 }
@@ -68,18 +68,18 @@ namespace Cribbage.Web.Controllers
                 }
             }
 
-            return Updated(user);
+            return Updated(card);
         }
 
-        // POST: odata/Users
-        public async Task<IHttpActionResult> Post(User user)
+        // POST: odata/Cards
+        public async Task<IHttpActionResult> Post(Card card)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.Cards.Add(card);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Cribbage.Web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UserExists(user.Id))
+                if (CardExists(card.Id))
                 {
                     return Conflict();
                 }
@@ -97,12 +97,12 @@ namespace Cribbage.Web.Controllers
                 }
             }
 
-            return Created(user);
+            return Created(card);
         }
 
-        // PATCH: odata/Users(5)
+        // PATCH: odata/Cards(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<User> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<Card> patch)
         {
             Validate(patch.GetEntity());
 
@@ -111,13 +111,13 @@ namespace Cribbage.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Card card = await db.Cards.FindAsync(key);
+            if (card == null)
             {
                 return NotFound();
             }
 
-            patch.Patch(user);
+            patch.Patch(card);
 
             try
             {
@@ -125,7 +125,7 @@ namespace Cribbage.Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(key))
+                if (!CardExists(key))
                 {
                     return NotFound();
                 }
@@ -135,36 +135,22 @@ namespace Cribbage.Web.Controllers
                 }
             }
 
-            return Updated(user);
+            return Updated(card);
         }
 
-        // DELETE: odata/Users(5)
+        // DELETE: odata/Cards(5)
         public async Task<IHttpActionResult> Delete([FromODataUri] Guid key)
         {
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Card card = await db.Cards.FindAsync(key);
+            if (card == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.Cards.Remove(card);
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // GET: odata/Users(5)/Players
-        [EnableQuery]
-        public IQueryable<Player> GetPlayers([FromODataUri] Guid key)
-        {
-            return db.Users.Where(m => m.Id == key).SelectMany(m => m.Players);
-        }
-
-        // GET: odata/Users(5)/UserRoles
-        [EnableQuery]
-        public IQueryable<UserRole> GetUserRoles([FromODataUri] Guid key)
-        {
-            return db.Users.Where(m => m.Id == key).SelectMany(m => m.UserRoles);
         }
 
         protected override void Dispose(bool disposing)
@@ -176,9 +162,9 @@ namespace Cribbage.Web.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(Guid key)
+        private bool CardExists(Guid key)
         {
-            return db.Users.Count(e => e.Id == key) > 0;
+            return db.Cards.Count(e => e.Id == key) > 0;
         }
     }
 }

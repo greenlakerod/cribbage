@@ -11,14 +11,14 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
-using Cribbage.Data.Configurations;
-using Cribbage.Entities;
+using Cribbage.Web.Model;
+using Cribbage.Web.Models;
 
-namespace Web.Controllers
+namespace Cribbage.Web.Controllers
 {
     public class GamesController : ODataController
     {
-        private CribbageEntitiesContext db = new CribbageEntitiesContext();
+        private CribbageWebContext db = new CribbageWebContext();
 
         // GET: odata/Games
         [EnableQuery]
@@ -153,6 +153,27 @@ namespace Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // GET: odata/Games(5)/CurrentDealer
+        [EnableQuery]
+        public SingleResult<Player> GetCurrentDealer([FromODataUri] Guid key)
+        {
+            return SingleResult.Create(db.Games.Where(m => m.Id == key).Select(m => m.CurrentDealer));
+        }
+
+        // GET: odata/Games(5)/CurrentHand
+        [EnableQuery]
+        public SingleResult<GameHand> GetCurrentHand([FromODataUri] Guid key)
+        {
+            return SingleResult.Create(db.Games.Where(m => m.Id == key).Select(m => m.CurrentHand));
+        }
+
+        // GET: odata/Games(5)/Hands
+        [EnableQuery]
+        public IQueryable<GameHand> GetHands([FromODataUri] Guid key)
+        {
+            return db.Games.Where(m => m.Id == key).SelectMany(m => m.Hands);
+        }
+
         // GET: odata/Games(5)/Match
         [EnableQuery]
         public SingleResult<Match> GetMatch([FromODataUri] Guid key)
@@ -165,27 +186,6 @@ namespace Web.Controllers
         public IQueryable<Player> GetPlayers([FromODataUri] Guid key)
         {
             return db.Games.Where(m => m.Id == key).SelectMany(m => m.Players);
-        }
-
-        // GET: odata/Games(5)/Hands
-        [EnableQuery]
-        public IQueryable<GameHand> GetHands([FromODataUri] Guid key)
-        {
-            return db.Games.Where(m => m.Id == key).SelectMany(m => m.Hands);
-        }
-
-        // GET: odata/Games(5)/CurrentHand
-        [EnableQuery]
-        public SingleResult<GameHand> GetCurrentHand([FromODataUri] Guid key)
-        {
-            return SingleResult.Create(db.Games.Where(m => m.Id == key).Select(m => m.CurrentHand));
-        }
-
-        // GET: odata/Games(5)/CurrentDealer
-        [EnableQuery]
-        public SingleResult<Player> GetCurrentDealer([FromODataUri] Guid key)
-        {
-            return SingleResult.Create(db.Games.Where(m => m.Id == key).Select(m => m.CurrentDealer));
         }
 
         protected override void Dispose(bool disposing)

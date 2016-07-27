@@ -172,7 +172,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Suit" Type="int" Nullable="false" />
     <Property Name="Value" Type="int" Nullable="false" />
     <Property Name="Points" Type="int" Nullable="false" />
@@ -513,7 +513,7 @@
           </AssociationSet>
           <EntitySet Name="Cards" EntityType="Cribbage.Entities.Card" />
           <EntitySet Name="Errors" EntityType="Cribbage.Entities.Error" />
-          <FunctionImport Name="populateCards" />
+          <FunctionImport Name="PopulateCards" />
         </EntityContainer>
         <EntityType Name="PlayerHand">
           <Key>
@@ -784,7 +784,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Suit" Type="Cribbage.Entities.Suit" Nullable="false" />
           <Property Name="Value" Type="Cribbage.Entities.CardValue" Nullable="false" />
           <Property Name="Points" Type="Cribbage.Entities.CardScore" Nullable="false" />

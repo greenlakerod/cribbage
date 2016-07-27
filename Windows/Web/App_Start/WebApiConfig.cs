@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.OData.Builder;
 using System.Web.Http.OData.Extensions;
-using Cribbage.Entities;
+using Cribbage.Web.Model;
 
-namespace Web
+namespace Cribbage.Web
 {
     public static class WebApiConfig
     {
@@ -23,6 +23,12 @@ namespace Web
             );
 
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+
+            
+
+            builder.EntitySet<Card>("Cards");
+            builder.EntitySet<PlayedCard>("PlayedCards");
+            builder.EntitySet<Deck>("Decks");
             builder.EntitySet<Match>("Matches");
             builder.EntitySet<GameHand>("GameHands");
             builder.EntitySet<Game>("Games");

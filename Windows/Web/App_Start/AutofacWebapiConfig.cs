@@ -1,11 +1,12 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
-using Cribbage.Data.Abstract;
-using Cribbage.Data.Configurations;
-using Cribbage.Data.Infrastructure;
-using Cribbage.Data.Repositories;
-using Cribbage.Services;
-using Cribbage.Services.Abstract;
+using Cribbage.Entities;
+//using Cribbage.Data.Abstract;
+//using Cribbage.Data.Configurations;
+//using Cribbage.Data.Infrastructure;
+//using Cribbage.Data.Repositories;
+//using Cribbage.Services;
+//using Cribbage.Services.Abstract;
 using System.Data.Entity;
 using System.Reflection;
 using System.Web.Http;
@@ -30,7 +31,7 @@ namespace Web.App_Start
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             // EF HomeCinemaContext
-            builder.RegisterType<CribbageEntitiesContext>()
+            builder.RegisterType<CribbageEntities>()
                    .As<DbContext>()
                    .InstancePerRequest();
 

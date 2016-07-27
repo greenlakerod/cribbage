@@ -14,8 +14,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Web</RootNamespace>
-    <AssemblyName>Web</AssemblyName>
+    <RootNamespace>Cribbage.Web</RootNamespace>
+    <AssemblyName>Cribbage.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -169,6 +169,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CribbageWebContext-20160726225629.mdf" />
+    <Content Include="App_Data\CribbageWebContext-20160726225629_log.ldf">
+      <DependentUpon>CribbageWebContext-20160726225629.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\main.css" />
@@ -212,21 +216,46 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AutofacWebapiConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\GameHandsController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MatchesController.cs" />
     <Compile Include="Controllers\PlayerHandsController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\UserRolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\Utils.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607270621296_Initial.cs" />
+    <Compile Include="Migrations\201607270621296_Initial.Designer.cs">
+      <DependentUpon>201607270621296_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\CardScore.cs" />
+    <Compile Include="Models\CardValue.cs" />
+    <Compile Include="Models\CribbageWebContext.cs" />
+    <Compile Include="Models\Deck.cs" />
+    <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameHand.cs" />
+    <Compile Include="Models\GameHandState.cs" />
+    <Compile Include="Models\GameState.cs" />
+    <Compile Include="Models\Match.cs" />
+    <Compile Include="Models\MatchState.cs" />
+    <Compile Include="Models\PlayedCard.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\PlayerHand.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\ScoreType.cs" />
+    <Compile Include="Models\Suit.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -244,9 +273,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\image\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\appScripts\configRouter.ts" />
@@ -271,18 +298,9 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\Cribbage.Data.csproj">
-      <Project>{660465b3-9351-43d3-b582-c77d39fad67b}</Project>
-      <Name>Cribbage.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entities\Cribbage.Entities.csproj">
-      <Project>{a8fb97f2-0f7c-4748-8a66-0b4c05d26451}</Project>
-      <Name>Cribbage.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services\Cribbage.Services.csproj">
-      <Project>{36bef140-622e-4b53-a440-36a16efdcd88}</Project>
-      <Name>Cribbage.Services</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Migrations\201607270621296_Initial.resx">
+      <DependentUpon>201607270621296_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

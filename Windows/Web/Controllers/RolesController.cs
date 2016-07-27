@@ -16,26 +16,26 @@ using Cribbage.Web.Models;
 
 namespace Cribbage.Web.Controllers
 {
-    public class UsersController : ODataController
+    public class RolesController : ODataController
     {
         private CribbageWebContext db = new CribbageWebContext();
 
-        // GET: odata/Users
+        // GET: odata/Roles
         [EnableQuery]
-        public IQueryable<User> GetUsers()
+        public IQueryable<Role> GetRoles()
         {
-            return db.Users;
+            return db.Roles;
         }
 
-        // GET: odata/Users(5)
+        // GET: odata/Roles(5)
         [EnableQuery]
-        public SingleResult<User> GetUser([FromODataUri] Guid key)
+        public SingleResult<Role> GetRole([FromODataUri] Guid key)
         {
-            return SingleResult.Create(db.Users.Where(user => user.Id == key));
+            return SingleResult.Create(db.Roles.Where(role => role.Id == key));
         }
 
-        // PUT: odata/Users(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Delta<User> patch)
+        // PUT: odata/Roles(5)
+        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Delta<Role> patch)
         {
             Validate(patch.GetEntity());
 
@@ -44,13 +44,13 @@ namespace Cribbage.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Role role = await db.Roles.FindAsync(key);
+            if (role == null)
             {
                 return NotFound();
             }
 
-            patch.Put(user);
+            patch.Put(role);
 
             try
             {
@@ -58,7 +58,7 @@ namespace Cribbage.Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(key))
+                if (!RoleExists(key))
                 {
                     return NotFound();
                 }
@@ -68,18 +68,18 @@ namespace Cribbage.Web.Controllers
                 }
             }
 
-            return Updated(user);
+            return Updated(role);
         }
 
-        // POST: odata/Users
-        public async Task<IHttpActionResult> Post(User user)
+        // POST: odata/Roles
+        public async Task<IHttpActionResult> Post(Role role)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.Roles.Add(role);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Cribbage.Web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UserExists(user.Id))
+                if (RoleExists(role.Id))
                 {
                     return Conflict();
                 }
@@ -97,12 +97,12 @@ namespace Cribbage.Web.Controllers
                 }
             }
 
-            return Created(user);
+            return Created(role);
         }
 
-        // PATCH: odata/Users(5)
+        // PATCH: odata/Roles(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<User> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<Role> patch)
         {
             Validate(patch.GetEntity());
 
@@ -111,13 +111,13 @@ namespace Cribbage.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Role role = await db.Roles.FindAsync(key);
+            if (role == null)
             {
                 return NotFound();
             }
 
-            patch.Patch(user);
+            patch.Patch(role);
 
             try
             {
@@ -125,7 +125,7 @@ namespace Cribbage.Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(key))
+                if (!RoleExists(key))
                 {
                     return NotFound();
                 }
@@ -135,36 +135,29 @@ namespace Cribbage.Web.Controllers
                 }
             }
 
-            return Updated(user);
+            return Updated(role);
         }
 
-        // DELETE: odata/Users(5)
+        // DELETE: odata/Roles(5)
         public async Task<IHttpActionResult> Delete([FromODataUri] Guid key)
         {
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            Role role = await db.Roles.FindAsync(key);
+            if (role == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.Roles.Remove(role);
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: odata/Users(5)/Players
-        [EnableQuery]
-        public IQueryable<Player> GetPlayers([FromODataUri] Guid key)
-        {
-            return db.Users.Where(m => m.Id == key).SelectMany(m => m.Players);
-        }
-
-        // GET: odata/Users(5)/UserRoles
+        // GET: odata/Roles(5)/UserRoles
         [EnableQuery]
         public IQueryable<UserRole> GetUserRoles([FromODataUri] Guid key)
         {
-            return db.Users.Where(m => m.Id == key).SelectMany(m => m.UserRoles);
+            return db.Roles.Where(m => m.Id == key).SelectMany(m => m.UserRoles);
         }
 
         protected override void Dispose(bool disposing)
@@ -176,9 +169,9 @@ namespace Cribbage.Web.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(Guid key)
+        private bool RoleExists(Guid key)
         {
-            return db.Users.Count(e => e.Id == key) > 0;
+            return db.Roles.Count(e => e.Id == key) > 0;
         }
     }
 }

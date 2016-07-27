@@ -38,9 +38,9 @@ namespace Cribbage.Entities
         public virtual DbSet<Card> Cards { get; set; }
         public virtual DbSet<Error> Errors { get; set; }
     
-        public virtual int populateCards()
+        public virtual int PopulateCards()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("populateCards");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PopulateCards");
         }
     }
 }

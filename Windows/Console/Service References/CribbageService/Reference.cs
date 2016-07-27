@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 7/25/2016 4:56:21 PM
+// Generation date: 7/27/2016 12:53:32 AM
 namespace Cribbage.Console.CribbageService
 {
     
@@ -39,7 +39,7 @@ namespace Cribbage.Console.CribbageService
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         protected global::System.Type ResolveTypeFromName(string typeName)
         {
-            global::System.Type resolvedType = this.DefaultResolveType(typeName, "Cribbage.Entities", "Cribbage.Console.CribbageService");
+            global::System.Type resolvedType = this.DefaultResolveType(typeName, "Cribbage.Web.Model", "Cribbage.Console.CribbageService");
             if ((resolvedType != null))
             {
                 return resolvedType;
@@ -56,10 +56,61 @@ namespace Cribbage.Console.CribbageService
         {
             if (clientType.Namespace.Equals("Cribbage.Console.CribbageService", global::System.StringComparison.Ordinal))
             {
-                return string.Concat("Cribbage.Entities.", clientType.Name);
+                return string.Concat("Cribbage.Web.Model.", clientType.Name);
             }
             return null;
         }
+        /// <summary>
+        /// There are no comments for Cards in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Data.Services.Client.DataServiceQuery<Card> Cards
+        {
+            get
+            {
+                if ((this._Cards == null))
+                {
+                    this._Cards = base.CreateQuery<Card>("Cards");
+                }
+                return this._Cards;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Data.Services.Client.DataServiceQuery<Card> _Cards;
+        /// <summary>
+        /// There are no comments for PlayedCards in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Data.Services.Client.DataServiceQuery<PlayedCard> PlayedCards
+        {
+            get
+            {
+                if ((this._PlayedCards == null))
+                {
+                    this._PlayedCards = base.CreateQuery<PlayedCard>("PlayedCards");
+                }
+                return this._PlayedCards;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Data.Services.Client.DataServiceQuery<PlayedCard> _PlayedCards;
+        /// <summary>
+        /// There are no comments for Decks in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Data.Services.Client.DataServiceQuery<Deck> Decks
+        {
+            get
+            {
+                if ((this._Decks == null))
+                {
+                    this._Decks = base.CreateQuery<Deck>("Decks");
+                }
+                return this._Decks;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Data.Services.Client.DataServiceQuery<Deck> _Decks;
         /// <summary>
         /// There are no comments for Matches in the schema.
         /// </summary>
@@ -180,6 +231,30 @@ namespace Cribbage.Console.CribbageService
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         private global::System.Data.Services.Client.DataServiceQuery<Player> _Players;
         /// <summary>
+        /// There are no comments for Cards in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public void AddToCards(Card card)
+        {
+            base.AddObject("Cards", card);
+        }
+        /// <summary>
+        /// There are no comments for PlayedCards in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public void AddToPlayedCards(PlayedCard playedCard)
+        {
+            base.AddObject("PlayedCards", playedCard);
+        }
+        /// <summary>
+        /// There are no comments for Decks in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public void AddToDecks(Deck deck)
+        {
+            base.AddObject("Decks", deck);
+        }
+        /// <summary>
         /// There are no comments for Matches in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -244,289 +319,335 @@ namespace Cribbage.Console.CribbageService
             private const string ModelPart0 = "<edmx:Edmx Version=\"1.0\" xmlns:edmx=\"http://schemas.microsoft.com/ado/2007/06/edm" +
                 "x\"><edmx:DataServices m:DataServiceVersion=\"3.0\" m:MaxDataServiceVersion=\"3.0\" x" +
                 "mlns:m=\"http://schemas.microsoft.com/ado/2007/08/dataservices/metadata\"><Schema " +
-                "Namespace=\"Cribbage.Entities\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/ed" +
-                "m\"><EntityType Name=\"Match\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=\"" +
-                "Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"State\" Type=\"Edm.String\" " +
-                "Nullable=\"false\" /><Property Name=\"CurrentGameId\" Type=\"Edm.Guid\" Nullable=\"fals" +
-                "e\" /><NavigationProperty Name=\"Games\" Relationship=\"Cribbage.Entities.Cribbage_E" +
-                "ntities_Match_Games_Cribbage_Entities_Game_GamesPartner\" ToRole=\"Games\" FromRole" +
-                "=\"GamesPartner\" /><NavigationProperty Name=\"CurrentGame\" Relationship=\"Cribbage." +
-                "Entities.Cribbage_Entities_Match_CurrentGame_Cribbage_Entities_Game_CurrentGameP" +
-                "artner\" ToRole=\"CurrentGame\" FromRole=\"CurrentGamePartner\" /></EntityType><Entit" +
-                "yType Name=\"GameHand\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=\"Id\" Ty" +
-                "pe=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"GameId\" Type=\"Edm.Guid\" Nullabl" +
-                "e=\"false\" /><Property Name=\"State\" Type=\"Edm.String\" Nullable=\"false\" /><Propert" +
-                "y Name=\"CribId\" Type=\"Edm.Guid\" /><Property Name=\"LastPlayerId\" Type=\"Edm.Guid\" " +
-                "Nullable=\"false\" /><Property Name=\"CurrentPlayerId\" Type=\"Edm.Guid\" Nullable=\"fa" +
-                "lse\" /><Property Name=\"Index\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name" +
-                "=\"CutCardId\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CardIds\" Type=\"" +
-                "Edm.String\" /><Property Name=\"PlayedCardIds\" Type=\"Edm.String\" /><Property Name=" +
-                "\"GoCount\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"MatchingCardValueC" +
-                "ount\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"Deck\" Type=\"Cribbage.E" +
-                "ntities.Deck\" /><Property Name=\"PlayedCards\" Type=\"Collection(Cribbage.Entities." +
-                "PlayedCard)\" Nullable=\"false\" /><NavigationProperty Name=\"Game\" Relationship=\"Cr" +
-                "ibbage.Entities.Cribbage_Entities_GameHand_Game_Cribbage_Entities_Game_GamePartn" +
-                "er\" ToRole=\"Game\" FromRole=\"GamePartner\" /><NavigationProperty Name=\"PlayerHands" +
-                "\" Relationship=\"Cribbage.Entities.Cribbage_Entities_GameHand_PlayerHands_Cribbag" +
-                "e_Entities_PlayerHand_PlayerHandsPartner\" ToRole=\"PlayerHands\" FromRole=\"PlayerH" +
-                "andsPartner\" /><NavigationProperty Name=\"Crib\" Relationship=\"Cribbage.Entities.C" +
-                "ribbage_Entities_GameHand_Crib_Cribbage_Entities_PlayerHand_CribPartner\" ToRole=" +
-                "\"Crib\" FromRole=\"CribPartner\" /><NavigationProperty Name=\"LastPlayer\" Relationsh" +
-                "ip=\"Cribbage.Entities.Cribbage_Entities_GameHand_LastPlayer_Cribbage_Entities_Pl" +
-                "ayer_LastPlayerPartner\" ToRole=\"LastPlayer\" FromRole=\"LastPlayerPartner\" /><Navi" +
-                "gationProperty Name=\"CurrentPlayer\" Relationship=\"Cribbage.Entities.Cribbage_Ent" +
-                "ities_GameHand_CurrentPlayer_Cribbage_Entities_Player_CurrentPlayerPartner\" ToRo" +
-                "le=\"CurrentPlayer\" FromRole=\"CurrentPlayerPartner\" /></EntityType><EntityType Na" +
-                "me=\"Game\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=\"Id\" Type=\"Edm.Guid" +
-                "\" Nullable=\"false\" /><Property Name=\"MatchId\" Type=\"Edm.Guid\" Nullable=\"false\" /" +
-                "><Property Name=\"State\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"All" +
-                "owMuggins\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"CurrentHandId\" " +
-                "Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"CurrentDealerId\" Type=\"Edm.Gu" +
-                "id\" Nullable=\"false\" /><Property Name=\"Index\" Type=\"Edm.Int32\" Nullable=\"false\" " +
-                "/><NavigationProperty Name=\"Match\" Relationship=\"Cribbage.Entities.Cribbage_Enti" +
-                "ties_Game_Match_Cribbage_Entities_Match_MatchPartner\" ToRole=\"Match\" FromRole=\"M" +
-                "atchPartner\" /><NavigationProperty Name=\"Players\" Relationship=\"Cribbage.Entitie" +
-                "s.Cribbage_Entities_Game_Players_Cribbage_Entities_Player_PlayersPartner\" ToRole" +
-                "=\"Players\" FromRole=\"PlayersPartner\" /><NavigationProperty Name=\"Hands\" Relation" +
-                "ship=\"Cribbage.Entities.Cribbage_Entities_Game_Hands_Cribbage_Entities_GameHand_" +
-                "HandsPartner\" ToRole=\"Hands\" FromRole=\"HandsPartner\" /><NavigationProperty Name=" +
-                "\"CurrentHand\" Relationship=\"Cribbage.Entities.Cribbage_Entities_Game_CurrentHand" +
-                "_Cribbage_Entities_GameHand_CurrentHandPartner\" ToRole=\"CurrentHand\" FromRole=\"C" +
-                "urrentHandPartner\" /><NavigationProperty Name=\"CurrentDealer\" Relationship=\"Crib" +
-                "bage.Entities.Cribbage_Entities_Game_CurrentDealer_Cribbage_Entities_Player_Curr" +
-                "entDealerPartner\" ToRole=\"CurrentDealer\" FromRole=\"CurrentDealerPartner\" /></Ent" +
-                "ityType><EntityType Name=\"PlayerHand\"><Key><PropertyRef Name=\"Id\" /></Key><Prope" +
-                "rty Name=\"Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"GameHandId\" Typ" +
-                "e=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"PlayerId\" Type=\"Edm.Guid\" Nullab" +
-                "le=\"false\" /><Property Name=\"IsCrib\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Prop" +
-                "erty Name=\"CardIds\" Type=\"Edm.String\" /><Property Name=\"PlayedCardIds\" Type=\"Edm" +
-                ".String\" /><Property Name=\"Cards\" Type=\"Collection(Cribbage.Entities.Card)\" Null" +
-                "able=\"false\" /><Property Name=\"PlayedCards\" Type=\"Collection(Cribbage.Entities.P" +
-                "layedCard)\" Nullable=\"false\" /><NavigationProperty Name=\"GameHand\" Relationship=" +
-                "\"Cribbage.Entities.Cribbage_Entities_PlayerHand_GameHand_Cribbage_Entities_GameH" +
-                "and_GameHandPartner\" ToRole=\"GameHand\" FromRole=\"GameHandPartner\" /><NavigationP" +
-                "roperty Name=\"Player\" Relationship=\"Cribbage.Entities.Cribbage_Entities_PlayerHa" +
-                "nd_Player_Cribbage_Entities_Player_PlayerPartner\" ToRole=\"Player\" FromRole=\"Play" +
-                "erPartner\" /></EntityType><EntityType Name=\"User\"><Key><PropertyRef Name=\"Id\" />" +
-                "</Key><Property Name=\"Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"Use" +
-                "rname\" Type=\"Edm.String\" /><Property Name=\"HashedPassword\" Type=\"Edm.String\" /><" +
-                "Property Name=\"Email\" Type=\"Edm.String\" /><Property Name=\"Salt\" Type=\"Edm.String" +
-                "\" /><Property Name=\"IsLocked\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Na" +
-                "me=\"DateCreated\" Type=\"Edm.DateTime\" Nullable=\"false\" /><NavigationProperty Name" +
-                "=\"UserRoles\" Relationship=\"Cribbage.Entities.Cribbage_Entities_User_UserRoles_Cr" +
-                "ibbage_Entities_UserRole_UserRolesPartner\" ToRole=\"UserRoles\" FromRole=\"UserRole" +
-                "sPartner\" /><NavigationProperty Name=\"Players\" Relationship=\"Cribbage.Entities.C" +
-                "ribbage_Entities_User_Players_Cribbage_Entities_Player_PlayersPartner\" ToRole=\"P" +
-                "layers\" FromRole=\"PlayersPartner\" /></EntityType><EntityType Name=\"UserRole\"><Ke" +
-                "y><PropertyRef Name=\"Id\" /></Key><Property Name=\"Id\" Type=\"Edm.Guid\" Nullable=\"f" +
-                "alse\" /><Property Name=\"UserId\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Nam" +
-                "e=\"RoleId\" Type=\"Edm.Guid\" Nullable=\"false\" /><NavigationProperty Name=\"Role\" Re" +
-                "lationship=\"Cribbage.Entities.Cribbage_Entities_UserRole_Role_Cribbage_Entities_" +
-                "Role_RolePartner\" ToRole=\"Role\" FromRole=\"RolePartner\" /><NavigationProperty Nam" +
-                "e=\"User\" Relationship=\"Cribbage.Entities.Cribbage_Entities_UserRole_User_Cribbag" +
-                "e_Entities_User_UserPartner\" ToRole=\"User\" FromRole=\"UserPartner\" /></EntityType" +
-                "><EntityType Name=\"Player\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=\"I" +
-                "d\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"GameId\" Type=\"Edm.Guid\" Nu" +
-                "llable=\"false\" /><Property Name=\"UserId\" Type=\"Edm.Guid\" Nullable=\"false\" /><Pro" +
-                "perty Name=\"GameOrder\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"GameT" +
-                "otal\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CribId\" Type=\"Edm.Guid" +
-                "\" Nullable=\"false\" /><Property Name=\"CurrentHandId\" Type=\"Edm.Guid\" Nullable=\"fa" +
-                "lse\" /><NavigationProperty Name=\"Game\" Relationship=\"Cribbage.Entities.Cribbage_" +
-                "Entities_Player_Game_Cribbage_Entities_Game_GamePartner\" ToRole=\"Game\" FromRole=" +
-                "\"GamePartner\" /><NavigationProperty Name=\"User\" Relationship=\"Cribbage.Entities." +
-                "Cribbage_Entities_Player_User_Cribbage_Entities_User_UserPa";
+                "Namespace=\"Cribbage.Web.Model\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/e" +
+                "dm\"><EntityType Name=\"Card\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=\"" +
+                "Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"Suit\" Type=\"Edm.String\" N" +
+                "ullable=\"false\" /><Property Name=\"Value\" Type=\"Edm.String\" Nullable=\"false\" /><P" +
+                "roperty Name=\"Points\" Type=\"Edm.String\" Nullable=\"false\" /></EntityType><EntityT" +
+                "ype Name=\"PlayedCard\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=\"Player" +
+                "Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"ScoreType\" Type=\"Edm.Stri" +
+                "ng\" Nullable=\"false\" /><Property Name=\"Points\" Type=\"Edm.Int32\" Nullable=\"false\"" +
+                " /><Property Name=\"Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><NavigationProperty Na" +
+                "me=\"Card\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Model_PlayedCard_Card_Cr" +
+                "ibbage_Web_Model_Card_CardPartner\" ToRole=\"Card\" FromRole=\"CardPartner\" /></Enti" +
+                "tyType><EntityType Name=\"Deck\"><Key><PropertyRef Name=\"Id\" /></Key><Property Nam" +
+                "e=\"Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><NavigationProperty Name=\"Cards\" Relat" +
+                "ionship=\"Cribbage.Web.Model.Cribbage_Web_Model_Deck_Cards_Cribbage_Web_Model_Car" +
+                "d_CardsPartner\" ToRole=\"Cards\" FromRole=\"CardsPartner\" /><NavigationProperty Nam" +
+                "e=\"CutCard\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Model_Deck_CutCard_Cri" +
+                "bbage_Web_Model_Card_CutCardPartner\" ToRole=\"CutCard\" FromRole=\"CutCardPartner\" " +
+                "/></EntityType><EntityType Name=\"Match\"><Key><PropertyRef Name=\"Id\" /></Key><Pro" +
+                "perty Name=\"Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"State\" Type=\"" +
+                "Edm.String\" Nullable=\"false\" /><Property Name=\"CurrentGameId\" Type=\"Edm.Guid\" Nu" +
+                "llable=\"false\" /><NavigationProperty Name=\"Games\" Relationship=\"Cribbage.Web.Mod" +
+                "el.Cribbage_Web_Model_Match_Games_Cribbage_Web_Model_Game_GamesPartner\" ToRole=\"" +
+                "Games\" FromRole=\"GamesPartner\" /><NavigationProperty Name=\"CurrentGame\" Relation" +
+                "ship=\"Cribbage.Web.Model.Cribbage_Web_Model_Match_CurrentGame_Cribbage_Web_Model" +
+                "_Game_CurrentGamePartner\" ToRole=\"CurrentGame\" FromRole=\"CurrentGamePartner\" /><" +
+                "/EntityType><EntityType Name=\"GameHand\"><Key><PropertyRef Name=\"Id\" /></Key><Pro" +
+                "perty Name=\"Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"GameId\" Type=" +
+                "\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"Index\" Type=\"Edm.Int32\" Nullable=\"" +
+                "false\" /><Property Name=\"State\" Type=\"Edm.String\" Nullable=\"false\" /><Property N" +
+                "ame=\"CribId\" Type=\"Edm.Guid\" /><Property Name=\"LastPlayerId\" Type=\"Edm.Guid\" /><" +
+                "Property Name=\"CurrentPlayerId\" Type=\"Edm.Guid\" /><Property Name=\"CutCardId\" Typ" +
+                "e=\"Edm.Guid\" /><Property Name=\"CardIds\" Type=\"Edm.String\" /><Property Name=\"Play" +
+                "edCardIds\" Type=\"Edm.String\" /><Property Name=\"GoCount\" Type=\"Edm.Int32\" Nullabl" +
+                "e=\"false\" /><Property Name=\"MatchingCardValueCount\" Type=\"Edm.Int32\" Nullable=\"f" +
+                "alse\" /><NavigationProperty Name=\"Game\" Relationship=\"Cribbage.Web.Model.Cribbag" +
+                "e_Web_Model_GameHand_Game_Cribbage_Web_Model_Game_GamePartner\" ToRole=\"Game\" Fro" +
+                "mRole=\"GamePartner\" /><NavigationProperty Name=\"PlayerHands\" Relationship=\"Cribb" +
+                "age.Web.Model.Cribbage_Web_Model_GameHand_PlayerHands_Cribbage_Web_Model_PlayerH" +
+                "and_PlayerHandsPartner\" ToRole=\"PlayerHands\" FromRole=\"PlayerHandsPartner\" /><Na" +
+                "vigationProperty Name=\"Crib\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Model" +
+                "_GameHand_Crib_Cribbage_Web_Model_PlayerHand_CribPartner\" ToRole=\"Crib\" FromRole" +
+                "=\"CribPartner\" /><NavigationProperty Name=\"CutCard\" Relationship=\"Cribbage.Web.M" +
+                "odel.Cribbage_Web_Model_GameHand_CutCard_Cribbage_Web_Model_Card_CutCardPartner\"" +
+                " ToRole=\"CutCard\" FromRole=\"CutCardPartner\" /><NavigationProperty Name=\"LastPlay" +
+                "er\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Model_GameHand_LastPlayer_Crib" +
+                "bage_Web_Model_Player_LastPlayerPartner\" ToRole=\"LastPlayer\" FromRole=\"LastPlaye" +
+                "rPartner\" /><NavigationProperty Name=\"CurrentPlayer\" Relationship=\"Cribbage.Web." +
+                "Model.Cribbage_Web_Model_GameHand_CurrentPlayer_Cribbage_Web_Model_Player_Curren" +
+                "tPlayerPartner\" ToRole=\"CurrentPlayer\" FromRole=\"CurrentPlayerPartner\" /></Entit" +
+                "yType><EntityType Name=\"Game\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name" +
+                "=\"Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"MatchId\" Type=\"Edm.Guid" +
+                "\" /><Property Name=\"State\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"" +
+                "AllowMuggins\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"CurrentHandI" +
+                "d\" Type=\"Edm.Guid\" /><Property Name=\"CurrentDealerId\" Type=\"Edm.Guid\" /><Propert" +
+                "y Name=\"Index\" Type=\"Edm.Int32\" Nullable=\"false\" /><NavigationProperty Name=\"Mat" +
+                "ch\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Model_Game_Match_Cribbage_Web_" +
+                "Model_Match_MatchPartner\" ToRole=\"Match\" FromRole=\"MatchPartner\" /><NavigationPr" +
+                "operty Name=\"Players\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Model_Game_P" +
+                "layers_Cribbage_Web_Model_Player_PlayersPartner\" ToRole=\"Players\" FromRole=\"Play" +
+                "ersPartner\" /><NavigationProperty Name=\"Hands\" Relationship=\"Cribbage.Web.Model." +
+                "Cribbage_Web_Model_Game_Hands_Cribbage_Web_Model_GameHand_HandsPartner\" ToRole=\"" +
+                "Hands\" FromRole=\"HandsPartner\" /><NavigationProperty Name=\"CurrentHand\" Relation" +
+                "ship=\"Cribbage.Web.Model.Cribbage_Web_Model_Game_CurrentHand_Cribbage_Web_Model_" +
+                "GameHand_CurrentHandPartner\" ToRole=\"CurrentHand\" FromRole=\"CurrentHandPartner\" " +
+                "/><NavigationProperty Name=\"CurrentDealer\" Relationship=\"Cribbage.Web.Model.Crib" +
+                "bage_Web_Model_Game_CurrentDealer_Cribbage_Web_Model_Player_CurrentDealerPartner" +
+                "\" ToRole=\"CurrentDealer\" FromRole=\"CurrentDealerPartner\" /></EntityType><EntityT" +
+                "ype Name=\"PlayerHand\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=\"Id\" Ty" +
+                "pe=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"GameHandId\" Type=\"Edm.Guid\" Nul" +
+                "lable=\"false\" /><Property Name=\"PlayerId\" Type=\"Edm.Guid\" Nullable=\"false\" /><Pr" +
+                "operty Name=\"IsCrib\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"CardI" +
+                "ds\" Type=\"Edm.String\" /><Property Name=\"PlayedCardIds\" Type=\"Edm.String\" /><Navi" +
+                "gationProperty Name=\"GameHand\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Mod" +
+                "el_PlayerHand_GameHand_Cribbage_Web_Model_GameHand_GameHandPartner\" ToRole=\"Game" +
+                "Hand\" FromRole=\"GameHandPartner\" /><NavigationProperty Name=\"Player\" Relationshi" +
+                "p=\"Cribbage.Web.Model.Cribbage_Web_Model_PlayerHand_Player_Cribbage_Web_Model_Pl" +
+                "ayer_PlayerPartner\" ToRole=\"Player\" FromRole=\"PlayerPartner\" /></EntityType><Ent" +
+                "ityType Name=\"User\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=\"Id\" Type" +
+                "=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"Username\" Type=\"Edm.String\" /><Pr" +
+                "operty Name=\"HashedPassword\" Type=\"Edm.String\" /><Property Name=\"Email\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"Salt\" Type=\"Edm.String\" /><Property Name=\"IsLocked\" " +
+                "Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"DateCreated\" Type=\"Edm.Dat" +
+                "eTime\" Nullable=\"false\" /><NavigationProperty Name=\"UserRoles\" Relationship=\"Cri" +
+                "bbage.Web.Model.Cribbage_Web_Model_User_UserRoles_Cribbage_Web_Model_UserRole_Us" +
+                "erRolesPartner\" ToRole=\"UserRoles\" FromRole=\"UserRolesPartner\" /><NavigationProp" +
+                "erty Name=\"Players\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Model_User_Pla" +
+                "yers_Cribbage_Web_Model_Player_PlayersPartner\" ToRole=\"Players\" FromRole=\"Player" +
+                "sPartner\" /></EntityType><EntityType Name=\"UserRole\"><Key><PropertyRef Name=\"Id\"" +
+                " /></Key><Property Name=\"Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"" +
+                "UserId\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"RoleId\" Type=\"Edm.Gui" +
+                "d\" Nullable=\"false\" /><NavigationProperty Name=\"Role\" Relat";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart1 = "rtner\" ToRole=\"User\" FromRole=\"UserPartner\" /><NavigationProperty Name=\"Hands\" Re" +
-                "lationship=\"Cribbage.Entities.Cribbage_Entities_Player_Hands_Cribbage_Entities_P" +
-                "layerHand_HandsPartner\" ToRole=\"Hands\" FromRole=\"HandsPartner\" /><NavigationProp" +
-                "erty Name=\"Crib\" Relationship=\"Cribbage.Entities.Cribbage_Entities_Player_Crib_C" +
-                "ribbage_Entities_PlayerHand_CribPartner\" ToRole=\"Crib\" FromRole=\"CribPartner\" />" +
-                "<NavigationProperty Name=\"CurrentHand\" Relationship=\"Cribbage.Entities.Cribbage_" +
-                "Entities_Player_CurrentHand_Cribbage_Entities_PlayerHand_CurrentHandPartner\" ToR" +
-                "ole=\"CurrentHand\" FromRole=\"CurrentHandPartner\" /></EntityType><EntityType Name=" +
-                "\"Role\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=\"Id\" Type=\"Edm.Guid\" N" +
-                "ullable=\"false\" /><Property Name=\"Name\" Type=\"Edm.String\" /><NavigationProperty " +
-                "Name=\"UserRoles\" Relationship=\"Cribbage.Entities.Cribbage_Entities_Role_UserRole" +
-                "s_Cribbage_Entities_UserRole_UserRolesPartner\" ToRole=\"UserRoles\" FromRole=\"User" +
-                "RolesPartner\" /></EntityType><ComplexType Name=\"Deck\"><Property Name=\"Cards\" Typ" +
-                "e=\"Collection(Cribbage.Entities.Card)\" Nullable=\"false\" /><Property Name=\"CutCar" +
-                "d\" Type=\"Cribbage.Entities.Card\" /></ComplexType><ComplexType Name=\"Card\"><Prope" +
-                "rty Name=\"Id\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"Suit\" Type=\"Ed" +
-                "m.String\" Nullable=\"false\" /><Property Name=\"Value\" Type=\"Edm.String\" Nullable=\"" +
-                "false\" /><Property Name=\"Points\" Type=\"Edm.String\" Nullable=\"false\" /></ComplexT" +
-                "ype><ComplexType Name=\"PlayedCard\"><Property Name=\"Card\" Type=\"Cribbage.Entities" +
-                ".Card\" /><Property Name=\"PlayerId\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property " +
-                "Name=\"ScoreType\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"Points\" Ty" +
-                "pe=\"Edm.Int32\" Nullable=\"false\" /></ComplexType><Association Name=\"Cribbage_Enti" +
-                "ties_Match_Games_Cribbage_Entities_Game_GamesPartner\"><End Type=\"Cribbage.Entiti" +
-                "es.Game\" Role=\"Games\" Multiplicity=\"*\" /><End Type=\"Cribbage.Entities.Match\" Rol" +
-                "e=\"GamesPartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage" +
-                "_Entities_Match_CurrentGame_Cribbage_Entities_Game_CurrentGamePartner\"><End Type" +
-                "=\"Cribbage.Entities.Game\" Role=\"CurrentGame\" Multiplicity=\"0..1\" /><End Type=\"Cr" +
-                "ibbage.Entities.Match\" Role=\"CurrentGamePartner\" Multiplicity=\"0..1\" /></Associa" +
-                "tion><Association Name=\"Cribbage_Entities_GameHand_Game_Cribbage_Entities_Game_G" +
-                "amePartner\"><End Type=\"Cribbage.Entities.Game\" Role=\"Game\" Multiplicity=\"0..1\" /" +
-                "><End Type=\"Cribbage.Entities.GameHand\" Role=\"GamePartner\" Multiplicity=\"0..1\" /" +
-                "></Association><Association Name=\"Cribbage_Entities_GameHand_PlayerHands_Cribbag" +
-                "e_Entities_PlayerHand_PlayerHandsPartner\"><End Type=\"Cribbage.Entities.PlayerHan" +
-                "d\" Role=\"PlayerHands\" Multiplicity=\"*\" /><End Type=\"Cribbage.Entities.GameHand\" " +
-                "Role=\"PlayerHandsPartner\" Multiplicity=\"0..1\" /></Association><Association Name=" +
-                "\"Cribbage_Entities_GameHand_Crib_Cribbage_Entities_PlayerHand_CribPartner\"><End " +
-                "Type=\"Cribbage.Entities.PlayerHand\" Role=\"Crib\" Multiplicity=\"0..1\" /><End Type=" +
-                "\"Cribbage.Entities.GameHand\" Role=\"CribPartner\" Multiplicity=\"0..1\" /></Associat" +
-                "ion><Association Name=\"Cribbage_Entities_GameHand_LastPlayer_Cribbage_Entities_P" +
-                "layer_LastPlayerPartner\"><End Type=\"Cribbage.Entities.Player\" Role=\"LastPlayer\" " +
-                "Multiplicity=\"0..1\" /><End Type=\"Cribbage.Entities.GameHand\" Role=\"LastPlayerPar" +
-                "tner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Entities_G" +
-                "ameHand_CurrentPlayer_Cribbage_Entities_Player_CurrentPlayerPartner\"><End Type=\"" +
-                "Cribbage.Entities.Player\" Role=\"CurrentPlayer\" Multiplicity=\"0..1\" /><End Type=\"" +
-                "Cribbage.Entities.GameHand\" Role=\"CurrentPlayerPartner\" Multiplicity=\"0..1\" /></" +
-                "Association><Association Name=\"Cribbage_Entities_Game_Match_Cribbage_Entities_Ma" +
-                "tch_MatchPartner\"><End Type=\"Cribbage.Entities.Match\" Role=\"Match\" Multiplicity=" +
-                "\"0..1\" /><End Type=\"Cribbage.Entities.Game\" Role=\"MatchPartner\" Multiplicity=\"0." +
-                ".1\" /></Association><Association Name=\"Cribbage_Entities_Game_Players_Cribbage_E" +
-                "ntities_Player_PlayersPartner\"><End Type=\"Cribbage.Entities.Player\" Role=\"Player" +
-                "s\" Multiplicity=\"*\" /><End Type=\"Cribbage.Entities.Game\" Role=\"PlayersPartner\" M" +
-                "ultiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Entities_Game_Han" +
-                "ds_Cribbage_Entities_GameHand_HandsPartner\"><End Type=\"Cribbage.Entities.GameHan" +
-                "d\" Role=\"Hands\" Multiplicity=\"*\" /><End Type=\"Cribbage.Entities.Game\" Role=\"Hand" +
-                "sPartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Entiti" +
-                "es_Game_CurrentHand_Cribbage_Entities_GameHand_CurrentHandPartner\"><End Type=\"Cr" +
-                "ibbage.Entities.GameHand\" Role=\"CurrentHand\" Multiplicity=\"0..1\" /><End Type=\"Cr" +
-                "ibbage.Entities.Game\" Role=\"CurrentHandPartner\" Multiplicity=\"0..1\" /></Associat" +
-                "ion><Association Name=\"Cribbage_Entities_Game_CurrentDealer_Cribbage_Entities_Pl" +
-                "ayer_CurrentDealerPartner\"><End Type=\"Cribbage.Entities.Player\" Role=\"CurrentDea" +
-                "ler\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Entities.Game\" Role=\"CurrentDeale" +
-                "rPartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Entiti" +
-                "es_PlayerHand_GameHand_Cribbage_Entities_GameHand_GameHandPartner\"><End Type=\"Cr" +
-                "ibbage.Entities.GameHand\" Role=\"GameHand\" Multiplicity=\"0..1\" /><End Type=\"Cribb" +
-                "age.Entities.PlayerHand\" Role=\"GameHandPartner\" Multiplicity=\"0..1\" /></Associat" +
-                "ion><Association Name=\"Cribbage_Entities_PlayerHand_Player_Cribbage_Entities_Pla" +
-                "yer_PlayerPartner\"><End Type=\"Cribbage.Entities.Player\" Role=\"Player\" Multiplici" +
-                "ty=\"0..1\" /><End Type=\"Cribbage.Entities.PlayerHand\" Role=\"PlayerPartner\" Multip" +
-                "licity=\"0..1\" /></Association><Association Name=\"Cribbage_Entities_User_UserRole" +
-                "s_Cribbage_Entities_UserRole_UserRolesPartner\"><End Type=\"Cribbage.Entities.User" +
-                "Role\" Role=\"UserRoles\" Multiplicity=\"*\" /><End Type=\"Cribbage.Entities.User\" Rol" +
-                "e=\"UserRolesPartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Crib" +
-                "bage_Entities_User_Players_Cribbage_Entities_Player_PlayersPartner\"><End Type=\"C" +
-                "ribbage.Entities.Player\" Role=\"Players\" Multiplicity=\"*\" /><End Type=\"Cribbage.E" +
-                "ntities.User\" Role=\"PlayersPartner\" Multiplicity=\"0..1\" /></Association><Associa" +
-                "tion Name=\"Cribbage_Entities_UserRole_Role_Cribbage_Entities_Role_RolePartner\"><" +
-                "End Type=\"Cribbage.Entities.Role\" Role=\"Role\" Multiplicity=\"0..1\" /><End Type=\"C" +
-                "ribbage.Entities.UserRole\" Role=\"RolePartner\" Multiplicity=\"0..1\" /></Associatio" +
-                "n><Association Name=\"Cribbage_Entities_UserRole_User_Cribbage_Entities_User_User" +
-                "Partner\"><End Type=\"Cribbage.Entities.User\" Role=\"User\" Multiplicity=\"0..1\" /><E" +
-                "nd Type=\"Cribbage.Entities.UserRole\" Role=\"UserPartner\" Multiplicity=\"0..1\" /></" +
-                "Association><Association Name=\"Cribbage_Entities_Player_Game_Cribbage_Entities_G" +
-                "ame_GamePartner\"><End Type=\"Cribbage.Entities.Game\" Role=\"Game\" Multiplicity=\"0." +
-                ".1\" /><End Type=\"Cribbage.Entities.Player\" Role=\"GamePartner\" Multiplicity=\"0..1" +
-                "\" /></Association><Association Name=\"Cribbage_Entities_Player_User_Cribbage_Enti" +
-                "ties_User_UserPartner\"><End Type=\"Cribbage.Entities.User\" Role=\"User\" Multiplici" +
-                "ty=\"0..1\" /><End Type=\"Cribbage.Entities.Player\" Role=\"UserPartner\" Multiplicity" +
-                "=\"0..1\" /></Association><Association Name=\"Cribbage_Entities_Player_Hands_Cribba" +
-                "ge_Entities_PlayerHand_HandsPartner\"><End Type=\"Cribbage.Entities.PlayerHand\" Ro" +
-                "le=\"Hands\" Multiplicity=\"*\" /><End Type=\"Cribbage.Entities.Player\" Role=\"HandsPa" +
-                "rtner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Entities_" +
-                "Player_Crib_Cribbage_Entities_PlayerHand_CribPartner\"><End Type=\"Cribbage.Entiti" +
-                "es.PlayerHand\" Role=\"Crib\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Entities.Pl" +
-                "ayer\" Role=\"CribPartner\" Multiplicity=\"0..1\" /></Associatio";
+            private const string ModelPart1 = "ionship=\"Cribbage.Web.Model.Cribbage_Web_Model_UserRole_Role_Cribbage_Web_Model_R" +
+                "ole_RolePartner\" ToRole=\"Role\" FromRole=\"RolePartner\" /><NavigationProperty Name" +
+                "=\"User\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Model_UserRole_User_Cribba" +
+                "ge_Web_Model_User_UserPartner\" ToRole=\"User\" FromRole=\"UserPartner\" /></EntityTy" +
+                "pe><EntityType Name=\"Player\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=" +
+                "\"Id\" Type=\"Edm.Guid\" Nullable=\"false\" /><Property Name=\"GameId\" Type=\"Edm.Guid\" " +
+                "/><Property Name=\"UserId\" Type=\"Edm.Guid\" /><Property Name=\"GameOrder\" Type=\"Edm" +
+                ".Int32\" Nullable=\"false\" /><Property Name=\"GameTotal\" Type=\"Edm.Int32\" Nullable=" +
+                "\"false\" /><Property Name=\"CribId\" Type=\"Edm.Guid\" /><Property Name=\"CurrentHandI" +
+                "d\" Type=\"Edm.Guid\" /><NavigationProperty Name=\"Game\" Relationship=\"Cribbage.Web." +
+                "Model.Cribbage_Web_Model_Player_Game_Cribbage_Web_Model_Game_GamePartner\" ToRole" +
+                "=\"Game\" FromRole=\"GamePartner\" /><NavigationProperty Name=\"User\" Relationship=\"C" +
+                "ribbage.Web.Model.Cribbage_Web_Model_Player_User_Cribbage_Web_Model_User_UserPar" +
+                "tner\" ToRole=\"User\" FromRole=\"UserPartner\" /><NavigationProperty Name=\"Hands\" Re" +
+                "lationship=\"Cribbage.Web.Model.Cribbage_Web_Model_Player_Hands_Cribbage_Web_Mode" +
+                "l_PlayerHand_HandsPartner\" ToRole=\"Hands\" FromRole=\"HandsPartner\" /><NavigationP" +
+                "roperty Name=\"Crib\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Model_Player_C" +
+                "rib_Cribbage_Web_Model_PlayerHand_CribPartner\" ToRole=\"Crib\" FromRole=\"CribPartn" +
+                "er\" /><NavigationProperty Name=\"CurrentHand\" Relationship=\"Cribbage.Web.Model.Cr" +
+                "ibbage_Web_Model_Player_CurrentHand_Cribbage_Web_Model_PlayerHand_CurrentHandPar" +
+                "tner\" ToRole=\"CurrentHand\" FromRole=\"CurrentHandPartner\" /></EntityType><EntityT" +
+                "ype Name=\"Role\"><Key><PropertyRef Name=\"Id\" /></Key><Property Name=\"Id\" Type=\"Ed" +
+                "m.Guid\" Nullable=\"false\" /><Property Name=\"Name\" Type=\"Edm.String\" /><Navigation" +
+                "Property Name=\"UserRoles\" Relationship=\"Cribbage.Web.Model.Cribbage_Web_Model_Ro" +
+                "le_UserRoles_Cribbage_Web_Model_UserRole_UserRolesPartner\" ToRole=\"UserRoles\" Fr" +
+                "omRole=\"UserRolesPartner\" /></EntityType><Association Name=\"Cribbage_Web_Model_P" +
+                "layedCard_Card_Cribbage_Web_Model_Card_CardPartner\"><End Type=\"Cribbage.Web.Mode" +
+                "l.Card\" Role=\"Card\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Web.Model.PlayedCa" +
+                "rd\" Role=\"CardPartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cr" +
+                "ibbage_Web_Model_Deck_Cards_Cribbage_Web_Model_Card_CardsPartner\"><End Type=\"Cri" +
+                "bbage.Web.Model.Card\" Role=\"Cards\" Multiplicity=\"*\" /><End Type=\"Cribbage.Web.Mo" +
+                "del.Deck\" Role=\"CardsPartner\" Multiplicity=\"0..1\" /></Association><Association N" +
+                "ame=\"Cribbage_Web_Model_Deck_CutCard_Cribbage_Web_Model_Card_CutCardPartner\"><En" +
+                "d Type=\"Cribbage.Web.Model.Card\" Role=\"CutCard\" Multiplicity=\"0..1\" /><End Type=" +
+                "\"Cribbage.Web.Model.Deck\" Role=\"CutCardPartner\" Multiplicity=\"0..1\" /></Associat" +
+                "ion><Association Name=\"Cribbage_Web_Model_Match_Games_Cribbage_Web_Model_Game_Ga" +
+                "mesPartner\"><End Type=\"Cribbage.Web.Model.Game\" Role=\"Games\" Multiplicity=\"*\" />" +
+                "<End Type=\"Cribbage.Web.Model.Match\" Role=\"GamesPartner\" Multiplicity=\"0..1\" /><" +
+                "/Association><Association Name=\"Cribbage_Web_Model_Match_CurrentGame_Cribbage_We" +
+                "b_Model_Game_CurrentGamePartner\"><End Type=\"Cribbage.Web.Model.Game\" Role=\"Curre" +
+                "ntGame\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Web.Model.Match\" Role=\"Current" +
+                "GamePartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Web" +
+                "_Model_GameHand_Game_Cribbage_Web_Model_Game_GamePartner\"><End Type=\"Cribbage.We" +
+                "b.Model.Game\" Role=\"Game\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Web.Model.Ga" +
+                "meHand\" Role=\"GamePartner\" Multiplicity=\"0..1\" /></Association><Association Name" +
+                "=\"Cribbage_Web_Model_GameHand_PlayerHands_Cribbage_Web_Model_PlayerHand_PlayerHa" +
+                "ndsPartner\"><End Type=\"Cribbage.Web.Model.PlayerHand\" Role=\"PlayerHands\" Multipl" +
+                "icity=\"*\" /><End Type=\"Cribbage.Web.Model.GameHand\" Role=\"PlayerHandsPartner\" Mu" +
+                "ltiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Web_Model_GameHand" +
+                "_Crib_Cribbage_Web_Model_PlayerHand_CribPartner\"><End Type=\"Cribbage.Web.Model.P" +
+                "layerHand\" Role=\"Crib\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Web.Model.GameH" +
+                "and\" Role=\"CribPartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"C" +
+                "ribbage_Web_Model_GameHand_CutCard_Cribbage_Web_Model_Card_CutCardPartner\"><End " +
+                "Type=\"Cribbage.Web.Model.Card\" Role=\"CutCard\" Multiplicity=\"0..1\" /><End Type=\"C" +
+                "ribbage.Web.Model.GameHand\" Role=\"CutCardPartner\" Multiplicity=\"0..1\" /></Associ" +
+                "ation><Association Name=\"Cribbage_Web_Model_GameHand_LastPlayer_Cribbage_Web_Mod" +
+                "el_Player_LastPlayerPartner\"><End Type=\"Cribbage.Web.Model.Player\" Role=\"LastPla" +
+                "yer\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Web.Model.GameHand\" Role=\"LastPla" +
+                "yerPartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Web_" +
+                "Model_GameHand_CurrentPlayer_Cribbage_Web_Model_Player_CurrentPlayerPartner\"><En" +
+                "d Type=\"Cribbage.Web.Model.Player\" Role=\"CurrentPlayer\" Multiplicity=\"0..1\" /><E" +
+                "nd Type=\"Cribbage.Web.Model.GameHand\" Role=\"CurrentPlayerPartner\" Multiplicity=\"" +
+                "0..1\" /></Association><Association Name=\"Cribbage_Web_Model_Game_Match_Cribbage_" +
+                "Web_Model_Match_MatchPartner\"><End Type=\"Cribbage.Web.Model.Match\" Role=\"Match\" " +
+                "Multiplicity=\"0..1\" /><End Type=\"Cribbage.Web.Model.Game\" Role=\"MatchPartner\" Mu" +
+                "ltiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Web_Model_Game_Pla" +
+                "yers_Cribbage_Web_Model_Player_PlayersPartner\"><End Type=\"Cribbage.Web.Model.Pla" +
+                "yer\" Role=\"Players\" Multiplicity=\"*\" /><End Type=\"Cribbage.Web.Model.Game\" Role=" +
+                "\"PlayersPartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage" +
+                "_Web_Model_Game_Hands_Cribbage_Web_Model_GameHand_HandsPartner\"><End Type=\"Cribb" +
+                "age.Web.Model.GameHand\" Role=\"Hands\" Multiplicity=\"*\" /><End Type=\"Cribbage.Web." +
+                "Model.Game\" Role=\"HandsPartner\" Multiplicity=\"0..1\" /></Association><Association" +
+                " Name=\"Cribbage_Web_Model_Game_CurrentHand_Cribbage_Web_Model_GameHand_CurrentHa" +
+                "ndPartner\"><End Type=\"Cribbage.Web.Model.GameHand\" Role=\"CurrentHand\" Multiplici" +
+                "ty=\"0..1\" /><End Type=\"Cribbage.Web.Model.Game\" Role=\"CurrentHandPartner\" Multip" +
+                "licity=\"0..1\" /></Association><Association Name=\"Cribbage_Web_Model_Game_Current" +
+                "Dealer_Cribbage_Web_Model_Player_CurrentDealerPartner\"><End Type=\"Cribbage.Web.M" +
+                "odel.Player\" Role=\"CurrentDealer\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Web." +
+                "Model.Game\" Role=\"CurrentDealerPartner\" Multiplicity=\"0..1\" /></Association><Ass" +
+                "ociation Name=\"Cribbage_Web_Model_PlayerHand_GameHand_Cribbage_Web_Model_GameHan" +
+                "d_GameHandPartner\"><End Type=\"Cribbage.Web.Model.GameHand\" Role=\"GameHand\" Multi" +
+                "plicity=\"0..1\" /><End Type=\"Cribbage.Web.Model.PlayerHand\" Role=\"GameHandPartner" +
+                "\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Web_Model_Play" +
+                "erHand_Player_Cribbage_Web_Model_Player_PlayerPartner\"><End Type=\"Cribbage.Web.M" +
+                "odel.Player\" Role=\"Player\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Web.Model.P" +
+                "layerHand\" Role=\"PlayerPartner\" Multiplicity=\"0..1\" /></Association><Association" +
+                " Name=\"Cribbage_Web_Model_User_UserRoles_Cribbage_Web_Model_UserRole_UserRolesPa" +
+                "rtner\"><End Type=\"Cribbage.Web.Model.UserRole\" Role=\"UserRoles\" Multiplicity=\"*\"" +
+                " /><End Type=\"Cribbage.Web.Model.User\" Role=\"UserRolesPartner\" Multiplicity=\"0.." +
+                "1\" /></Association><Association Name=\"Cribbage_Web_Model_User_Players_Cribbage_W" +
+                "eb_Model_Player_PlayersPartner\"><End Type=\"Cribbage.Web.Model.Player\" Role=\"Play" +
+                "ers\" Multiplicity=\"*\" /><End Type=\"Cribbage.Web.Model.User\" Role=\"PlayersPartner" +
+                "\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Web_Model_User" +
+                "Role_Role_Cribbage_Web_Model_Role_RolePartner\"><End Type=\"C";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart2 = "n><Association Name=\"Cribbage_Entities_Player_CurrentHand_Cribbage_Entities_Playe" +
-                "rHand_CurrentHandPartner\"><End Type=\"Cribbage.Entities.PlayerHand\" Role=\"Current" +
-                "Hand\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Entities.Player\" Role=\"CurrentHa" +
-                "ndPartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Entit" +
-                "ies_Role_UserRoles_Cribbage_Entities_UserRole_UserRolesPartner\"><End Type=\"Cribb" +
-                "age.Entities.UserRole\" Role=\"UserRoles\" Multiplicity=\"*\" /><End Type=\"Cribbage.E" +
-                "ntities.Role\" Role=\"UserRolesPartner\" Multiplicity=\"0..1\" /></Association></Sche" +
-                "ma><Schema Namespace=\"Default\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/e" +
-                "dm\"><EntityContainer Name=\"Container\" m:IsDefaultEntityContainer=\"true\"><EntityS" +
-                "et Name=\"Matches\" EntityType=\"Cribbage.Entities.Match\" /><EntitySet Name=\"GameHa" +
-                "nds\" EntityType=\"Cribbage.Entities.GameHand\" /><EntitySet Name=\"Games\" EntityTyp" +
-                "e=\"Cribbage.Entities.Game\" /><EntitySet Name=\"PlayerHands\" EntityType=\"Cribbage." +
-                "Entities.PlayerHand\" /><EntitySet Name=\"Users\" EntityType=\"Cribbage.Entities.Use" +
-                "r\" /><EntitySet Name=\"UserRoles\" EntityType=\"Cribbage.Entities.UserRole\" /><Enti" +
-                "tySet Name=\"Players\" EntityType=\"Cribbage.Entities.Player\" /><AssociationSet Nam" +
-                "e=\"Cribbage_Entities_Match_Games_Cribbage_Entities_Game_GamesPartnerSet\" Associa" +
-                "tion=\"Cribbage.Entities.Cribbage_Entities_Match_Games_Cribbage_Entities_Game_Gam" +
-                "esPartner\"><End Role=\"GamesPartner\" EntitySet=\"Matches\" /><End Role=\"Games\" Enti" +
-                "tySet=\"Games\" /></AssociationSet><AssociationSet Name=\"Cribbage_Entities_Match_C" +
-                "urrentGame_Cribbage_Entities_Game_CurrentGamePartnerSet\" Association=\"Cribbage.E" +
-                "ntities.Cribbage_Entities_Match_CurrentGame_Cribbage_Entities_Game_CurrentGamePa" +
-                "rtner\"><End Role=\"CurrentGamePartner\" EntitySet=\"Matches\" /><End Role=\"CurrentGa" +
-                "me\" EntitySet=\"Games\" /></AssociationSet><AssociationSet Name=\"Cribbage_Entities" +
-                "_GameHand_Game_Cribbage_Entities_Game_GamePartnerSet\" Association=\"Cribbage.Enti" +
-                "ties.Cribbage_Entities_GameHand_Game_Cribbage_Entities_Game_GamePartner\"><End Ro" +
-                "le=\"GamePartner\" EntitySet=\"GameHands\" /><End Role=\"Game\" EntitySet=\"Games\" /></" +
-                "AssociationSet><AssociationSet Name=\"Cribbage_Entities_GameHand_PlayerHands_Crib" +
-                "bage_Entities_PlayerHand_PlayerHandsPartnerSet\" Association=\"Cribbage.Entities.C" +
-                "ribbage_Entities_GameHand_PlayerHands_Cribbage_Entities_PlayerHand_PlayerHandsPa" +
-                "rtner\"><End Role=\"PlayerHandsPartner\" EntitySet=\"GameHands\" /><End Role=\"PlayerH" +
-                "ands\" EntitySet=\"PlayerHands\" /></AssociationSet><AssociationSet Name=\"Cribbage_" +
-                "Entities_GameHand_Crib_Cribbage_Entities_PlayerHand_CribPartnerSet\" Association=" +
-                "\"Cribbage.Entities.Cribbage_Entities_GameHand_Crib_Cribbage_Entities_PlayerHand_" +
-                "CribPartner\"><End Role=\"CribPartner\" EntitySet=\"GameHands\" /><End Role=\"Crib\" En" +
-                "titySet=\"PlayerHands\" /></AssociationSet><AssociationSet Name=\"Cribbage_Entities" +
-                "_GameHand_LastPlayer_Cribbage_Entities_Player_LastPlayerPartnerSet\" Association=" +
-                "\"Cribbage.Entities.Cribbage_Entities_GameHand_LastPlayer_Cribbage_Entities_Playe" +
-                "r_LastPlayerPartner\"><End Role=\"LastPlayerPartner\" EntitySet=\"GameHands\" /><End " +
-                "Role=\"LastPlayer\" EntitySet=\"Players\" /></AssociationSet><AssociationSet Name=\"C" +
-                "ribbage_Entities_GameHand_CurrentPlayer_Cribbage_Entities_Player_CurrentPlayerPa" +
-                "rtnerSet\" Association=\"Cribbage.Entities.Cribbage_Entities_GameHand_CurrentPlaye" +
-                "r_Cribbage_Entities_Player_CurrentPlayerPartner\"><End Role=\"CurrentPlayerPartner" +
-                "\" EntitySet=\"GameHands\" /><End Role=\"CurrentPlayer\" EntitySet=\"Players\" /></Asso" +
-                "ciationSet><AssociationSet Name=\"Cribbage_Entities_Game_Match_Cribbage_Entities_" +
-                "Match_MatchPartnerSet\" Association=\"Cribbage.Entities.Cribbage_Entities_Game_Mat" +
-                "ch_Cribbage_Entities_Match_MatchPartner\"><End Role=\"MatchPartner\" EntitySet=\"Gam" +
-                "es\" /><End Role=\"Match\" EntitySet=\"Matches\" /></AssociationSet><AssociationSet N" +
-                "ame=\"Cribbage_Entities_Game_Players_Cribbage_Entities_Player_PlayersPartnerSet\" " +
-                "Association=\"Cribbage.Entities.Cribbage_Entities_Game_Players_Cribbage_Entities_" +
-                "Player_PlayersPartner\"><End Role=\"PlayersPartner\" EntitySet=\"Games\" /><End Role=" +
-                "\"Players\" EntitySet=\"Players\" /></AssociationSet><AssociationSet Name=\"Cribbage_" +
-                "Entities_Game_Hands_Cribbage_Entities_GameHand_HandsPartnerSet\" Association=\"Cri" +
-                "bbage.Entities.Cribbage_Entities_Game_Hands_Cribbage_Entities_GameHand_HandsPart" +
-                "ner\"><End Role=\"HandsPartner\" EntitySet=\"Games\" /><End Role=\"Hands\" EntitySet=\"G" +
-                "ameHands\" /></AssociationSet><AssociationSet Name=\"Cribbage_Entities_Game_Curren" +
-                "tHand_Cribbage_Entities_GameHand_CurrentHandPartnerSet\" Association=\"Cribbage.En" +
-                "tities.Cribbage_Entities_Game_CurrentHand_Cribbage_Entities_GameHand_CurrentHand" +
-                "Partner\"><End Role=\"CurrentHandPartner\" EntitySet=\"Games\" /><End Role=\"CurrentHa" +
-                "nd\" EntitySet=\"GameHands\" /></AssociationSet><AssociationSet Name=\"Cribbage_Enti" +
-                "ties_Game_CurrentDealer_Cribbage_Entities_Player_CurrentDealerPartnerSet\" Associ" +
-                "ation=\"Cribbage.Entities.Cribbage_Entities_Game_CurrentDealer_Cribbage_Entities_" +
-                "Player_CurrentDealerPartner\"><End Role=\"CurrentDealerPartner\" EntitySet=\"Games\" " +
-                "/><End Role=\"CurrentDealer\" EntitySet=\"Players\" /></AssociationSet><AssociationS" +
-                "et Name=\"Cribbage_Entities_PlayerHand_GameHand_Cribbage_Entities_GameHand_GameHa" +
-                "ndPartnerSet\" Association=\"Cribbage.Entities.Cribbage_Entities_PlayerHand_GameHa" +
-                "nd_Cribbage_Entities_GameHand_GameHandPartner\"><End Role=\"GameHandPartner\" Entit" +
-                "ySet=\"PlayerHands\" /><End Role=\"GameHand\" EntitySet=\"GameHands\" /></AssociationS" +
-                "et><AssociationSet Name=\"Cribbage_Entities_PlayerHand_Player_Cribbage_Entities_P" +
-                "layer_PlayerPartnerSet\" Association=\"Cribbage.Entities.Cribbage_Entities_PlayerH" +
-                "and_Player_Cribbage_Entities_Player_PlayerPartner\"><End Role=\"PlayerPartner\" Ent" +
-                "itySet=\"PlayerHands\" /><End Role=\"Player\" EntitySet=\"Players\" /></AssociationSet" +
-                "><AssociationSet Name=\"Cribbage_Entities_User_UserRoles_Cribbage_Entities_UserRo" +
-                "le_UserRolesPartnerSet\" Association=\"Cribbage.Entities.Cribbage_Entities_User_Us" +
-                "erRoles_Cribbage_Entities_UserRole_UserRolesPartner\"><End Role=\"UserRolesPartner" +
-                "\" EntitySet=\"Users\" /><End Role=\"UserRoles\" EntitySet=\"UserRoles\" /></Associatio" +
-                "nSet><AssociationSet Name=\"Cribbage_Entities_User_Players_Cribbage_Entities_Play" +
-                "er_PlayersPartnerSet\" Association=\"Cribbage.Entities.Cribbage_Entities_User_Play" +
-                "ers_Cribbage_Entities_Player_PlayersPartner\"><End Role=\"PlayersPartner\" EntitySe" +
-                "t=\"Users\" /><End Role=\"Players\" EntitySet=\"Players\" /></AssociationSet><Associat" +
-                "ionSet Name=\"Cribbage_Entities_UserRole_User_Cribbage_Entities_User_UserPartnerS" +
-                "et\" Association=\"Cribbage.Entities.Cribbage_Entities_UserRole_User_Cribbage_Enti" +
-                "ties_User_UserPartner\"><End Role=\"UserPartner\" EntitySet=\"UserRoles\" /><End Role" +
-                "=\"User\" EntitySet=\"Users\" /></AssociationSet><AssociationSet Name=\"Cribbage_Enti" +
-                "ties_Player_Game_Cribbage_Entities_Game_GamePartnerSet\" Association=\"Cribbage.En" +
-                "tities.Cribbage_Entities_Player_Game_Cribbage_Entities_Game_GamePartner\"><End Ro" +
-                "le=\"GamePartner\" EntitySet=\"Players\" /><End Role=\"Game\" EntitySet=\"Games\" /></As" +
-                "sociationSet><AssociationSet Name=\"Cribbage_Entities_Player_User_Cribbage_Entiti" +
-                "es_User_UserPartnerSet\" Association=\"Cribbage.Entities.Cribbage_Entities_Player_" +
-                "User_Cribbage_Entities_User_UserPartner\"><End Role=\"UserPartner\" EntitySet=\"Play" +
-                "ers\" /><End Role=\"User\" EntitySet=\"Users\" /></AssociationSet><AssociationSet Nam" +
-                "e=\"Cribbage_Entities_Player_Hands_Cribbage_Entities_PlayerHand_HandsPartnerSet\" " +
-                "Association=\"Cribbage.Entities.Cribbage_Entities_Player_Hands_Cribbage_Entities_" +
-                "PlayerHand_HandsPartner\"><End Role=\"HandsPartner\" EntitySet=\"Players\" /><End Rol" +
-                "e=\"Hands\" EntitySet=\"PlayerHands\" /></AssociationSet><Assoc";
+            private const string ModelPart2 = "ribbage.Web.Model.Role\" Role=\"Role\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.Web" +
+                ".Model.UserRole\" Role=\"RolePartner\" Multiplicity=\"0..1\" /></Association><Associa" +
+                "tion Name=\"Cribbage_Web_Model_UserRole_User_Cribbage_Web_Model_User_UserPartner\"" +
+                "><End Type=\"Cribbage.Web.Model.User\" Role=\"User\" Multiplicity=\"0..1\" /><End Type" +
+                "=\"Cribbage.Web.Model.UserRole\" Role=\"UserPartner\" Multiplicity=\"0..1\" /></Associ" +
+                "ation><Association Name=\"Cribbage_Web_Model_Player_Game_Cribbage_Web_Model_Game_" +
+                "GamePartner\"><End Type=\"Cribbage.Web.Model.Game\" Role=\"Game\" Multiplicity=\"0..1\"" +
+                " /><End Type=\"Cribbage.Web.Model.Player\" Role=\"GamePartner\" Multiplicity=\"0..1\" " +
+                "/></Association><Association Name=\"Cribbage_Web_Model_Player_User_Cribbage_Web_M" +
+                "odel_User_UserPartner\"><End Type=\"Cribbage.Web.Model.User\" Role=\"User\" Multiplic" +
+                "ity=\"0..1\" /><End Type=\"Cribbage.Web.Model.Player\" Role=\"UserPartner\" Multiplici" +
+                "ty=\"0..1\" /></Association><Association Name=\"Cribbage_Web_Model_Player_Hands_Cri" +
+                "bbage_Web_Model_PlayerHand_HandsPartner\"><End Type=\"Cribbage.Web.Model.PlayerHan" +
+                "d\" Role=\"Hands\" Multiplicity=\"*\" /><End Type=\"Cribbage.Web.Model.Player\" Role=\"H" +
+                "andsPartner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Web" +
+                "_Model_Player_Crib_Cribbage_Web_Model_PlayerHand_CribPartner\"><End Type=\"Cribbag" +
+                "e.Web.Model.PlayerHand\" Role=\"Crib\" Multiplicity=\"0..1\" /><End Type=\"Cribbage.We" +
+                "b.Model.Player\" Role=\"CribPartner\" Multiplicity=\"0..1\" /></Association><Associat" +
+                "ion Name=\"Cribbage_Web_Model_Player_CurrentHand_Cribbage_Web_Model_PlayerHand_Cu" +
+                "rrentHandPartner\"><End Type=\"Cribbage.Web.Model.PlayerHand\" Role=\"CurrentHand\" M" +
+                "ultiplicity=\"0..1\" /><End Type=\"Cribbage.Web.Model.Player\" Role=\"CurrentHandPart" +
+                "ner\" Multiplicity=\"0..1\" /></Association><Association Name=\"Cribbage_Web_Model_R" +
+                "ole_UserRoles_Cribbage_Web_Model_UserRole_UserRolesPartner\"><End Type=\"Cribbage." +
+                "Web.Model.UserRole\" Role=\"UserRoles\" Multiplicity=\"*\" /><End Type=\"Cribbage.Web." +
+                "Model.Role\" Role=\"UserRolesPartner\" Multiplicity=\"0..1\" /></Association></Schema" +
+                "><Schema Namespace=\"Default\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/edm" +
+                "\"><EntityContainer Name=\"Container\" m:IsDefaultEntityContainer=\"true\"><EntitySet" +
+                " Name=\"Cards\" EntityType=\"Cribbage.Web.Model.Card\" /><EntitySet Name=\"PlayedCard" +
+                "s\" EntityType=\"Cribbage.Web.Model.PlayedCard\" /><EntitySet Name=\"Decks\" EntityTy" +
+                "pe=\"Cribbage.Web.Model.Deck\" /><EntitySet Name=\"Matches\" EntityType=\"Cribbage.We" +
+                "b.Model.Match\" /><EntitySet Name=\"GameHands\" EntityType=\"Cribbage.Web.Model.Game" +
+                "Hand\" /><EntitySet Name=\"Games\" EntityType=\"Cribbage.Web.Model.Game\" /><EntitySe" +
+                "t Name=\"PlayerHands\" EntityType=\"Cribbage.Web.Model.PlayerHand\" /><EntitySet Nam" +
+                "e=\"Users\" EntityType=\"Cribbage.Web.Model.User\" /><EntitySet Name=\"UserRoles\" Ent" +
+                "ityType=\"Cribbage.Web.Model.UserRole\" /><EntitySet Name=\"Players\" EntityType=\"Cr" +
+                "ibbage.Web.Model.Player\" /><AssociationSet Name=\"Cribbage_Web_Model_PlayedCard_C" +
+                "ard_Cribbage_Web_Model_Card_CardPartnerSet\" Association=\"Cribbage.Web.Model.Crib" +
+                "bage_Web_Model_PlayedCard_Card_Cribbage_Web_Model_Card_CardPartner\"><End Role=\"C" +
+                "ardPartner\" EntitySet=\"PlayedCards\" /><End Role=\"Card\" EntitySet=\"Cards\" /></Ass" +
+                "ociationSet><AssociationSet Name=\"Cribbage_Web_Model_Deck_Cards_Cribbage_Web_Mod" +
+                "el_Card_CardsPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_Deck" +
+                "_Cards_Cribbage_Web_Model_Card_CardsPartner\"><End Role=\"CardsPartner\" EntitySet=" +
+                "\"Decks\" /><End Role=\"Cards\" EntitySet=\"Cards\" /></AssociationSet><AssociationSet" +
+                " Name=\"Cribbage_Web_Model_Deck_CutCard_Cribbage_Web_Model_Card_CutCardPartnerSet" +
+                "\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_Deck_CutCard_Cribbage_Web_M" +
+                "odel_Card_CutCardPartner\"><End Role=\"CutCardPartner\" EntitySet=\"Decks\" /><End Ro" +
+                "le=\"CutCard\" EntitySet=\"Cards\" /></AssociationSet><AssociationSet Name=\"Cribbage" +
+                "_Web_Model_Match_Games_Cribbage_Web_Model_Game_GamesPartnerSet\" Association=\"Cri" +
+                "bbage.Web.Model.Cribbage_Web_Model_Match_Games_Cribbage_Web_Model_Game_GamesPart" +
+                "ner\"><End Role=\"GamesPartner\" EntitySet=\"Matches\" /><End Role=\"Games\" EntitySet=" +
+                "\"Games\" /></AssociationSet><AssociationSet Name=\"Cribbage_Web_Model_Match_Curren" +
+                "tGame_Cribbage_Web_Model_Game_CurrentGamePartnerSet\" Association=\"Cribbage.Web.M" +
+                "odel.Cribbage_Web_Model_Match_CurrentGame_Cribbage_Web_Model_Game_CurrentGamePar" +
+                "tner\"><End Role=\"CurrentGamePartner\" EntitySet=\"Matches\" /><End Role=\"CurrentGam" +
+                "e\" EntitySet=\"Games\" /></AssociationSet><AssociationSet Name=\"Cribbage_Web_Model" +
+                "_GameHand_Game_Cribbage_Web_Model_Game_GamePartnerSet\" Association=\"Cribbage.Web" +
+                ".Model.Cribbage_Web_Model_GameHand_Game_Cribbage_Web_Model_Game_GamePartner\"><En" +
+                "d Role=\"GamePartner\" EntitySet=\"GameHands\" /><End Role=\"Game\" EntitySet=\"Games\" " +
+                "/></AssociationSet><AssociationSet Name=\"Cribbage_Web_Model_GameHand_PlayerHands" +
+                "_Cribbage_Web_Model_PlayerHand_PlayerHandsPartnerSet\" Association=\"Cribbage.Web." +
+                "Model.Cribbage_Web_Model_GameHand_PlayerHands_Cribbage_Web_Model_PlayerHand_Play" +
+                "erHandsPartner\"><End Role=\"PlayerHandsPartner\" EntitySet=\"GameHands\" /><End Role" +
+                "=\"PlayerHands\" EntitySet=\"PlayerHands\" /></AssociationSet><AssociationSet Name=\"" +
+                "Cribbage_Web_Model_GameHand_Crib_Cribbage_Web_Model_PlayerHand_CribPartnerSet\" A" +
+                "ssociation=\"Cribbage.Web.Model.Cribbage_Web_Model_GameHand_Crib_Cribbage_Web_Mod" +
+                "el_PlayerHand_CribPartner\"><End Role=\"CribPartner\" EntitySet=\"GameHands\" /><End " +
+                "Role=\"Crib\" EntitySet=\"PlayerHands\" /></AssociationSet><AssociationSet Name=\"Cri" +
+                "bbage_Web_Model_GameHand_CutCard_Cribbage_Web_Model_Card_CutCardPartnerSet\" Asso" +
+                "ciation=\"Cribbage.Web.Model.Cribbage_Web_Model_GameHand_CutCard_Cribbage_Web_Mod" +
+                "el_Card_CutCardPartner\"><End Role=\"CutCardPartner\" EntitySet=\"GameHands\" /><End " +
+                "Role=\"CutCard\" EntitySet=\"Cards\" /></AssociationSet><AssociationSet Name=\"Cribba" +
+                "ge_Web_Model_GameHand_LastPlayer_Cribbage_Web_Model_Player_LastPlayerPartnerSet\"" +
+                " Association=\"Cribbage.Web.Model.Cribbage_Web_Model_GameHand_LastPlayer_Cribbage" +
+                "_Web_Model_Player_LastPlayerPartner\"><End Role=\"LastPlayerPartner\" EntitySet=\"Ga" +
+                "meHands\" /><End Role=\"LastPlayer\" EntitySet=\"Players\" /></AssociationSet><Associ" +
+                "ationSet Name=\"Cribbage_Web_Model_GameHand_CurrentPlayer_Cribbage_Web_Model_Play" +
+                "er_CurrentPlayerPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_G" +
+                "ameHand_CurrentPlayer_Cribbage_Web_Model_Player_CurrentPlayerPartner\"><End Role=" +
+                "\"CurrentPlayerPartner\" EntitySet=\"GameHands\" /><End Role=\"CurrentPlayer\" EntityS" +
+                "et=\"Players\" /></AssociationSet><AssociationSet Name=\"Cribbage_Web_Model_Game_Ma" +
+                "tch_Cribbage_Web_Model_Match_MatchPartnerSet\" Association=\"Cribbage.Web.Model.Cr" +
+                "ibbage_Web_Model_Game_Match_Cribbage_Web_Model_Match_MatchPartner\"><End Role=\"Ma" +
+                "tchPartner\" EntitySet=\"Games\" /><End Role=\"Match\" EntitySet=\"Matches\" /></Associ" +
+                "ationSet><AssociationSet Name=\"Cribbage_Web_Model_Game_Players_Cribbage_Web_Mode" +
+                "l_Player_PlayersPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_G" +
+                "ame_Players_Cribbage_Web_Model_Player_PlayersPartner\"><End Role=\"PlayersPartner\"" +
+                " EntitySet=\"Games\" /><End Role=\"Players\" EntitySet=\"Players\" /></AssociationSet>" +
+                "<AssociationSet Name=\"Cribbage_Web_Model_Game_Hands_Cribbage_Web_Model_GameHand_" +
+                "HandsPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_Game_Hands_C" +
+                "ribbage_Web_Model_GameHand_HandsPartner\"><End Role=\"HandsPartner\" EntitySet=\"Gam" +
+                "es\" /><End Role=\"Hands\" EntitySet=\"GameHands\" /></AssociationSet><AssociationSet" +
+                " Name=\"Cribbage_Web_Model_Game_CurrentHand_Cribbage_Web_Model_GameHand_CurrentHa" +
+                "ndPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_Game_CurrentHan" +
+                "d_Cribbage_Web_Model_GameHand_CurrentHandPartner\"><End Role";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart3 = @"iationSet Name=""Cribbage_Entities_Player_Crib_Cribbage_Entities_PlayerHand_CribPartnerSet"" Association=""Cribbage.Entities.Cribbage_Entities_Player_Crib_Cribbage_Entities_PlayerHand_CribPartner""><End Role=""CribPartner"" EntitySet=""Players"" /><End Role=""Crib"" EntitySet=""PlayerHands"" /></AssociationSet><AssociationSet Name=""Cribbage_Entities_Player_CurrentHand_Cribbage_Entities_PlayerHand_CurrentHandPartnerSet"" Association=""Cribbage.Entities.Cribbage_Entities_Player_CurrentHand_Cribbage_Entities_PlayerHand_CurrentHandPartner""><End Role=""CurrentHandPartner"" EntitySet=""Players"" /><End Role=""CurrentHand"" EntitySet=""PlayerHands"" /></AssociationSet></EntityContainer></Schema></edmx:DataServices></edmx:Edmx>";
+            private const string ModelPart3 = "=\"CurrentHandPartner\" EntitySet=\"Games\" /><End Role=\"CurrentHand\" EntitySet=\"Game" +
+                "Hands\" /></AssociationSet><AssociationSet Name=\"Cribbage_Web_Model_Game_CurrentD" +
+                "ealer_Cribbage_Web_Model_Player_CurrentDealerPartnerSet\" Association=\"Cribbage.W" +
+                "eb.Model.Cribbage_Web_Model_Game_CurrentDealer_Cribbage_Web_Model_Player_Current" +
+                "DealerPartner\"><End Role=\"CurrentDealerPartner\" EntitySet=\"Games\" /><End Role=\"C" +
+                "urrentDealer\" EntitySet=\"Players\" /></AssociationSet><AssociationSet Name=\"Cribb" +
+                "age_Web_Model_PlayerHand_GameHand_Cribbage_Web_Model_GameHand_GameHandPartnerSet" +
+                "\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_PlayerHand_GameHand_Cribbag" +
+                "e_Web_Model_GameHand_GameHandPartner\"><End Role=\"GameHandPartner\" EntitySet=\"Pla" +
+                "yerHands\" /><End Role=\"GameHand\" EntitySet=\"GameHands\" /></AssociationSet><Assoc" +
+                "iationSet Name=\"Cribbage_Web_Model_PlayerHand_Player_Cribbage_Web_Model_Player_P" +
+                "layerPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_PlayerHand_P" +
+                "layer_Cribbage_Web_Model_Player_PlayerPartner\"><End Role=\"PlayerPartner\" EntityS" +
+                "et=\"PlayerHands\" /><End Role=\"Player\" EntitySet=\"Players\" /></AssociationSet><As" +
+                "sociationSet Name=\"Cribbage_Web_Model_User_UserRoles_Cribbage_Web_Model_UserRole" +
+                "_UserRolesPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_User_Us" +
+                "erRoles_Cribbage_Web_Model_UserRole_UserRolesPartner\"><End Role=\"UserRolesPartne" +
+                "r\" EntitySet=\"Users\" /><End Role=\"UserRoles\" EntitySet=\"UserRoles\" /></Associati" +
+                "onSet><AssociationSet Name=\"Cribbage_Web_Model_User_Players_Cribbage_Web_Model_P" +
+                "layer_PlayersPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_User" +
+                "_Players_Cribbage_Web_Model_Player_PlayersPartner\"><End Role=\"PlayersPartner\" En" +
+                "titySet=\"Users\" /><End Role=\"Players\" EntitySet=\"Players\" /></AssociationSet><As" +
+                "sociationSet Name=\"Cribbage_Web_Model_UserRole_User_Cribbage_Web_Model_User_User" +
+                "PartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_UserRole_User_Cri" +
+                "bbage_Web_Model_User_UserPartner\"><End Role=\"UserPartner\" EntitySet=\"UserRoles\" " +
+                "/><End Role=\"User\" EntitySet=\"Users\" /></AssociationSet><AssociationSet Name=\"Cr" +
+                "ibbage_Web_Model_Player_Game_Cribbage_Web_Model_Game_GamePartnerSet\" Association" +
+                "=\"Cribbage.Web.Model.Cribbage_Web_Model_Player_Game_Cribbage_Web_Model_Game_Game" +
+                "Partner\"><End Role=\"GamePartner\" EntitySet=\"Players\" /><End Role=\"Game\" EntitySe" +
+                "t=\"Games\" /></AssociationSet><AssociationSet Name=\"Cribbage_Web_Model_Player_Use" +
+                "r_Cribbage_Web_Model_User_UserPartnerSet\" Association=\"Cribbage.Web.Model.Cribba" +
+                "ge_Web_Model_Player_User_Cribbage_Web_Model_User_UserPartner\"><End Role=\"UserPar" +
+                "tner\" EntitySet=\"Players\" /><End Role=\"User\" EntitySet=\"Users\" /></AssociationSe" +
+                "t><AssociationSet Name=\"Cribbage_Web_Model_Player_Hands_Cribbage_Web_Model_Playe" +
+                "rHand_HandsPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_Player" +
+                "_Hands_Cribbage_Web_Model_PlayerHand_HandsPartner\"><End Role=\"HandsPartner\" Enti" +
+                "tySet=\"Players\" /><End Role=\"Hands\" EntitySet=\"PlayerHands\" /></AssociationSet><" +
+                "AssociationSet Name=\"Cribbage_Web_Model_Player_Crib_Cribbage_Web_Model_PlayerHan" +
+                "d_CribPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_Player_Crib" +
+                "_Cribbage_Web_Model_PlayerHand_CribPartner\"><End Role=\"CribPartner\" EntitySet=\"P" +
+                "layers\" /><End Role=\"Crib\" EntitySet=\"PlayerHands\" /></AssociationSet><Associati" +
+                "onSet Name=\"Cribbage_Web_Model_Player_CurrentHand_Cribbage_Web_Model_PlayerHand_" +
+                "CurrentHandPartnerSet\" Association=\"Cribbage.Web.Model.Cribbage_Web_Model_Player" +
+                "_CurrentHand_Cribbage_Web_Model_PlayerHand_CurrentHandPartner\"><End Role=\"Curren" +
+                "tHandPartner\" EntitySet=\"Players\" /><End Role=\"CurrentHand\" EntitySet=\"PlayerHan" +
+                "ds\" /></AssociationSet></EntityContainer></Schema></edmx:DataServices></edmx:Edm" +
+                "x>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {
@@ -559,7 +680,367 @@ namespace Cribbage.Console.CribbageService
         }
     }
     /// <summary>
-    /// There are no comments for Cribbage.Entities.Match in the schema.
+    /// There are no comments for Cribbage.Web.Model.Card in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.EntitySetAttribute("Cards")]
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("Id")]
+    public partial class Card : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new Card object.
+        /// </summary>
+        /// <param name="ID">Initial value of Id.</param>
+        /// <param name="suit">Initial value of Suit.</param>
+        /// <param name="value">Initial value of Value.</param>
+        /// <param name="points">Initial value of Points.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static Card CreateCard(global::System.Guid ID, string suit, string value, string points)
+        {
+            Card card = new Card();
+            card.Id = ID;
+            card.Suit = suit;
+            card.Value = value;
+            card.Points = points;
+            return card;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Guid Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this._Id = value;
+                this.OnIdChanged();
+                this.OnPropertyChanged("Id");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Guid _Id;
+        partial void OnIdChanging(global::System.Guid value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property Suit in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string Suit
+        {
+            get
+            {
+                return this._Suit;
+            }
+            set
+            {
+                this.OnSuitChanging(value);
+                this._Suit = value;
+                this.OnSuitChanged();
+                this.OnPropertyChanged("Suit");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _Suit;
+        partial void OnSuitChanging(string value);
+        partial void OnSuitChanged();
+        /// <summary>
+        /// There are no comments for Property Value in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string Value
+        {
+            get
+            {
+                return this._Value;
+            }
+            set
+            {
+                this.OnValueChanging(value);
+                this._Value = value;
+                this.OnValueChanged();
+                this.OnPropertyChanged("Value");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _Value;
+        partial void OnValueChanging(string value);
+        partial void OnValueChanged();
+        /// <summary>
+        /// There are no comments for Property Points in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string Points
+        {
+            get
+            {
+                return this._Points;
+            }
+            set
+            {
+                this.OnPointsChanging(value);
+                this._Points = value;
+                this.OnPointsChanged();
+                this.OnPropertyChanged("Points");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _Points;
+        partial void OnPointsChanging(string value);
+        partial void OnPointsChanged();
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for Cribbage.Web.Model.PlayedCard in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.EntitySetAttribute("PlayedCards")]
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("Id")]
+    public partial class PlayedCard : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new PlayedCard object.
+        /// </summary>
+        /// <param name="playerId">Initial value of PlayerId.</param>
+        /// <param name="scoreType">Initial value of ScoreType.</param>
+        /// <param name="points">Initial value of Points.</param>
+        /// <param name="ID">Initial value of Id.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static PlayedCard CreatePlayedCard(global::System.Guid playerId, string scoreType, int points, global::System.Guid ID)
+        {
+            PlayedCard playedCard = new PlayedCard();
+            playedCard.PlayerId = playerId;
+            playedCard.ScoreType = scoreType;
+            playedCard.Points = points;
+            playedCard.Id = ID;
+            return playedCard;
+        }
+        /// <summary>
+        /// There are no comments for Property PlayerId in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Guid PlayerId
+        {
+            get
+            {
+                return this._PlayerId;
+            }
+            set
+            {
+                this.OnPlayerIdChanging(value);
+                this._PlayerId = value;
+                this.OnPlayerIdChanged();
+                this.OnPropertyChanged("PlayerId");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Guid _PlayerId;
+        partial void OnPlayerIdChanging(global::System.Guid value);
+        partial void OnPlayerIdChanged();
+        /// <summary>
+        /// There are no comments for Property ScoreType in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ScoreType
+        {
+            get
+            {
+                return this._ScoreType;
+            }
+            set
+            {
+                this.OnScoreTypeChanging(value);
+                this._ScoreType = value;
+                this.OnScoreTypeChanged();
+                this.OnPropertyChanged("ScoreType");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ScoreType;
+        partial void OnScoreTypeChanging(string value);
+        partial void OnScoreTypeChanged();
+        /// <summary>
+        /// There are no comments for Property Points in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int Points
+        {
+            get
+            {
+                return this._Points;
+            }
+            set
+            {
+                this.OnPointsChanging(value);
+                this._Points = value;
+                this.OnPointsChanged();
+                this.OnPropertyChanged("Points");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _Points;
+        partial void OnPointsChanging(int value);
+        partial void OnPointsChanged();
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Guid Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this._Id = value;
+                this.OnIdChanged();
+                this.OnPropertyChanged("Id");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Guid _Id;
+        partial void OnIdChanging(global::System.Guid value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Card in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public Card Card
+        {
+            get
+            {
+                return this._Card;
+            }
+            set
+            {
+                this._Card = value;
+                this.OnPropertyChanged("Card");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private Card _Card;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for Cribbage.Web.Model.Deck in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.EntitySetAttribute("Decks")]
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("Id")]
+    public partial class Deck : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new Deck object.
+        /// </summary>
+        /// <param name="ID">Initial value of Id.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static Deck CreateDeck(global::System.Guid ID)
+        {
+            Deck deck = new Deck();
+            deck.Id = ID;
+            return deck;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Guid Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this._Id = value;
+                this.OnIdChanged();
+                this.OnPropertyChanged("Id");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Guid _Id;
+        partial void OnIdChanging(global::System.Guid value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Cards in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Data.Services.Client.DataServiceCollection<Card> Cards
+        {
+            get
+            {
+                return this._Cards;
+            }
+            set
+            {
+                this._Cards = value;
+                this.OnPropertyChanged("Cards");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Data.Services.Client.DataServiceCollection<Card> _Cards = new global::System.Data.Services.Client.DataServiceCollection<Card>(null, global::System.Data.Services.Client.TrackingMode.None);
+        /// <summary>
+        /// There are no comments for CutCard in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public Card CutCard
+        {
+            get
+            {
+                return this._CutCard;
+            }
+            set
+            {
+                this._CutCard = value;
+                this.OnPropertyChanged("CutCard");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private Card _CutCard;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for Cribbage.Web.Model.Match in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
@@ -697,340 +1178,7 @@ namespace Cribbage.Console.CribbageService
         }
     }
     /// <summary>
-    /// There are no comments for ComplexType Cribbage.Entities.Deck in the schema.
-    /// </summary>
-    public partial class Deck : global::System.ComponentModel.INotifyPropertyChanged
-    {
-        /// <summary>
-        /// Create a new Deck object.
-        /// </summary>
-        /// <param name="cards">Initial value of Cards.</param>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static Deck CreateDeck(global::System.Collections.ObjectModel.ObservableCollection<Card> cards)
-        {
-            Deck deck = new Deck();
-            if ((cards == null))
-            {
-                throw new global::System.ArgumentNullException("cards");
-            }
-            deck.Cards = cards;
-            return deck;
-        }
-        /// <summary>
-        /// There are no comments for Property Cards in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Collections.ObjectModel.ObservableCollection<Card> Cards
-        {
-            get
-            {
-                return this._Cards;
-            }
-            set
-            {
-                this.OnCardsChanging(value);
-                this._Cards = value;
-                this.OnCardsChanged();
-                this.OnPropertyChanged("Cards");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Collections.ObjectModel.ObservableCollection<Card> _Cards = new global::System.Collections.ObjectModel.ObservableCollection<Card>();
-        partial void OnCardsChanging(global::System.Collections.ObjectModel.ObservableCollection<Card> value);
-        partial void OnCardsChanged();
-        /// <summary>
-        /// There are no comments for Property CutCard in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public Card CutCard
-        {
-            get
-            {
-                if (((this._CutCard == null) 
-                            && (this._CutCardInitialized != true)))
-                {
-                    this._CutCard = new Card();
-                    this._CutCardInitialized = true;
-                }
-                return this._CutCard;
-            }
-            set
-            {
-                this.OnCutCardChanging(value);
-                this._CutCard = value;
-                this._CutCardInitialized = true;
-                this.OnCutCardChanged();
-                this.OnPropertyChanged("CutCard");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private Card _CutCard;
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private bool _CutCardInitialized;
-        partial void OnCutCardChanging(Card value);
-        partial void OnCutCardChanged();
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        protected virtual void OnPropertyChanged(string property)
-        {
-            if ((this.PropertyChanged != null))
-            {
-                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
-            }
-        }
-    }
-    /// <summary>
-    /// There are no comments for ComplexType Cribbage.Entities.Card in the schema.
-    /// </summary>
-    public partial class Card : global::System.ComponentModel.INotifyPropertyChanged
-    {
-        /// <summary>
-        /// Create a new Card object.
-        /// </summary>
-        /// <param name="ID">Initial value of Id.</param>
-        /// <param name="suit">Initial value of Suit.</param>
-        /// <param name="value">Initial value of Value.</param>
-        /// <param name="points">Initial value of Points.</param>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static Card CreateCard(int ID, string suit, string value, string points)
-        {
-            Card card = new Card();
-            card.Id = ID;
-            card.Suit = suit;
-            card.Value = value;
-            card.Points = points;
-            return card;
-        }
-        /// <summary>
-        /// There are no comments for Property Id in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public int Id
-        {
-            get
-            {
-                return this._Id;
-            }
-            set
-            {
-                this.OnIdChanging(value);
-                this._Id = value;
-                this.OnIdChanged();
-                this.OnPropertyChanged("Id");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private int _Id;
-        partial void OnIdChanging(int value);
-        partial void OnIdChanged();
-        /// <summary>
-        /// There are no comments for Property Suit in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string Suit
-        {
-            get
-            {
-                return this._Suit;
-            }
-            set
-            {
-                this.OnSuitChanging(value);
-                this._Suit = value;
-                this.OnSuitChanged();
-                this.OnPropertyChanged("Suit");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _Suit;
-        partial void OnSuitChanging(string value);
-        partial void OnSuitChanged();
-        /// <summary>
-        /// There are no comments for Property Value in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string Value
-        {
-            get
-            {
-                return this._Value;
-            }
-            set
-            {
-                this.OnValueChanging(value);
-                this._Value = value;
-                this.OnValueChanged();
-                this.OnPropertyChanged("Value");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _Value;
-        partial void OnValueChanging(string value);
-        partial void OnValueChanged();
-        /// <summary>
-        /// There are no comments for Property Points in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string Points
-        {
-            get
-            {
-                return this._Points;
-            }
-            set
-            {
-                this.OnPointsChanging(value);
-                this._Points = value;
-                this.OnPointsChanged();
-                this.OnPropertyChanged("Points");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _Points;
-        partial void OnPointsChanging(string value);
-        partial void OnPointsChanged();
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        protected virtual void OnPropertyChanged(string property)
-        {
-            if ((this.PropertyChanged != null))
-            {
-                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
-            }
-        }
-    }
-    /// <summary>
-    /// There are no comments for ComplexType Cribbage.Entities.PlayedCard in the schema.
-    /// </summary>
-    public partial class PlayedCard : global::System.ComponentModel.INotifyPropertyChanged
-    {
-        /// <summary>
-        /// Create a new PlayedCard object.
-        /// </summary>
-        /// <param name="playerId">Initial value of PlayerId.</param>
-        /// <param name="scoreType">Initial value of ScoreType.</param>
-        /// <param name="points">Initial value of Points.</param>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static PlayedCard CreatePlayedCard(global::System.Guid playerId, string scoreType, int points)
-        {
-            PlayedCard playedCard = new PlayedCard();
-            playedCard.PlayerId = playerId;
-            playedCard.ScoreType = scoreType;
-            playedCard.Points = points;
-            return playedCard;
-        }
-        /// <summary>
-        /// There are no comments for Property Card in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public Card Card
-        {
-            get
-            {
-                if (((this._Card == null) 
-                            && (this._CardInitialized != true)))
-                {
-                    this._Card = new Card();
-                    this._CardInitialized = true;
-                }
-                return this._Card;
-            }
-            set
-            {
-                this.OnCardChanging(value);
-                this._Card = value;
-                this._CardInitialized = true;
-                this.OnCardChanged();
-                this.OnPropertyChanged("Card");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private Card _Card;
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private bool _CardInitialized;
-        partial void OnCardChanging(Card value);
-        partial void OnCardChanged();
-        /// <summary>
-        /// There are no comments for Property PlayerId in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Guid PlayerId
-        {
-            get
-            {
-                return this._PlayerId;
-            }
-            set
-            {
-                this.OnPlayerIdChanging(value);
-                this._PlayerId = value;
-                this.OnPlayerIdChanged();
-                this.OnPropertyChanged("PlayerId");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Guid _PlayerId;
-        partial void OnPlayerIdChanging(global::System.Guid value);
-        partial void OnPlayerIdChanged();
-        /// <summary>
-        /// There are no comments for Property ScoreType in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string ScoreType
-        {
-            get
-            {
-                return this._ScoreType;
-            }
-            set
-            {
-                this.OnScoreTypeChanging(value);
-                this._ScoreType = value;
-                this.OnScoreTypeChanged();
-                this.OnPropertyChanged("ScoreType");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _ScoreType;
-        partial void OnScoreTypeChanging(string value);
-        partial void OnScoreTypeChanged();
-        /// <summary>
-        /// There are no comments for Property Points in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public int Points
-        {
-            get
-            {
-                return this._Points;
-            }
-            set
-            {
-                this.OnPointsChanging(value);
-                this._Points = value;
-                this.OnPointsChanged();
-                this.OnPropertyChanged("Points");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private int _Points;
-        partial void OnPointsChanging(int value);
-        partial void OnPointsChanged();
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        protected virtual void OnPropertyChanged(string property)
-        {
-            if ((this.PropertyChanged != null))
-            {
-                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
-            }
-        }
-    }
-    /// <summary>
-    /// There are no comments for Cribbage.Entities.GameHand in the schema.
+    /// There are no comments for Cribbage.Web.Model.GameHand in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
@@ -1044,32 +1192,20 @@ namespace Cribbage.Console.CribbageService
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
         /// <param name="gameId">Initial value of GameId.</param>
-        /// <param name="state">Initial value of State.</param>
-        /// <param name="lastPlayerId">Initial value of LastPlayerId.</param>
-        /// <param name="currentPlayerId">Initial value of CurrentPlayerId.</param>
         /// <param name="index">Initial value of Index.</param>
-        /// <param name="cutCardId">Initial value of CutCardId.</param>
+        /// <param name="state">Initial value of State.</param>
         /// <param name="goCount">Initial value of GoCount.</param>
         /// <param name="matchingCardValueCount">Initial value of MatchingCardValueCount.</param>
-        /// <param name="playedCards">Initial value of PlayedCards.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static GameHand CreateGameHand(global::System.Guid ID, global::System.Guid gameId, string state, global::System.Guid lastPlayerId, global::System.Guid currentPlayerId, int index, int cutCardId, int goCount, int matchingCardValueCount, global::System.Collections.ObjectModel.ObservableCollection<PlayedCard> playedCards)
+        public static GameHand CreateGameHand(global::System.Guid ID, global::System.Guid gameId, int index, string state, int goCount, int matchingCardValueCount)
         {
             GameHand gameHand = new GameHand();
             gameHand.Id = ID;
             gameHand.GameId = gameId;
-            gameHand.State = state;
-            gameHand.LastPlayerId = lastPlayerId;
-            gameHand.CurrentPlayerId = currentPlayerId;
             gameHand.Index = index;
-            gameHand.CutCardId = cutCardId;
+            gameHand.State = state;
             gameHand.GoCount = goCount;
             gameHand.MatchingCardValueCount = matchingCardValueCount;
-            if ((playedCards == null))
-            {
-                throw new global::System.ArgumentNullException("playedCards");
-            }
-            gameHand.PlayedCards = playedCards;
             return gameHand;
         }
         /// <summary>
@@ -1116,6 +1252,28 @@ namespace Cribbage.Console.CribbageService
         private global::System.Guid _GameId;
         partial void OnGameIdChanging(global::System.Guid value);
         partial void OnGameIdChanged();
+        /// <summary>
+        /// There are no comments for Property Index in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int Index
+        {
+            get
+            {
+                return this._Index;
+            }
+            set
+            {
+                this.OnIndexChanging(value);
+                this._Index = value;
+                this.OnIndexChanged();
+                this.OnPropertyChanged("Index");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _Index;
+        partial void OnIndexChanging(int value);
+        partial void OnIndexChanged();
         /// <summary>
         /// There are no comments for Property State in the schema.
         /// </summary>
@@ -1164,7 +1322,7 @@ namespace Cribbage.Console.CribbageService
         /// There are no comments for Property LastPlayerId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Guid LastPlayerId
+        public global::System.Nullable<global::System.Guid> LastPlayerId
         {
             get
             {
@@ -1179,14 +1337,14 @@ namespace Cribbage.Console.CribbageService
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Guid _LastPlayerId;
-        partial void OnLastPlayerIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _LastPlayerId;
+        partial void OnLastPlayerIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnLastPlayerIdChanged();
         /// <summary>
         /// There are no comments for Property CurrentPlayerId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Guid CurrentPlayerId
+        public global::System.Nullable<global::System.Guid> CurrentPlayerId
         {
             get
             {
@@ -1201,36 +1359,14 @@ namespace Cribbage.Console.CribbageService
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Guid _CurrentPlayerId;
-        partial void OnCurrentPlayerIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _CurrentPlayerId;
+        partial void OnCurrentPlayerIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnCurrentPlayerIdChanged();
-        /// <summary>
-        /// There are no comments for Property Index in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public int Index
-        {
-            get
-            {
-                return this._Index;
-            }
-            set
-            {
-                this.OnIndexChanging(value);
-                this._Index = value;
-                this.OnIndexChanged();
-                this.OnPropertyChanged("Index");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private int _Index;
-        partial void OnIndexChanging(int value);
-        partial void OnIndexChanged();
         /// <summary>
         /// There are no comments for Property CutCardId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public int CutCardId
+        public global::System.Nullable<global::System.Guid> CutCardId
         {
             get
             {
@@ -1245,8 +1381,8 @@ namespace Cribbage.Console.CribbageService
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private int _CutCardId;
-        partial void OnCutCardIdChanging(int value);
+        private global::System.Nullable<global::System.Guid> _CutCardId;
+        partial void OnCutCardIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnCutCardIdChanged();
         /// <summary>
         /// There are no comments for Property CardIds in the schema.
@@ -1337,59 +1473,6 @@ namespace Cribbage.Console.CribbageService
         partial void OnMatchingCardValueCountChanging(int value);
         partial void OnMatchingCardValueCountChanged();
         /// <summary>
-        /// There are no comments for Property Deck in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public Deck Deck
-        {
-            get
-            {
-                if (((this._Deck == null) 
-                            && (this._DeckInitialized != true)))
-                {
-                    this._Deck = new Deck();
-                    this._DeckInitialized = true;
-                }
-                return this._Deck;
-            }
-            set
-            {
-                this.OnDeckChanging(value);
-                this._Deck = value;
-                this._DeckInitialized = true;
-                this.OnDeckChanged();
-                this.OnPropertyChanged("Deck");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private Deck _Deck;
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private bool _DeckInitialized;
-        partial void OnDeckChanging(Deck value);
-        partial void OnDeckChanged();
-        /// <summary>
-        /// There are no comments for Property PlayedCards in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Collections.ObjectModel.ObservableCollection<PlayedCard> PlayedCards
-        {
-            get
-            {
-                return this._PlayedCards;
-            }
-            set
-            {
-                this.OnPlayedCardsChanging(value);
-                this._PlayedCards = value;
-                this.OnPlayedCardsChanged();
-                this.OnPropertyChanged("PlayedCards");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Collections.ObjectModel.ObservableCollection<PlayedCard> _PlayedCards = new global::System.Collections.ObjectModel.ObservableCollection<PlayedCard>();
-        partial void OnPlayedCardsChanging(global::System.Collections.ObjectModel.ObservableCollection<PlayedCard> value);
-        partial void OnPlayedCardsChanged();
-        /// <summary>
         /// There are no comments for Game in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -1444,6 +1527,24 @@ namespace Cribbage.Console.CribbageService
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         private PlayerHand _Crib;
         /// <summary>
+        /// There are no comments for CutCard in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public Card CutCard
+        {
+            get
+            {
+                return this._CutCard;
+            }
+            set
+            {
+                this._CutCard = value;
+                this.OnPropertyChanged("CutCard");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private Card _CutCard;
+        /// <summary>
         /// There are no comments for LastPlayer in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -1491,7 +1592,7 @@ namespace Cribbage.Console.CribbageService
         }
     }
     /// <summary>
-    /// There are no comments for Cribbage.Entities.Game in the schema.
+    /// There are no comments for Cribbage.Web.Model.Game in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
@@ -1504,22 +1605,16 @@ namespace Cribbage.Console.CribbageService
         /// Create a new Game object.
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
-        /// <param name="matchId">Initial value of MatchId.</param>
         /// <param name="state">Initial value of State.</param>
         /// <param name="allowMuggins">Initial value of AllowMuggins.</param>
-        /// <param name="currentHandId">Initial value of CurrentHandId.</param>
-        /// <param name="currentDealerId">Initial value of CurrentDealerId.</param>
         /// <param name="index">Initial value of Index.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static Game CreateGame(global::System.Guid ID, global::System.Guid matchId, string state, bool allowMuggins, global::System.Guid currentHandId, global::System.Guid currentDealerId, int index)
+        public static Game CreateGame(global::System.Guid ID, string state, bool allowMuggins, int index)
         {
             Game game = new Game();
             game.Id = ID;
-            game.MatchId = matchId;
             game.State = state;
             game.AllowMuggins = allowMuggins;
-            game.CurrentHandId = currentHandId;
-            game.CurrentDealerId = currentDealerId;
             game.Index = index;
             return game;
         }
@@ -1549,7 +1644,7 @@ namespace Cribbage.Console.CribbageService
         /// There are no comments for Property MatchId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Guid MatchId
+        public global::System.Nullable<global::System.Guid> MatchId
         {
             get
             {
@@ -1564,8 +1659,8 @@ namespace Cribbage.Console.CribbageService
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Guid _MatchId;
-        partial void OnMatchIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _MatchId;
+        partial void OnMatchIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnMatchIdChanged();
         /// <summary>
         /// There are no comments for Property State in the schema.
@@ -1615,7 +1710,7 @@ namespace Cribbage.Console.CribbageService
         /// There are no comments for Property CurrentHandId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Guid CurrentHandId
+        public global::System.Nullable<global::System.Guid> CurrentHandId
         {
             get
             {
@@ -1630,14 +1725,14 @@ namespace Cribbage.Console.CribbageService
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Guid _CurrentHandId;
-        partial void OnCurrentHandIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _CurrentHandId;
+        partial void OnCurrentHandIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnCurrentHandIdChanged();
         /// <summary>
         /// There are no comments for Property CurrentDealerId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Guid CurrentDealerId
+        public global::System.Nullable<global::System.Guid> CurrentDealerId
         {
             get
             {
@@ -1652,8 +1747,8 @@ namespace Cribbage.Console.CribbageService
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Guid _CurrentDealerId;
-        partial void OnCurrentDealerIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _CurrentDealerId;
+        partial void OnCurrentDealerIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnCurrentDealerIdChanged();
         /// <summary>
         /// There are no comments for Property Index in the schema.
@@ -1779,7 +1874,7 @@ namespace Cribbage.Console.CribbageService
         }
     }
     /// <summary>
-    /// There are no comments for Cribbage.Entities.PlayerHand in the schema.
+    /// There are no comments for Cribbage.Web.Model.PlayerHand in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
@@ -1795,26 +1890,14 @@ namespace Cribbage.Console.CribbageService
         /// <param name="gameHandId">Initial value of GameHandId.</param>
         /// <param name="playerId">Initial value of PlayerId.</param>
         /// <param name="isCrib">Initial value of IsCrib.</param>
-        /// <param name="cards">Initial value of Cards.</param>
-        /// <param name="playedCards">Initial value of PlayedCards.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static PlayerHand CreatePlayerHand(global::System.Guid ID, global::System.Guid gameHandId, global::System.Guid playerId, bool isCrib, global::System.Collections.ObjectModel.ObservableCollection<Card> cards, global::System.Collections.ObjectModel.ObservableCollection<PlayedCard> playedCards)
+        public static PlayerHand CreatePlayerHand(global::System.Guid ID, global::System.Guid gameHandId, global::System.Guid playerId, bool isCrib)
         {
             PlayerHand playerHand = new PlayerHand();
             playerHand.Id = ID;
             playerHand.GameHandId = gameHandId;
             playerHand.PlayerId = playerId;
             playerHand.IsCrib = isCrib;
-            if ((cards == null))
-            {
-                throw new global::System.ArgumentNullException("cards");
-            }
-            playerHand.Cards = cards;
-            if ((playedCards == null))
-            {
-                throw new global::System.ArgumentNullException("playedCards");
-            }
-            playerHand.PlayedCards = playedCards;
             return playerHand;
         }
         /// <summary>
@@ -1950,50 +2033,6 @@ namespace Cribbage.Console.CribbageService
         partial void OnPlayedCardIdsChanging(string value);
         partial void OnPlayedCardIdsChanged();
         /// <summary>
-        /// There are no comments for Property Cards in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Collections.ObjectModel.ObservableCollection<Card> Cards
-        {
-            get
-            {
-                return this._Cards;
-            }
-            set
-            {
-                this.OnCardsChanging(value);
-                this._Cards = value;
-                this.OnCardsChanged();
-                this.OnPropertyChanged("Cards");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Collections.ObjectModel.ObservableCollection<Card> _Cards = new global::System.Collections.ObjectModel.ObservableCollection<Card>();
-        partial void OnCardsChanging(global::System.Collections.ObjectModel.ObservableCollection<Card> value);
-        partial void OnCardsChanged();
-        /// <summary>
-        /// There are no comments for Property PlayedCards in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Collections.ObjectModel.ObservableCollection<PlayedCard> PlayedCards
-        {
-            get
-            {
-                return this._PlayedCards;
-            }
-            set
-            {
-                this.OnPlayedCardsChanging(value);
-                this._PlayedCards = value;
-                this.OnPlayedCardsChanged();
-                this.OnPropertyChanged("PlayedCards");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Collections.ObjectModel.ObservableCollection<PlayedCard> _PlayedCards = new global::System.Collections.ObjectModel.ObservableCollection<PlayedCard>();
-        partial void OnPlayedCardsChanging(global::System.Collections.ObjectModel.ObservableCollection<PlayedCard> value);
-        partial void OnPlayedCardsChanged();
-        /// <summary>
         /// There are no comments for GameHand in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -2041,7 +2080,7 @@ namespace Cribbage.Console.CribbageService
         }
     }
     /// <summary>
-    /// There are no comments for Cribbage.Entities.User in the schema.
+    /// There are no comments for Cribbage.Web.Model.User in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
@@ -2267,7 +2306,7 @@ namespace Cribbage.Console.CribbageService
         }
     }
     /// <summary>
-    /// There are no comments for Cribbage.Entities.UserRole in the schema.
+    /// There are no comments for Cribbage.Web.Model.UserRole in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
@@ -2405,7 +2444,7 @@ namespace Cribbage.Console.CribbageService
         }
     }
     /// <summary>
-    /// There are no comments for Cribbage.Entities.Player in the schema.
+    /// There are no comments for Cribbage.Web.Model.Player in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
@@ -2418,23 +2457,15 @@ namespace Cribbage.Console.CribbageService
         /// Create a new Player object.
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
-        /// <param name="gameId">Initial value of GameId.</param>
-        /// <param name="userId">Initial value of UserId.</param>
         /// <param name="gameOrder">Initial value of GameOrder.</param>
         /// <param name="gameTotal">Initial value of GameTotal.</param>
-        /// <param name="cribId">Initial value of CribId.</param>
-        /// <param name="currentHandId">Initial value of CurrentHandId.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static Player CreatePlayer(global::System.Guid ID, global::System.Guid gameId, global::System.Guid userId, int gameOrder, int gameTotal, global::System.Guid cribId, global::System.Guid currentHandId)
+        public static Player CreatePlayer(global::System.Guid ID, int gameOrder, int gameTotal)
         {
             Player player = new Player();
             player.Id = ID;
-            player.GameId = gameId;
-            player.UserId = userId;
             player.GameOrder = gameOrder;
             player.GameTotal = gameTotal;
-            player.CribId = cribId;
-            player.CurrentHandId = currentHandId;
             return player;
         }
         /// <summary>
@@ -2463,7 +2494,7 @@ namespace Cribbage.Console.CribbageService
         /// There are no comments for Property GameId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Guid GameId
+        public global::System.Nullable<global::System.Guid> GameId
         {
             get
             {
@@ -2478,14 +2509,14 @@ namespace Cribbage.Console.CribbageService
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Guid _GameId;
-        partial void OnGameIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _GameId;
+        partial void OnGameIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnGameIdChanged();
         /// <summary>
         /// There are no comments for Property UserId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Guid UserId
+        public global::System.Nullable<global::System.Guid> UserId
         {
             get
             {
@@ -2500,8 +2531,8 @@ namespace Cribbage.Console.CribbageService
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Guid _UserId;
-        partial void OnUserIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _UserId;
+        partial void OnUserIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnUserIdChanged();
         /// <summary>
         /// There are no comments for Property GameOrder in the schema.
@@ -2551,7 +2582,7 @@ namespace Cribbage.Console.CribbageService
         /// There are no comments for Property CribId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Guid CribId
+        public global::System.Nullable<global::System.Guid> CribId
         {
             get
             {
@@ -2566,14 +2597,14 @@ namespace Cribbage.Console.CribbageService
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Guid _CribId;
-        partial void OnCribIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _CribId;
+        partial void OnCribIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnCribIdChanged();
         /// <summary>
         /// There are no comments for Property CurrentHandId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Guid CurrentHandId
+        public global::System.Nullable<global::System.Guid> CurrentHandId
         {
             get
             {
@@ -2588,8 +2619,8 @@ namespace Cribbage.Console.CribbageService
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Guid _CurrentHandId;
-        partial void OnCurrentHandIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _CurrentHandId;
+        partial void OnCurrentHandIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnCurrentHandIdChanged();
         /// <summary>
         /// There are no comments for Game in the schema.
@@ -2693,7 +2724,7 @@ namespace Cribbage.Console.CribbageService
         }
     }
     /// <summary>
-    /// There are no comments for Cribbage.Entities.Role in the schema.
+    /// There are no comments for Cribbage.Web.Model.Role in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id

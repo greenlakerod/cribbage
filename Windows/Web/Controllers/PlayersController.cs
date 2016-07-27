@@ -11,14 +11,14 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
-using Cribbage.Data.Configurations;
-using Cribbage.Entities;
+using Cribbage.Web.Model;
+using Cribbage.Web.Models;
 
-namespace Web.Controllers
+namespace Cribbage.Web.Controllers
 {
     public class PlayersController : ODataController
     {
-        private CribbageEntitiesContext db = new CribbageEntitiesContext();
+        private CribbageWebContext db = new CribbageWebContext();
 
         // GET: odata/Players
         [EnableQuery]
@@ -153,27 +153,6 @@ namespace Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: odata/Players(5)/Game
-        [EnableQuery]
-        public SingleResult<Game> GetGame([FromODataUri] Guid key)
-        {
-            return SingleResult.Create(db.Players.Where(m => m.Id == key).Select(m => m.Game));
-        }
-
-        // GET: odata/Players(5)/User
-        [EnableQuery]
-        public SingleResult<User> GetUser([FromODataUri] Guid key)
-        {
-            return SingleResult.Create(db.Players.Where(m => m.Id == key).Select(m => m.User));
-        }
-
-        // GET: odata/Players(5)/Hands
-        [EnableQuery]
-        public IQueryable<PlayerHand> GetHands([FromODataUri] Guid key)
-        {
-            return db.Players.Where(m => m.Id == key).SelectMany(m => m.Hands);
-        }
-
         // GET: odata/Players(5)/Crib
         [EnableQuery]
         public SingleResult<PlayerHand> GetCrib([FromODataUri] Guid key)
@@ -186,6 +165,27 @@ namespace Web.Controllers
         public SingleResult<PlayerHand> GetCurrentHand([FromODataUri] Guid key)
         {
             return SingleResult.Create(db.Players.Where(m => m.Id == key).Select(m => m.CurrentHand));
+        }
+
+        // GET: odata/Players(5)/Game
+        [EnableQuery]
+        public SingleResult<Game> GetGame([FromODataUri] Guid key)
+        {
+            return SingleResult.Create(db.Players.Where(m => m.Id == key).Select(m => m.Game));
+        }
+
+        // GET: odata/Players(5)/Hands
+        [EnableQuery]
+        public IQueryable<PlayerHand> GetHands([FromODataUri] Guid key)
+        {
+            return db.Players.Where(m => m.Id == key).SelectMany(m => m.Hands);
+        }
+
+        // GET: odata/Players(5)/User
+        [EnableQuery]
+        public SingleResult<User> GetUser([FromODataUri] Guid key)
+        {
+            return SingleResult.Create(db.Players.Where(m => m.Id == key).Select(m => m.User));
         }
 
         protected override void Dispose(bool disposing)

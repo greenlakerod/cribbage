@@ -11,14 +11,14 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
-using Cribbage.Data.Configurations;
-using Cribbage.Entities;
+using Cribbage.Web.Model;
+using Cribbage.Web.Models;
 
-namespace Web.Controllers
+namespace Cribbage.Web.Controllers
 {
     public class MatchesController : ODataController
     {
-        private CribbageEntitiesContext db = new CribbageEntitiesContext();
+        private CribbageWebContext db = new CribbageWebContext();
 
         // GET: odata/Matches
         [EnableQuery]
@@ -153,18 +153,18 @@ namespace Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: odata/Matches(5)/Games
-        [EnableQuery]
-        public IQueryable<Game> GetGames([FromODataUri] Guid key)
-        {
-            return db.Matches.Where(m => m.Id == key).SelectMany(m => m.Games);
-        }
-
         // GET: odata/Matches(5)/CurrentGame
         [EnableQuery]
         public SingleResult<Game> GetCurrentGame([FromODataUri] Guid key)
         {
             return SingleResult.Create(db.Matches.Where(m => m.Id == key).Select(m => m.CurrentGame));
+        }
+
+        // GET: odata/Matches(5)/Games
+        [EnableQuery]
+        public IQueryable<Game> GetGames([FromODataUri] Guid key)
+        {
+            return db.Matches.Where(m => m.Id == key).SelectMany(m => m.Games);
         }
 
         protected override void Dispose(bool disposing)

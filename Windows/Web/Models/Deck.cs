@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cribbage.Entities
+namespace Cribbage.Web.Model
 {
-    public class Deck : IEntityBase
+    public class Deck
     {  
         public List<Card> Cards { get; set; }
         public Card CutCard { get; set; }
