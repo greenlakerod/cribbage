@@ -7,14 +7,14 @@ namespace Cribbage.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Cribbage.Data.Configurations.CribbageEntitiesContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CribbageEntities>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Cribbage.Data.Configurations.CribbageEntitiesContext context)
+        protected override void Seed(CribbageEntities context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Cribbage.Console
 {
@@ -12,7 +9,7 @@ namespace Cribbage.Console
         {
             try
             {
-                var uri = new Uri("http://localhost:8080/odata/");
+                var uri = new Uri(ConfigurationManager.AppSettings["CribbageServiceUri"]);
                 var container = new CribbageService.Container(uri);
 
                 container.SendingRequest2 += (s, e) => {

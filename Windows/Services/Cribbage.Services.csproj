@@ -47,7 +47,16 @@
     <Compile Include="MembershipService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Cribbage.Data.csproj">
+      <Project>{660465b3-9351-43d3-b582-c77d39fad67b}</Project>
+      <Name>Cribbage.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Cribbage.Entities.csproj">
+      <Project>{a8fb97f2-0f7c-4748-8a66-0b4c05d26451}</Project>
+      <Name>Cribbage.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

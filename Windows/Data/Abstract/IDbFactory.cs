@@ -1,4 +1,5 @@
 ﻿using Cribbage.Data.Configurations;
+using Cribbage.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Cribbage.Data.Abstract
 {
     public interface IDbFactory : IDisposable
     {
-        CribbageEntitiesContext Init();
+        CribbageEntities Init();
     }
 }

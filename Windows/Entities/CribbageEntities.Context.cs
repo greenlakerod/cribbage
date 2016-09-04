@@ -42,5 +42,10 @@ namespace Cribbage.Entities
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PopulateCards");
         }
+
+        public virtual void Commit()
+        {
+            base.SaveChanges();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Cribbage.Data.Abstract;
 using Cribbage.Data.Configurations;
+using Cribbage.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace Cribbage.Data.Infrastructure
 {
     public class DbFactory : Disposable, IDbFactory
     {
-        CribbageEntitiesContext _dbContext;
+        CribbageEntities _dbContext;
 
-        public CribbageEntitiesContext Init()
+        public CribbageEntities Init()
         {
-            return _dbContext ?? (_dbContext = new CribbageEntitiesContext());
+            return _dbContext ?? (_dbContext = new CribbageEntities());
         }
 
         protected override void DisposeCore()
