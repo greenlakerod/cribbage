@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace Cribbage.Web.Models
 {
@@ -19,22 +15,14 @@ namespace Cribbage.Web.Models
         {
         }
 
-        public System.Data.Entity.DbSet<Cribbage.Web.Model.Card> Cards { get; set; }
-
-        public System.Data.Entity.DbSet<Cribbage.Web.Model.Game> Games { get; set; }
-
-        public System.Data.Entity.DbSet<Cribbage.Web.Model.Player> Players { get; set; }
-
-        public System.Data.Entity.DbSet<Cribbage.Web.Model.GameHand> GameHands { get; set; }
-
-        public System.Data.Entity.DbSet<Cribbage.Web.Model.Match> Matches { get; set; }
-
-        public System.Data.Entity.DbSet<Cribbage.Web.Model.PlayerHand> PlayerHands { get; set; }
-
-        public System.Data.Entity.DbSet<Cribbage.Web.Model.User> Users { get; set; }
-
-        public System.Data.Entity.DbSet<Cribbage.Web.Model.Role> Roles { get; set; }
-
-        public System.Data.Entity.DbSet<Cribbage.Web.Model.UserRole> UserRoles { get; set; }
+        public DbSet<Cribbage.Web.Model.Card> Cards { get; set; }
+        public DbSet<Cribbage.Web.Model.Game> Games { get; set; }
+        public DbSet<Cribbage.Web.Model.Player> Players { get; set; }
+        public DbSet<Cribbage.Web.Model.GameHand> GameHands { get; set; }
+        public DbSet<Cribbage.Web.Model.Match> Matches { get; set; }
+        public DbSet<Cribbage.Web.Model.PlayerHand> PlayerHands { get; set; }
+        public DbSet<Cribbage.Web.Model.User> Users { get; set; }
+        public DbSet<Cribbage.Web.Model.Role> Roles { get; set; }
+        public DbSet<Cribbage.Web.Model.UserRole> UserRoles { get; set; }
     }
 }

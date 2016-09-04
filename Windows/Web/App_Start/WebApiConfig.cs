@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Cribbage.Web.Model;
 using System.Web.Http;
 using System.Web.Http.OData.Builder;
 using System.Web.Http.OData.Extensions;
-using Cribbage.Web.Model;
 
 namespace Cribbage.Web
 {
@@ -24,8 +21,6 @@ namespace Cribbage.Web
 
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
 
-            
-
             builder.EntitySet<Card>("Cards");
             builder.EntitySet<PlayedCard>("PlayedCards");
             builder.EntitySet<Deck>("Decks");
@@ -37,6 +32,7 @@ namespace Cribbage.Web
             builder.EntitySet<UserRole>("UserRoles");
             builder.EntitySet<Player>("Players");
             builder.EntitySet<GameHand>("GameHands");
+
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
         }
     }

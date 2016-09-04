@@ -12,13 +12,13 @@ namespace Cribbage.Web.Model
             this.Hands = new HashSet<PlayerHand>();
         }
     
-        public System.Guid Id { get; set; }
-        public Nullable<System.Guid> GameId { get; set; }
-        public Nullable<System.Guid> UserId { get; set; }
+        public Guid Id { get; set; }
+        public Nullable<Guid> GameId { get; set; }
+        public Nullable<Guid> UserId { get; set; }
         public int GameOrder { get; set; }
         public int GameTotal { get; set; }
-        public Nullable<System.Guid> CribId { get; set; }
-        public Nullable<System.Guid> CurrentHandId { get; set; }
+        public Nullable<Guid> CribId { get; set; }
+        public Nullable<Guid> CurrentHandId { get; set; }
     
         [ForeignKey("GameId")]
         public virtual Game Game { get; set; }
