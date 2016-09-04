@@ -15,12 +15,9 @@ export abstract class EntityBaseRepository<T> implements IEntityBaseRepository<T
     protected _connection: tedious.Connection;
     protected _tableName: string;
 
-    
-
     public Add(entity: T): void {}
     public Delete(entity: T): void {}
     public Edit(entity: T): void {}
-    
 
     public get(id: string, onEntityRetrieved: (entity: T) => void, onError: (error: Error) => void): void {
         this.getSingle("select * from " + this._tableName + " where id = '" + id + "'", onEntityRetrieved, onError);
