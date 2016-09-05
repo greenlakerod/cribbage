@@ -45,7 +45,13 @@ export class UserService {
                     dateCreated: new Date().toUTCString()
                 };
 
-                this._userRepository.Add(user);
+                // self._userRepository.add(user, function(userId: string) {
+                //     user.id = userId;
+
+
+                // }, function(error:Error) {
+                //     onError(error);
+                // });
                 // var self = this;
                 // if (roles) {
                 //     roles.forEach(function(role, index, array) {
@@ -81,7 +87,7 @@ export class UserService {
         return false;
     }
     public _editUser(user: Cribbage.IUser): void {
-        this._userRepository.Edit(user);
+        this._userRepository.edit(user);
     }
 
     public _getUsers(fn: (err: any, entities: Array<Cribbage.IUser>) => void): void {
@@ -90,17 +96,17 @@ export class UserService {
 
 
     // private addUserToRole(user: Cribbage.IUser, roleId: string): void {
-    //     var role = this._roleRepository.get(roleId);
-    //     if (!role) {
-    //         throw new Error("Role doesn't exist");
-    //     }
+    //     // var role = this._roleRepository.get(roleId);
+    //     // if (!role) {
+    //     //     throw new Error("Role doesn't exist");
+    //     // }
 
-    //     var userRole = <Cribbage.IUserRole>{
-    //         roleId: roleId,
-    //         userId: user.id
-    //     };
+    //     // var userRole = <Cribbage.IUserRole>{
+    //     //     roleId: roleId,
+    //     //     userId: user.id
+    //     // };
 
-    //     this._userRoleRepository.Add(userRole);
+    //     // this._userRoleRepository.Add(userRole);
     // }
     private isPasswordValid(user: Cribbage.IUser, password: string): boolean {
         return EncryptionService.encryptPassword(password, user.salt) == user.hashedPassword;
