@@ -19,7 +19,7 @@ export class CardRepository extends EntityBaseRepository<Cribbage.ICard> {
             case "points":
                 return tedious.TYPES.Int;
             default:
-                return tedious.TYPES.Null;
+                return tedious.TYPES.Null; 
         }
     }
-}
+} 
