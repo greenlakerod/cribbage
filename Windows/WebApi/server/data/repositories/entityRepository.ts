@@ -1,17 +1,18 @@
 import * as tedious from 'tedious';
 import * as Settings from '../../settings';
 import * as Data from '../../data';
+import {IModelBase} from '../../cribbage';
 
-export interface IEntityBaseRepository<T> {
+export interface IEntityBaseRepository<T extends IModelBase> {
     add(entity: T, onEntityCreated: (entityId: string) => void, onError: (error: Error) => void): void;
-    delete(entity: T): void;
-    edit(entity: T): void;
+    delete(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void;
+    edit(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void;
     get(id: string, onEntityRetrieved: (entity: T) => void, onError: (error: Error) => void): void;
     getAll(onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void;  
     getBy(property: string, value: any, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void;
 }
 
-export abstract class EntityBaseRepository<T> implements IEntityBaseRepository<T> {
+export abstract class EntityBaseRepository<T extends IModelBase> implements IEntityBaseRepository<T> {
     protected _connection: tedious.Connection;
     protected _tableName: string;
 
@@ -54,29 +55,34 @@ export abstract class EntityBaseRepository<T> implements IEntityBaseRepository<T
             }
         });
     }
-    public delete(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void {
+    public delete(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void {       
         var self = this;
+        var entityId: string;
         this._connection = new tedious.Connection(Settings.Configuration.dbConfig);
         this._connection.on("connect", function (err) {
             if (err) {
                 onComplete(false, err);
             } else {
-                var query = "INSERT __table__ (__fields__) OUTPUT INSERTED.id VALUES (__values__);";
-                var params = self.getSqlParams(entity);
+                var query = "DELETE FROM __table__ OUTPUT INSERTED.id WHERE id = '__id__';";
+                var s = "";
+                var i = 0;
+                for (var prop in entity) {
+                    var value = entity[prop];
+                    if (i > 0){
+                        s += ", ";
+                    }
+                    s += prop + "=" + (self.isString(prop) ? ("'" + value + "'") : value);
+                    i++;
+                }
+
                 query = query.replace("__table__", self._tableName);
-                query = query.replace("__fields__", params.properties);
-                query = query.replace("__values__", params.values);
+                query = query.replace("__id__", entity.id);
 
                 var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>){
                     if (error) {
-                        onError(error);
+                        onComplete(false, error);
                     }
                 });
-                for (var i=0; i<params.params.length; i++) {
-                    var param = params.params[i];
-                    request.addParameter(param.name, param.type, param.value);
-                }
-
                 request.on("row", function(columns: Array<tedious.ColumnValue>){
                     columns.forEach(function(column: tedious.ColumnValue) {
                         if (column.value !== null) {
@@ -85,15 +91,57 @@ export abstract class EntityBaseRepository<T> implements IEntityBaseRepository<T
                     })                    
                 });
                 request.on("done", function(rowCount, more){
-                    onEntityCreated(entityId);
+                    onComplete(true, null);
                 });
 
                 this._connection.execSql(request);      
             }
-        });        
+        }); 
     }
-    public edit(entity: T): void {}
+    public edit(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void {
+        var self = this;
+        var entityId: string;
+        this._connection = new tedious.Connection(Settings.Configuration.dbConfig);
+        this._connection.on("connect", function (err) {
+            if (err) {
+                onComplete(false, err);
+            } else {
+                var query = "UPDATE __table__ SET __fields__ OUTPUT INSERTED.id WHERE id = '__id__';";
+                var s = "";
+                var i = 0;
+                for (var prop in entity) {
+                    var value = entity[prop];
+                    if (i > 0){
+                        s += ", ";
+                    }
+                    s += prop + "=" + (self.isString(prop) ? ("'" + value + "'") : value);
+                    i++;
+                }
 
+                query = query.replace("__table__", self._tableName);
+                query = query.replace("__fields__", s);
+                query = query.replace("__id__", entity.id);
+
+                var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>){
+                    if (error) {
+                        onComplete(false, error);
+                    }
+                });
+                request.on("row", function(columns: Array<tedious.ColumnValue>){
+                    columns.forEach(function(column: tedious.ColumnValue) {
+                        if (column.value !== null) {
+                            entityId = column.value;
+                        }
+                    })                    
+                });
+                request.on("done", function(rowCount, more){
+                    onComplete(true, null);
+                });
+
+                this._connection.execSql(request);      
+            }
+        }); 
+    }
     public get(id: string, onEntityRetrieved: (entity: T) => void, onError: (error: Error) => void): void {
         this.getSingle("select * from " + this._tableName + " where id = '" + id + "'", onEntityRetrieved, onError);
     }
@@ -102,15 +150,15 @@ export abstract class EntityBaseRepository<T> implements IEntityBaseRepository<T
     } 
     public getBy(property: string, value: any, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void { 
         var query = "select * from " + this._tableName + " where " + property + " = ";
-        var type = typeof value;
-
-        if (type === "string"){
+        var isString = this.isString(property);
+        
+        if (isString){
             query += "'";
         }
 
         query += value;
 
-        if (type === "string"){
+        if (isString){
             query += "'";
         }
 
@@ -179,6 +227,7 @@ export abstract class EntityBaseRepository<T> implements IEntityBaseRepository<T
             properties: "",
             values: ""
         };
+
         var params: Array<Data.ISqlParam> = [];
         for (var property in entity) {
             params.push(<Data.ISqlParam>{
@@ -201,4 +250,18 @@ export abstract class EntityBaseRepository<T> implements IEntityBaseRepository<T
         return insertData;
     }
     protected abstract getSqlType(property: string): tedious.TediousType;
+
+    protected isString(property: string): boolean {
+        var type = this.getSqlType(property);
+        
+        switch (type){
+            case tedious.TYPES.Char:
+            case tedious.TYPES.NChar:
+            case tedious.TYPES.NText:
+            case tedious.TYPES.NVarChar:
+                return true;
+            default:
+                return false;
+        }
+    }
 }

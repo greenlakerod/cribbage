@@ -20,14 +20,23 @@ export class UserService {
                             onUserCreated: (user: Cribbage.IUser) => void, onError: (error: Error) => void): void {
         UserService._instance._createUser(username, email, password, roles, onUserCreated, onError);
     }
-    public static getUser(userId: string, onEntityRetrieved: (entity: Cribbage.IUser) => void, onError: (error: Error) => void): void {
-        UserService._instance._getUser(userId, onEntityRetrieved, onError);
+    public static getUser(userId: string, onUserRetrieved: (entity: Cribbage.IUser) => void, onError: (error: Error) => void): void {
+        UserService._instance._getUser(userId, onUserRetrieved, onError);
     }
-    public static getUserRoles(username: string, onEntitiesRetrieved: (entities: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void {
-        UserService._instance._getUserRoles(username, onEntitiesRetrieved, onError);
+    public static getUsers(onUsersRetrieved: (entities: Array<Cribbage.IUser>) => void, onError: (error: Error) => void): void {
+        UserService._instance._getUsers(onUsersRetrieved, onError);
+    }
+    public static getUserRoles(username: string, onUserRolesRetrieved: (entities: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void {
+        UserService._instance._getUserRoles(username, onUserRolesRetrieved, onError);
     }
     public static isUserValid(user: Cribbage.IUser, password: string): boolean {
         return UserService._instance._isUserValid(user, password);
+    }
+    public static editUser(user: Cribbage.IUser, onComplete: (isSuccess: boolean, error: Error) => void): void {
+        UserService._instance._editUser(user, onComplete);
+    }
+    public static deleteUser(user: Cribbage.IUser, onComplete: (isSuccess: boolean, error: Error) => void): void {
+        UserService._instance._deleteUser(user, onComplete);
     }
 
     public _createUser(username: string, email: string, password: string, roles: Array<string>, 
@@ -69,16 +78,23 @@ export class UserService {
             onError(error);
         });        
     }
-    public _getUser(userId: string, onEntityRetrieved: (entity: Cribbage.IUser) => void, onError: (error: Error) => void): void {
+    public _getUser(userId: string, onUserRetrieved: (entity: Cribbage.IUser) => void, onError: (error: Error) => void): void {
         this._userRepository.get(userId, function(entity: Cribbage.IUser) {
-            onEntityRetrieved(entity);
+            onUserRetrieved(entity);
         }, function(error: Error){
             onError(error);
         });
     }
-    public _getUserRoles(username: string, onEntitiesRetrieved: (entities: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void{
+    public _getUsers(onUsersRetrieved: (entities: Array<Cribbage.IUser>) => void, onError: (error: Error) => void): void {
+        this._userRepository.getAll(function(users: Array<Cribbage.IUser>) {
+            onUsersRetrieved(users);
+        }, function(error: Error){
+            onError(error);
+        });
+    }
+    public _getUserRoles(username: string, onUserRolesRetrieved: (entities: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void{
         this._userRoleRepository.getBy("username", username, function(userRoles: Array<Cribbage.IUserRole>){
-            onEntitiesRetrieved(userRoles);
+            onUserRolesRetrieved(userRoles);
         }, function(error: Error){
             onError(error);
         });
@@ -89,8 +105,15 @@ export class UserService {
         }
         return false;
     }
-    public _editUser(user: Cribbage.IUser): void {
-        this._userRepository.edit(user);
+    public _editUser(user: Cribbage.IUser, onComplete: (isSuccess: boolean, error: Error) => void): void {
+        this._userRepository.edit(user, function(isSuccess: boolean, error: Error) {
+            onComplete(isSuccess, error);
+        });
+    }
+    public _deleteUser(user: Cribbage.IUser, onComplete: (isSuccess: boolean, error: Error) => void): void {
+        this._userRepository.delete(user, function(isSuccess: boolean, error: Error) {
+            onComplete(isSuccess, error);
+        });
     }
 
     private addUserToRole(user: Cribbage.IUser, roleId: string, onComplete: (isSuccess: boolean, error: Error) => void): void {
