@@ -3,7 +3,7 @@ import * as Settings from '../../settings';
 import * as Data from '../../data';
 import {IModelBase} from '../../cribbage';
 
-export interface IEntityBaseRepository<T extends IModelBase> {
+export interface IEntityBaseRepository<T> {
     add(entity: T, onEntityCreated: (entityId: string) => void, onError: (error: Error) => void): void;
     delete(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void;
     edit(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void;
@@ -12,7 +12,7 @@ export interface IEntityBaseRepository<T extends IModelBase> {
     getBy(property: string, value: any, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void;
 }
 
-export abstract class EntityBaseRepository<T extends IModelBase> implements IEntityBaseRepository<T> {
+export abstract class EntityBaseRepository<T extends IModelBase> implements IEntityBaseRepository<IModelBase> {
     protected _connection: tedious.Connection;
     protected _tableName: string;
 
@@ -114,7 +114,11 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                     if (i > 0){
                         s += ", ";
                     }
-                    s += prop + "=" + (self.isString(prop) ? ("'" + value + "'") : value);
+                    s += prop + "=" + (self.isString(prop) 
+                                        ? ("'" + value + "'") 
+                                        : (self.getSqlType(prop) == tedious.TYPES.DateTime) 
+                                            ? "convert(datetime, '" + value + "')" 
+                                            : value);
                     i++;
                 }
 
@@ -259,6 +263,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
             case tedious.TYPES.NChar:
             case tedious.TYPES.NText:
             case tedious.TYPES.NVarChar:
+            case tedious.TYPES.UniqueIdentifier:
                 return true;
             default:
                 return false;

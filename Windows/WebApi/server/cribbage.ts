@@ -78,7 +78,7 @@ export interface IModelBase {
     id?: string;
     dateCreated?: string;
 }
-export interface Card extends IModelBase {
+export interface ICard extends IModelBase {
     suit : Suit;
     value : CardValue;
     points: CardScore;

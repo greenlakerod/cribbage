@@ -14,19 +14,20 @@ export class UserService {
         }
 
         //todo: instantiate repositories
+        this._userRepository = new Data.Repositories.UserRepository();
     }
 
     public static createUser(username: string, email: string, password: string, roles: Array<string>,
                             onUserCreated: (user: Cribbage.IUser) => void, onError: (error: Error) => void): void {
         UserService._instance._createUser(username, email, password, roles, onUserCreated, onError);
     }
-    public static getUser(userId: string, onUserRetrieved: (entity: Cribbage.IUser) => void, onError: (error: Error) => void): void {
+    public static getUser(userId: string, onUserRetrieved: (user: Cribbage.IUser) => void, onError: (error: Error) => void): void {
         UserService._instance._getUser(userId, onUserRetrieved, onError);
     }
-    public static getUsers(onUsersRetrieved: (entities: Array<Cribbage.IUser>) => void, onError: (error: Error) => void): void {
+    public static getUsers(onUsersRetrieved: (users: Array<Cribbage.IUser>) => void, onError: (error: Error) => void): void {
         UserService._instance._getUsers(onUsersRetrieved, onError);
     }
-    public static getUserRoles(username: string, onUserRolesRetrieved: (entities: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void {
+    public static getUserRoles(username: string, onUserRolesRetrieved: (users: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void {
         UserService._instance._getUserRoles(username, onUserRolesRetrieved, onError);
     }
     public static isUserValid(user: Cribbage.IUser, password: string): boolean {
@@ -42,8 +43,8 @@ export class UserService {
     public _createUser(username: string, email: string, password: string, roles: Array<string>, 
                        onUserCreated: (user: Cribbage.IUser) => void, onError: (error: Error) => void): void {
         var self = this;
-        this._userRepository.getBy("username", username, function(entities: Array<Cribbage.IUser>) {
-            if (entities.length == 0) {
+        this._userRepository.getBy("username", username, function(users: Array<Cribbage.IUser>) {
+            if (users.length == 0) {
                 var passwordSalt = EncryptionService.createSalt();
                 var user = <Cribbage.IUser>{
                     username: username,
@@ -79,25 +80,13 @@ export class UserService {
         });        
     }
     public _getUser(userId: string, onUserRetrieved: (entity: Cribbage.IUser) => void, onError: (error: Error) => void): void {
-        this._userRepository.get(userId, function(entity: Cribbage.IUser) {
-            onUserRetrieved(entity);
-        }, function(error: Error){
-            onError(error);
-        });
+        this._userRepository.get(userId, onUserRetrieved, onError);
     }
-    public _getUsers(onUsersRetrieved: (entities: Array<Cribbage.IUser>) => void, onError: (error: Error) => void): void {
-        this._userRepository.getAll(function(users: Array<Cribbage.IUser>) {
-            onUsersRetrieved(users);
-        }, function(error: Error){
-            onError(error);
-        });
+    public _getUsers(onUsersRetrieved: (users: Array<Cribbage.IUser>) => void, onError: (error: Error) => void): void {
+        this._userRepository.getAll(onUsersRetrieved, onError);
     }
-    public _getUserRoles(username: string, onUserRolesRetrieved: (entities: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void{
-        this._userRoleRepository.getBy("username", username, function(userRoles: Array<Cribbage.IUserRole>){
-            onUserRolesRetrieved(userRoles);
-        }, function(error: Error){
-            onError(error);
-        });
+    public _getUserRoles(username: string, onUserRolesRetrieved: (users: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void{
+        this._userRoleRepository.getBy("username", username, onUserRolesRetrieved, onError);
     }
     public _isUserValid(user: Cribbage.IUser, password: string): boolean {
         if (this.isPasswordValid(user, password)) {
@@ -106,14 +95,10 @@ export class UserService {
         return false;
     }
     public _editUser(user: Cribbage.IUser, onComplete: (isSuccess: boolean, error: Error) => void): void {
-        this._userRepository.edit(user, function(isSuccess: boolean, error: Error) {
-            onComplete(isSuccess, error);
-        });
+        this._userRepository.edit(user, onComplete);
     }
     public _deleteUser(user: Cribbage.IUser, onComplete: (isSuccess: boolean, error: Error) => void): void {
-        this._userRepository.delete(user, function(isSuccess: boolean, error: Error) {
-            onComplete(isSuccess, error);
-        });
+        this._userRepository.delete(user, onComplete);
     }
 
     private addUserToRole(user: Cribbage.IUser, roleId: string, onComplete: (isSuccess: boolean, error: Error) => void): void {
