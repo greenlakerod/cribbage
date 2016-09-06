@@ -45,21 +45,23 @@ export class UserService {
                     dateCreated: new Date().toUTCString()
                 };
 
-                // self._userRepository.add(user, function(userId: string) {
-                //     user.id = userId;
+                self._userRepository.add(user, function(userId: string) {
+                    user.id = userId;
 
-
-                // }, function(error:Error) {
-                //     onError(error);
-                // });
-                // var self = this;
-                // if (roles) {
-                //     roles.forEach(function(role, index, array) {
-                //         self.addUserToRole(user, role);
-                //     });
-                // }
-                onUserCreated(user);
-
+                    if (roles) {
+                        roles.forEach(function(roleId, index, array) {
+                            self.addUserToRole(user, roleId, function(isSuccess: boolean, error: Error){
+                                //todo
+                            });
+                        });
+                        onUserCreated(user);
+                    } else {
+                        onUserCreated(user);
+                    }
+                    
+                }, function(error:Error) {
+                    onError(error);
+                });
             } else {
                 onError(new Error("Username already in use"));
             }
@@ -69,15 +71,16 @@ export class UserService {
     }
     public _getUser(userId: string, onEntityRetrieved: (entity: Cribbage.IUser) => void, onError: (error: Error) => void): void {
         this._userRepository.get(userId, function(entity: Cribbage.IUser) {
+            onEntityRetrieved(entity);
         }, function(error: Error){
             onError(error);
         });
     }
     public _getUserRoles(username: string, onEntitiesRetrieved: (entities: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void{
-        this._userRoleRepository.getBy("username", username, function(entities: Array<Cribbage.IUserRole>){
-
+        this._userRoleRepository.getBy("username", username, function(userRoles: Array<Cribbage.IUserRole>){
+            onEntitiesRetrieved(userRoles);
         }, function(error: Error){
-
+            onError(error);
         });
     }
     public _isUserValid(user: Cribbage.IUser, password: string): boolean {
@@ -90,24 +93,22 @@ export class UserService {
         this._userRepository.edit(user);
     }
 
-    public _getUsers(fn: (err: any, entities: Array<Cribbage.IUser>) => void): void {
-
+    private addUserToRole(user: Cribbage.IUser, roleId: string, onComplete: (isSuccess: boolean, error: Error) => void): void {
+        var self = this;
+        this._roleRepository.get(roleId, function(entity: Cribbage.IRole) {
+            var userRole = <Cribbage.IUserRole>{
+                roleId: roleId,
+                userId: user.id
+            };
+            self._userRoleRepository.add(userRole, function(entityId: string){
+                onComplete(true, null);
+            }, function(error: Error){
+                onComplete(false, error);
+            });
+        }, function(error: Error){
+            onComplete(false, error);
+        });
     }
-
-
-    // private addUserToRole(user: Cribbage.IUser, roleId: string): void {
-    //     // var role = this._roleRepository.get(roleId);
-    //     // if (!role) {
-    //     //     throw new Error("Role doesn't exist");
-    //     // }
-
-    //     // var userRole = <Cribbage.IUserRole>{
-    //     //     roleId: roleId,
-    //     //     userId: user.id
-    //     // };
-
-    //     // this._userRoleRepository.Add(userRole);
-    // }
     private isPasswordValid(user: Cribbage.IUser, password: string): boolean {
         return EncryptionService.encryptPassword(password, user.salt) == user.hashedPassword;
     }

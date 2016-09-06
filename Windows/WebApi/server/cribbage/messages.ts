@@ -8,5 +8,4 @@ export interface IRequest extends Cribbage.IObject {
 }
 export interface IResponse extends Cribbage.IObject {
 }
-
 export {Users, Players, Matches, Games};
