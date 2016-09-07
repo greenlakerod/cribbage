@@ -24,7 +24,7 @@ export class Deck {
     constructor(cards?: Array<ICard>) {
         if (cards) {
             this._cards = cards;
-            this.shuffle();
+            //this.shuffle();
         }
     }
 

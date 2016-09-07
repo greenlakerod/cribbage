@@ -8,7 +8,7 @@ export interface IEntityBaseRepository<T> {
     delete(id: string, onComplete: (isSuccess: boolean, error: Error) => void): void;
     edit(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void;
     get(id: string, onEntityRetrieved: (entity: T) => void, onError: (error: Error) => void): void;
-    getAll(onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void;  
+    getAll(ids: Array<string>, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void;  
     getAllBy(property: string, value: any, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void;
 }
 
@@ -138,8 +138,19 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
     public get(id: string, onEntityRetrieved: (entity: T) => void, onError: (error: Error) => void): void {
         this.getSingle("select * from " + this._tableName + " where id = '" + id + "'", onEntityRetrieved, onError);
     }
-    public getAll(onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void {
-        this.getMultiple("select * from " + this._tableName, onEntitiesRetrieved, onError);
+    public getAll(ids: Array<string>, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void {
+        var query = "select * from " + this._tableName;
+        if (ids && ids.length > 0) {
+            query += " where id in ";
+
+            ids.forEach(function(id, index, array){
+                if (index > 0){
+                    query += ", ";
+                }
+                query += "'" + id + "'";
+            });
+        }
+        this.getMultiple(query, onEntitiesRetrieved, onError);
     } 
     public getAllBy(property: string, value: any, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void { 
         var query = "select * from " + this._tableName + " where " + property + " = ";

@@ -84,7 +84,7 @@ export class UserService {
         this._userRepository.get(userId, onUserRetrieved, onError);
     }
     public _getUsers(onUsersRetrieved: (users: Array<Cribbage.IUser>) => void, onError: (error: Error) => void): void {
-        this._userRepository.getAll(onUsersRetrieved, onError);
+        this._userRepository.getAll(null, onUsersRetrieved, onError);
     }
     public _getUserRoles(username: string, onUserRolesRetrieved: (users: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void{
         this._userRoleRepository.getAllBy("username", username, onUserRolesRetrieved, onError);
