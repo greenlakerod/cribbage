@@ -51,6 +51,7 @@ export class Deck {
         for (var i=0; i<index; i++) {
             bottom.push(this._cards[i]);
         }
+        this._cards = bottom;
 
         return this.deal();
     }
