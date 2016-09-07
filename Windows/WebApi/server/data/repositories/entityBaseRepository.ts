@@ -5,11 +5,11 @@ import {IModelBase} from '../../cribbage';
 
 export interface IEntityBaseRepository<T> {
     add(entity: T, onEntityCreated: (entityId: string) => void, onError: (error: Error) => void): void;
-    delete(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void;
+    delete(id: string, onComplete: (isSuccess: boolean, error: Error) => void): void;
     edit(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void;
     get(id: string, onEntityRetrieved: (entity: T) => void, onError: (error: Error) => void): void;
     getAll(onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void;  
-    getBy(property: string, value: any, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void;
+    getAllBy(property: string, value: any, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void;
 }
 
 export abstract class EntityBaseRepository<T extends IModelBase> implements IEntityBaseRepository<IModelBase> {
@@ -25,7 +25,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                 onError(err);
             } else {
                 var query = "INSERT __table__ (__fields__) OUTPUT INSERTED.id VALUES (__values__);";
-                var params = self.getSqlParams(entity);
+                var params = self.getInsertCommandSqlParams(entity);
                 query = query.replace("__table__", self._tableName);
                 query = query.replace("__fields__", params.properties);
                 query = query.replace("__values__", params.values);
@@ -55,7 +55,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
             }
         });
     }
-    public delete(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void {       
+    public delete(id: string, onComplete: (isSuccess: boolean, error: Error) => void): void {       
         var self = this;
         var entityId: string;
         this._connection = new tedious.Connection(Settings.Configuration.dbConfig);
@@ -64,19 +64,8 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                 onComplete(false, err);
             } else {
                 var query = "DELETE FROM __table__ OUTPUT INSERTED.id WHERE id = '__id__';";
-                var s = "";
-                var i = 0;
-                for (var prop in entity) {
-                    var value = entity[prop];
-                    if (i > 0){
-                        s += ", ";
-                    }
-                    s += prop + "=" + (self.isString(prop) ? ("'" + value + "'") : value);
-                    i++;
-                }
-
                 query = query.replace("__table__", self._tableName);
-                query = query.replace("__id__", entity.id);
+                query = query.replace("__id__", id);
 
                 var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>){
                     if (error) {
@@ -152,7 +141,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
     public getAll(onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void {
         this.getMultiple("select * from " + this._tableName, onEntitiesRetrieved, onError);
     } 
-    public getBy(property: string, value: any, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void { 
+    public getAllBy(property: string, value: any, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void { 
         var query = "select * from " + this._tableName + " where " + property + " = ";
         var isString = this.isString(property);
         
@@ -225,7 +214,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
             }
         });
     }
-    protected getSqlParams(entity: T): { params: Array<Data.ISqlParam>, properties: string, values: string } {
+    protected getInsertCommandSqlParams(entity: T): { params: Array<Data.ISqlParam>, properties: string, values: string } {
         var insertData: { params: Array<Data.ISqlParam>, properties: string, values: string } = {
             params: [],
             properties: "",

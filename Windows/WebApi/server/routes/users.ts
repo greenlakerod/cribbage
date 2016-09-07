@@ -23,6 +23,15 @@ export class Users {
                     res.send(error);
                 });
             })
+            .put(function(req: express.Request, res: express.Response){
+                var body:Messages.ModifyUser.IRequest = <Messages.ModifyUser.IRequest>req.body;
+                UserService.editUser(body.user, function(isSuccess: boolean, error: Error){
+                    res.json(<Messages.ModifyUser.IResponse>{
+                        isSuccess: isSuccess,
+                        error: error
+                    });
+                });
+            })
             .get(function(req: express.Request, res: express.Response){
                 UserService.getUsers(function(users: Array<Cribbage.IUser>){
                     res.json(<Messages.GetUsers.IResponse>{ users: users });
@@ -40,18 +49,9 @@ export class Users {
                     res.send(error);
                 })
             })
-            .put(function(req: express.Request, res: express.Response){
-                var body:Messages.ModifyUser.IRequest = <Messages.ModifyUser.IRequest>req.body;
-                UserService.editUser(body.user, function(isSuccess: boolean, error: Error){
-                    res.json(<Messages.ModifyUser.IResponse>{
-                        isSuccess: isSuccess,
-                        error: error
-                    });
-                });
-            })
             .delete(function(req: express.Request, res: express.Response){
-                var body:Messages.DeleteUser.IRequest = <Messages.DeleteUser.IRequest>req.body;
-                UserService.deleteUser(body.user, function(isSuccess: boolean, error: Error){
+                var userId = <string>req.params["user_id"];
+                UserService.deleteUser(userId, function(isSuccess: boolean, error: Error){
                     res.json(<Messages.DeleteUser.IResponse>{
                         isSuccess: isSuccess,
                         error: error

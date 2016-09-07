@@ -13,8 +13,9 @@ export class UserService {
             throw new Error("Instantiation error");
         }
 
-        //todo: instantiate repositories
         this._userRepository = new Data.Repositories.UserRepository();
+        this._roleRepository = new Data.Repositories.RoleRepository();
+        this._userRoleRepository = new Data.Repositories.UserRoleRepository();
     }
 
     public static createUser(username: string, email: string, password: string, roles: Array<string>,
@@ -36,14 +37,14 @@ export class UserService {
     public static editUser(user: Cribbage.IUser, onComplete: (isSuccess: boolean, error: Error) => void): void {
         UserService._instance._editUser(user, onComplete);
     }
-    public static deleteUser(user: Cribbage.IUser, onComplete: (isSuccess: boolean, error: Error) => void): void {
-        UserService._instance._deleteUser(user, onComplete);
+    public static deleteUser(userId: string, onComplete: (isSuccess: boolean, error: Error) => void): void {
+        UserService._instance._deleteUser(userId, onComplete);
     }
 
     public _createUser(username: string, email: string, password: string, roles: Array<string>, 
                        onUserCreated: (user: Cribbage.IUser) => void, onError: (error: Error) => void): void {
         var self = this;
-        this._userRepository.getBy("username", username, function(users: Array<Cribbage.IUser>) {
+        this._userRepository.getAllBy("username", username, function(users: Array<Cribbage.IUser>) {
             if (users.length == 0) {
                 var passwordSalt = EncryptionService.createSalt();
                 var user = <Cribbage.IUser>{
@@ -86,7 +87,7 @@ export class UserService {
         this._userRepository.getAll(onUsersRetrieved, onError);
     }
     public _getUserRoles(username: string, onUserRolesRetrieved: (users: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void{
-        this._userRoleRepository.getBy("username", username, onUserRolesRetrieved, onError);
+        this._userRoleRepository.getAllBy("username", username, onUserRolesRetrieved, onError);
     }
     public _isUserValid(user: Cribbage.IUser, password: string): boolean {
         if (this.isPasswordValid(user, password)) {
@@ -97,8 +98,8 @@ export class UserService {
     public _editUser(user: Cribbage.IUser, onComplete: (isSuccess: boolean, error: Error) => void): void {
         this._userRepository.edit(user, onComplete);
     }
-    public _deleteUser(user: Cribbage.IUser, onComplete: (isSuccess: boolean, error: Error) => void): void {
-        this._userRepository.delete(user, onComplete);
+    public _deleteUser(userId: string, onComplete: (isSuccess: boolean, error: Error) => void): void {
+        this._userRepository.delete(userId, onComplete);
     }
 
     private addUserToRole(user: Cribbage.IUser, roleId: string, onComplete: (isSuccess: boolean, error: Error) => void): void {
