@@ -141,14 +141,20 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
     public getAll(ids: Array<string>, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void {
         var query = "select * from " + this._tableName;
         if (ids && ids.length > 0) {
-            query += " where id in ";
+            if (ids.length == 1) {
+                query += " where id = '" + ids[0] + "'";
+            } else {
+                query += " where id in (";
 
-            ids.forEach(function(id, index, array){
-                if (index > 0){
-                    query += ", ";
-                }
-                query += "'" + id + "'";
-            });
+                ids.forEach(function(id, index, array){
+                    if (index > 0){
+                        query += ", ";
+                    }
+                    query += "'" + id + "'";
+                });
+
+                query += ")";
+            }
         }
         this.getMultiple(query, onEntitiesRetrieved, onError);
     } 

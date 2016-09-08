@@ -28,6 +28,14 @@ export class Matches {
             .delete(function(req: express.Request, res: express.Response){
                 
             });
+
+         router.route("/api/matches/:match_id/games")
+            .post(function(req: express.Request, res: express.Response){
+
+            })
+            .get(function(req: express.Request, res: express.Response){
+                
+            });       
     }
 
     public static route(router: express.IRouter): void {

@@ -118,8 +118,8 @@ export interface IPlayer extends IModelBase {
     userId: string;
     cribId?: string;
     currentHandId?: string;
-    gameOrder : number;
-    gameTotal : number;
+    gameOrder? : number;
+    gameTotal? : number;
 }
 export interface IPlayerHand extends IModelBase {
     gameHandId : string;
@@ -140,6 +140,40 @@ export interface IGameHand extends IModelBase {
     playedCardIds: string;
     goCount : number;
     matchingCardValueCount : number;
+}
+
+//todo: create tables in DB
+export enum ActionType {
+    Play = 1,
+    Show = 2,
+    Declare = 3,
+    Respond = 4,
+    Judge = 5
+}
+export enum ActionResponseType {
+    Accept = 1,
+    Reject = 2  //Muggins
+}
+export interface ICardCombination {
+    cardIds: Array<string>;
+    scoreType: ScoreType;
+    points: number;
+}
+export interface IAction extends IModelBase {
+    gameHandId: string;
+    gameHandSequence: number;
+    type: ActionType;
+    playerId?: string;
+    playerHandId?: string;
+    score?: number;
+    accepted?: boolean;
+
+    playCombination?: string; //ICardCombination
+    showCombinations?: string; //Array<ICardCombination>
+    declareScoreType?: ScoreType;
+    responseToActionId?: string;
+    responseType?: ActionResponseType;
+    responseScoreType?: ScoreType;
 }
 
 export {Messages};

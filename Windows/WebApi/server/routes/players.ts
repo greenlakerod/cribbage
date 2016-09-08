@@ -28,6 +28,14 @@ export class Players {
             .delete(function(req: express.Request, res: express.Response){
                 
             });
+
+        router.route("/api/players/:player_id/hands")
+            .post(function(req: express.Request, res: express.Response){
+
+            })
+            .get(function(req: express.Request, res: express.Response){
+                
+            });
     }
 
     public static route(router: express.IRouter): void {

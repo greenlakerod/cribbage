@@ -13,18 +13,7 @@ export class CardService {
         this._cardRepository = new Data.Repositories.CardRepository();
     }
 
-    public static newDeck(onCardsRetrieved: (cards: Array<Cribbage.ICard>) => void, onError: (error: Error) => void): void {
-        this._instance._newDeck(onCardsRetrieved, onError);
-    }
     public static getCards(cardIds: Array<string>, onCardsRetrieved: (cards: Array<Cribbage.ICard>) => void, onError: (error: Error) => void): void {
-        this._instance._getCards(cardIds, onCardsRetrieved, onError);
+        this._instance._cardRepository.getAll(cardIds, onCardsRetrieved, onError);
     }
-
-    public _newDeck(onCardsRetrieved: (cards: Array<Cribbage.ICard>) => void, onError: (error: Error) => void): void {
-        this._cardRepository.getAll(null, onCardsRetrieved, onError);
-    }
-    public _getCards(cardIds: Array<string>, onCardsRetrieved: (cards: Array<Cribbage.ICard>) => void, onError: (error: Error) => void): void {
-        this._cardRepository.getAll(cardIds, onCardsRetrieved, onError);
-    }
-
 }
