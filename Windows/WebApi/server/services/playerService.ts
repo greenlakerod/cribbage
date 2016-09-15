@@ -31,16 +31,4 @@ export class PlayerService {
     public static getPlayers(userId: string): void {
         
     }
-    public static play(): void {
-
-    }
-    public static show(): void {
-
-    }
-    public static declare(): void {
-
-    }
-    public static respond(): void {
-
-    }
 }

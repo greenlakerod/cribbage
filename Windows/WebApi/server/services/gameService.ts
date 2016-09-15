@@ -3,7 +3,7 @@ import * as Data from '../data';
 
 export class GameService {
     private static _instance: GameService = new GameService();
-    private _gameRepository: Data.Repositories.IEntityBaseRepository<Cribbage.IGame>;
+    private _gameRepository: Data.Repositories.IGameRepository;
     private _gameHandRepository: Data.Repositories.IEntityBaseRepository<Cribbage.IGameHand>;
 
     constructor() {
@@ -16,7 +16,7 @@ export class GameService {
     }
 
     public static createGame(): void {
-
+    
     }
     public static getGame(gameId: string): void {
 
@@ -25,6 +25,18 @@ export class GameService {
         
     }
     public static judge(): void {
+
+    }
+    public static play(): void {
+
+    }
+    public static show(): void {
+
+    }
+    public static declare(): void {
+
+    }
+    public static respond(): void {
 
     }
 }
