@@ -1,0 +1,29 @@
+{
+  "name": "cribbage-web-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/server/index.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.15.3",
+    "fs": "0.0.1-security",
+    "tedious": "^1.14.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-typescript": "^2.13.6",
+    "tsd": "^0.6.0-beta.5",
+    "typescript": "^1.8.5"
+  },
+  "engines": {
+    "node": "~5.6"
+  }
+}

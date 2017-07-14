@@ -1,0 +1,14 @@
+﻿{
+  "port":  8080,
+  "dbConfig": {
+    "userName": "dbuser",
+    "password": "dbuser",
+    "server": "(localdb)\\MSSQLLocalDB",
+    "options": {
+      "instanceName": "LOCALDB#ECD4F69E",
+      "database": "CribbageWeb",
+      "rowCollectionOnRequestCompletion": false,
+      "encrypt": true // If you're on Windows Azure, you will need this
+    }
+  }
+}
