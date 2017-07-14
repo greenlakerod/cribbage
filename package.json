@@ -14,7 +14,18 @@
     "body-parser": "^1.15.2",
     "express": "^4.15.3",
     "fs": "0.0.1-security",
-    "tedious": "^1.14.0"
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-ts": "^6.0.0-beta.16",
+    "grunt-tslint": "^5.0.1",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-typescript": "^2.14.1",
+    "tedious": "^1.14.0",
+    "tslint": "^5.5.0",
+    "typescript": "^2.4.1",
+    "typings": "^2.1.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

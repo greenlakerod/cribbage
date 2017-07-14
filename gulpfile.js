@@ -4,7 +4,7 @@ var ts = require('gulp-typescript');
 
 gulp.task('typescript', function() {
     console.log('Compiling typescript');
-    return gulp.src(['server/**/*.ts'])
+    return gulp.src(['src/**/*.ts'])
         .pipe(ts({
             "module": "commonjs",
             "target": "es6",
@@ -17,18 +17,18 @@ gulp.task('typescript', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('./server/**/*.ts', ['typescript']);
+    gulp.watch('./src/**/*.ts', ['typescript']);
 });
 
 gulp.task('default', ['watch', 'typescript']);
 
-gulp.task('serve', ['typescript'], function () {
+gulp.task('serve', ['typescript'], function() {
     livereload.listen();
     nodemon({
-        script: 'bin/server/index.js',
+        script: 'bin/src/index.js',
         ext: 'js',
-    }).on('restart', function () {
-        setTimeout(function () {
+    }).on('restart', function() {
+        setTimeout(function() {
             livereload.changed();
         }, 500);
     });
