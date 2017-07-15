@@ -1,9 +1,9 @@
-import * as Cribbage from '../cribbage';
-import * as Data from '../data';
-import {EncryptionService} from './encryptionService';
+import * as Cribbage from "../cribbage";
+import * as Data from "../data";
+import {EncryptionService} from "./encryptionService";
 
 export class UserService {
-    private static _instance = new UserService();
+    private static _instance: UserService = new UserService();
     private _userRepository: Data.Repositories.IEntityBaseRepository<Cribbage.IUser>;
     private _roleRepository: Data.Repositories.IEntityBaseRepository<Cribbage.IRole>;
     private _userRoleRepository: Data.Repositories.IEntityBaseRepository<Cribbage.IUserRole>;
@@ -21,7 +21,7 @@ export class UserService {
     public static createUser(username: string, email: string, password: string, roles: Array<string>,
                             onUserCreated: (user: Cribbage.IUser) => void, onError: (error: Error) => void): void {
         UserService._instance._userRepository.getAllBy("username", username, function(users: Array<Cribbage.IUser>) {
-            if (users.length == 0) {
+            if (users.length === 0) {
                 var passwordSalt = EncryptionService.createSalt();
                 var user = <Cribbage.IUser>{
                     username: username,
@@ -37,7 +37,7 @@ export class UserService {
 
                     if (roles) {
                         roles.forEach(function(roleId, index, array) {
-                            UserService.addUserToRole(user, roleId, function(isSuccess: boolean, error: Error){
+                            UserService.addUserToRole(user, roleId, function(isSuccess: boolean, error: Error) {
                                 //todo
                             });
                         });
@@ -46,7 +46,7 @@ export class UserService {
                         onUserCreated(user);
                     }
                     
-                }, function(error:Error) {
+                }, function(error: Error) {
                     onError(error);
                 });
             } else {
@@ -62,7 +62,9 @@ export class UserService {
     public static getUsers(onUsersRetrieved: (users: Array<Cribbage.IUser>) => void, onError: (error: Error) => void): void {
         UserService._instance._userRepository.getAll(null, onUsersRetrieved, onError);
     }
-    public static getUserRoles(username: string, onUserRolesRetrieved: (users: Array<Cribbage.IUserRole>) => void, onError: (error: Error) => void): void {
+    public static getUserRoles(username: string,
+                               onUserRolesRetrieved: (users: Array<Cribbage.IUserRole>) => void,
+                               onError: (error: Error) => void): void {
         UserService._instance._userRoleRepository.getAllBy("username", username, onUserRolesRetrieved, onError);
     }
     public static isUserValid(user: Cribbage.IUser, password: string): boolean {
@@ -81,16 +83,16 @@ export class UserService {
                 roleId: roleId,
                 userId: user.id
             };
-            UserService._instance._userRoleRepository.add(userRole, function(entityId: string){
+            UserService._instance._userRoleRepository.add(userRole, function(entityId: string) {
                 onComplete(true, null);
-            }, function(error: Error){
+            }, function(error: Error) {
                 onComplete(false, error);
             });
-        }, function(error: Error){
+        }, function(error: Error) {
             onComplete(false, error);
         });
     }
     private static isPasswordValid(user: Cribbage.IUser, password: string): boolean {
-        return EncryptionService.encryptPassword(password, user.salt) == user.hashedPassword;
+        return EncryptionService.encryptPassword(password, user.salt) === user.hashedPassword;
     }
 }

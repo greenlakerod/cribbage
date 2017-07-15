@@ -1,4 +1,4 @@
-import {ICard} from '../cribbage';
+import {ICard} from "../cribbage";
 
 export class Deck {
     private _cards: Array<ICard>;
@@ -9,7 +9,7 @@ export class Deck {
     }
     get cardIds(): string {
         var s = "";
-        this._cards.forEach(function(card, index, array){
+        this._cards.forEach(function(card, index, array) {
             if (index > 0) {
                 s += ",";
             }
@@ -35,12 +35,12 @@ export class Deck {
         //http://en.wikipedia.org/wiki/Fisher-Yates_shuffle
         for (var i = this._cards.length-1; i>0; i--) {
             var j = getRandomInt(0, i+1);
-            var temp:ICard = this._cards[i];
+            var temp: ICard = this._cards[i];
             this._cards[i] = this._cards[j];
             this._cards[j] = temp;
         }
 
-        function getRandomInt(min:number, max:number): number {
+        function getRandomInt(min: number, max: number): number {
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min)) + min;

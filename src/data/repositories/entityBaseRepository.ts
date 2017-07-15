@@ -1,7 +1,7 @@
-import * as tedious from 'tedious';
-import * as Settings from '../../settings';
-import * as Data from '../../data';
-import {IModelBase} from '../../cribbage';
+import * as tedious from "tedious";
+import * as Settings from "../../settings";
+import * as Data from "../../data";
+import {IModelBase} from "../../cribbage";
 
 export interface IEntityBaseRepository<T> {
     add(entity: T, onEntityCreated: (entityId: string) => void, onError: (error: Error) => void): void;
@@ -17,7 +17,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
     protected _tableName: string;
 
     public add(entity: T, onEntityCreated: (entityId: string) => void, onError: (error: Error) => void): void {
-        var self = this;
+        var self: EntityBaseRepository<T> = this;
         var entityId: string = "";
         this._connection = new tedious.Connection(Settings.Configuration.dbConfig);
         this._connection.on("connect", function (err) {
@@ -30,7 +30,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                 query = query.replace("__fields__", params.properties);
                 query = query.replace("__values__", params.values);
 
-                var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>){
+                var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>) {
                     if (error) {
                         onError(error);
                     }
@@ -40,14 +40,14 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                     request.addParameter(param.name, param.type, param.value);
                 }
 
-                request.on("row", function(columns: Array<tedious.ColumnValue>){
-                    columns.forEach(function(column: tedious.ColumnValue) {
+                request.on("row", function(columns: Array<tedious.ColumnValue>) {
+                    columns.forEach(function (column: tedious.ColumnValue) {
                         if (column.value !== null) {
                             entityId = column.value;
                         }
-                    })                    
+                    });                    
                 });
-                request.on("done", function(rowCount, more){
+                request.on("done", function(rowCount, more) {
                     onEntityCreated(entityId);
                 });
 
@@ -67,19 +67,19 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                 query = query.replace("__table__", self._tableName);
                 query = query.replace("__id__", id);
 
-                var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>){
+                var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>) {
                     if (error) {
                         onComplete(false, error);
                     }
                 });
-                request.on("row", function(columns: Array<tedious.ColumnValue>){
-                    columns.forEach(function(column: tedious.ColumnValue) {
+                request.on("row", function(columns: Array<tedious.ColumnValue>) {
+                    columns.forEach(function (column: tedious.ColumnValue) {
                         if (column.value !== null) {
                             entityId = column.value;
                         }
-                    })                    
+                    });                
                 });
-                request.on("done", function(rowCount, more){
+                request.on("done", function(rowCount, more) {
                     onComplete(true, null);
                 });
 
@@ -100,12 +100,12 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                 var i = 0;
                 for (var prop in entity) {
                     var value = entity[prop];
-                    if (i > 0){
+                    if (i > 0) {
                         s += ", ";
                     }
                     s += prop + "=" + (self.isString(prop) 
                                         ? ("'" + value + "'") 
-                                        : (self.getSqlType(prop) == tedious.TYPES.DateTime) 
+                                        : (self.getSqlType(prop) === tedious.TYPES.DateTime) 
                                             ? "convert(datetime, '" + value + "')" 
                                             : value);
                     i++;
@@ -115,19 +115,19 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                 query = query.replace("__fields__", s);
                 query = query.replace("__id__", entity.id);
 
-                var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>){
+                var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>) {
                     if (error) {
                         onComplete(false, error);
                     }
                 });
-                request.on("row", function(columns: Array<tedious.ColumnValue>){
-                    columns.forEach(function(column: tedious.ColumnValue) {
+                request.on("row", function(columns: Array<tedious.ColumnValue>) {
+                    columns.forEach(function (column: tedious.ColumnValue) {
                         if (column.value !== null) {
                             entityId = column.value;
                         }
-                    })                    
+                    });              
                 });
-                request.on("done", function(rowCount, more){
+                request.on("done", function(rowCount, more) {
                     onComplete(true, null);
                 });
 
@@ -141,13 +141,13 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
     public getAll(ids: Array<string>, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void {
         var query = "select * from " + this._tableName;
         if (ids && ids.length > 0) {
-            if (ids.length == 1) {
+            if (ids.length === 1) {
                 query += " where id = '" + ids[0] + "'";
             } else {
                 query += " where id in (";
 
-                ids.forEach(function(id, index, array){
-                    if (index > 0){
+                ids.forEach(function(id, index, array) {
+                    if (index > 0) {
                         query += ", ";
                     }
                     query += "'" + id + "'";
@@ -162,13 +162,13 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
         var query = "select * from " + this._tableName + " where " + property + " = ";
         var isString = this.isString(property);
         
-        if (isString){
+        if (isString) {
             query += "'";
         }
 
         query += value;
 
-        if (isString){
+        if (isString) {
             query += "'";
         }
 
@@ -183,19 +183,19 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                 onError(err);
             } else {
                 var rows: Array<T> = [];
-                var request: tedious.Request = new tedious.Request(query, function(error: Error, rowCount: number, rows: Array<any>){
+                var request: tedious.Request = new tedious.Request(query, function(error: Error, rowCount: number, rows: Array<any>) {
                     if (error) {
                         onError(error);
                     }
                 });
-                request.on("row", function(columns: Array<tedious.ColumnValue>){
+                request.on("row", function(columns: Array<tedious.ColumnValue>) {
                     var row = <T>{};
-                    columns.forEach(function(column: tedious.ColumnValue) {
-                        row[column.metadata.colName] = column.value
-                    })
+                    columns.forEach(function (column: tedious.ColumnValue) {
+                        row[column.metadata.colName] = column.value;
+                    });
                     rows.push(row);
                 });
-                request.on("done", function(rowCount, more){
+                request.on("done", function(rowCount, more) {
                     onEntitiesRetrieved(rows);
                 });
 
@@ -211,19 +211,19 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                 onError(err);
             } else {
                 var rows: Array<T> = [];
-                var request: tedious.Request = new tedious.Request(query, function(error: Error, rowCount: number, rows: Array<any>){
+                var request: tedious.Request = new tedious.Request(query, function(error: Error, rowCount: number, rows: Array<any>) {
                     if (error) {
                         onError(error);
                     }
                 });
-                request.on("row", function(columns: Array<tedious.ColumnValue>){
+                request.on("row", function(columns: Array<tedious.ColumnValue>) {
                     var row = <T>{};
-                    columns.forEach(function(column: tedious.ColumnValue) {
-                        row[column.metadata.colName] = column.value
-                    })
+                    columns.forEach(function (column: tedious.ColumnValue) {
+                        row[column.metadata.colName] = column.value;
+                    });
                     rows.push(row);
                 });
-                request.on("done", function(rowCount, more){
+                request.on("done", function(rowCount, more) {
                     onEntityRetrieved(rowCount > 0 ? rows[0] : null);
                 });
 
@@ -249,7 +249,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
         insertData.params = params;
 
         for (var i=0; i<params.length; i++) {
-            if (i > 0){
+            if (i > 0) {
                 insertData.properties += ", ";
                 insertData.values += ", ";
             }
@@ -264,7 +264,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
     protected isString(property: string): boolean {
         var type = this.getSqlType(property);
         
-        switch (type){
+        switch (type) {
             case tedious.TYPES.Char:
             case tedious.TYPES.NChar:
             case tedious.TYPES.NText:

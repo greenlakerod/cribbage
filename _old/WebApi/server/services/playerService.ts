@@ -20,7 +20,7 @@ export class PlayerService {
             gameId: gameId,
             userId: userId
         };
-        PlayerService._instance._playerRepository.add(player, function(playerId: string){
+        PlayerService._instance._playerRepository.add(player, function(playerId: string) {
             player.id = playerId;
             onPlayerCreated(player);
         }, onError);

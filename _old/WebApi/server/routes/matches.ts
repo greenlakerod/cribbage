@@ -11,29 +11,29 @@ export class Matches {
 
     public route(router: express.IRouter): void {
         router.route("/api/matches")
-            .post(function(req: express.Request, res: express.Response){
+            .post(function(req: express.Request, res: express.Response) {
 
             })
-            .get(function(req: express.Request, res: express.Response){
+            .get(function(req: express.Request, res: express.Response) {
                 
             });
 
         router.route("/api/matches/:match_id")
-            .get(function(req: express.Request, res: express.Response){
+            .get(function(req: express.Request, res: express.Response) {
                 
             })
-            .put(function(req: express.Request, res: express.Response){
+            .put(function(req: express.Request, res: express.Response) {
                 
             })
-            .delete(function(req: express.Request, res: express.Response){
+            .delete(function(req: express.Request, res: express.Response) {
                 
             });
 
          router.route("/api/matches/:match_id/games")
-            .post(function(req: express.Request, res: express.Response){
+            .post(function(req: express.Request, res: express.Response) {
 
             })
-            .get(function(req: express.Request, res: express.Response){
+            .get(function(req: express.Request, res: express.Response) {
                 
             });       
     }

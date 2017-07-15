@@ -1,5 +1,5 @@
-import * as Cribbage from '../cribbage';
-import * as Data from '../data';
+import * as Cribbage from "../cribbage";
+import * as Data from "../data";
 
 export class PlayerService {
     private static _instance: PlayerService = new PlayerService();
@@ -15,12 +15,13 @@ export class PlayerService {
         this._playerHandRepository = new Data.Repositories.PlayerHandRepository();
     }
 
-    public static createPlayer(gameId: string, userId: string, onPlayerCreated: (player: Cribbage.IPlayer) => void, onError: (error: Error) => void): void {
+    public static createPlayer(gameId: string, userId: string,
+                               onPlayerCreated: (player: Cribbage.IPlayer) => void, onError: (error: Error) => void): void {
         var player = <Cribbage.IPlayer>{
             gameId: gameId,
             userId: userId
         };
-        PlayerService._instance._playerRepository.add(player, function(playerId: string){
+        PlayerService._instance._playerRepository.add(player, function(playerId: string) {
             player.id = playerId;
             onPlayerCreated(player);
         }, onError);

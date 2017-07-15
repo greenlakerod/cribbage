@@ -9,7 +9,7 @@ export class Deck {
     }
     get cardIds(): string {
         var s = "";
-        this._cards.forEach(function(card, index, array){
+        this._cards.forEach(function(card, index, array) {
             if (index > 0) {
                 s += ",";
             }

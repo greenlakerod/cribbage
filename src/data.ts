@@ -1,5 +1,5 @@
-import * as Repositories from './data/repositories';
-import * as tedious from 'tedious';
+import * as Repositories from "./data/repositories";
+import * as tedious from "tedious";
 
 export interface ISqlParam {
     name: string;

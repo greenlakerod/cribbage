@@ -1,4 +1,4 @@
-import * as Messages from '../../messages';
+import * as Messages from "../../messages";
 
 export interface IRequest extends Messages.IRequest {
     username: string;

@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const CreateMatch = require("./matches/createMatch");
+exports.CreateMatch = CreateMatch;
+const GetMatchs = require("./matches/getMatches");
+exports.GetMatchs = GetMatchs;
+const GetMatch = require("./matches/getMatch");
+exports.GetMatch = GetMatch;
+const ModifyMatch = require("./matches/modifyMatch");
+exports.ModifyMatch = ModifyMatch;

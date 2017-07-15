@@ -1,7 +1,7 @@
 /// <reference path="../../typings/tsd.d.ts" />
-import * as fs from 'fs';
-import * as tedious from 'tedious';
-import * as Cribbage from '../cribbage';
+import * as fs from "fs";
+import * as tedious from "tedious";
+import * as Cribbage from "../cribbage";
 
 export interface IAppConfig extends Cribbage.IObject {
     port: number;

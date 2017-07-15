@@ -1,5 +1,5 @@
-import * as Cribbage from '../cribbage';
-import * as Data from '../data';
+import * as Cribbage from "../cribbage";
+import * as Data from "../data";
 
 export class GameService {
     private static _instance: GameService = new GameService();

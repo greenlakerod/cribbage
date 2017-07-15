@@ -1,7 +1,7 @@
-import * as tedious from 'tedious';
-import * as Cribbage from '../../cribbage';
-import {IEntityBaseRepository} from './entityBaseRepository';
-import {EntityBaseRepository} from './entityBaseRepository';
+import * as tedious from "tedious";
+import * as Cribbage from "../../cribbage";
+import {IEntityBaseRepository} from "./entityBaseRepository";
+import {EntityBaseRepository} from "./entityBaseRepository";
 
 export class RoleRepository extends EntityBaseRepository<Cribbage.IRole> {
 

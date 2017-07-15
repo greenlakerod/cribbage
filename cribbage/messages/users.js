@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const CreateUser = require("./users/createUser");
+exports.CreateUser = CreateUser;
+const GetUsers = require("./users/getUsers");
+exports.GetUsers = GetUsers;
+const GetUser = require("./users/getUser");
+exports.GetUser = GetUser;
+const ModifyUser = require("./users/modifyUser");
+exports.ModifyUser = ModifyUser;
+const DeleteUser = require("./users/deleteUser");
+exports.DeleteUser = DeleteUser;

@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const CreatePlayer = require("./players/createPlayer");
+exports.CreatePlayer = CreatePlayer;
+const GetPlayers = require("./players/getPlayers");
+exports.GetPlayers = GetPlayers;
+const GetPlayer = require("./players/getPlayer");
+exports.GetPlayer = GetPlayer;
+const ModifyPlayer = require("./players/modifyPlayer");
+exports.ModifyPlayer = ModifyPlayer;
+const DeletePlayer = require("./players/deletePlayer");
+exports.DeletePlayer = DeletePlayer;

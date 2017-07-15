@@ -37,7 +37,7 @@ export class UserService {
 
                     if (roles) {
                         roles.forEach(function(roleId, index, array) {
-                            UserService.addUserToRole(user, roleId, function(isSuccess: boolean, error: Error){
+                            UserService.addUserToRole(user, roleId, function(isSuccess: boolean, error: Error) {
                                 //todo
                             });
                         });
@@ -81,12 +81,12 @@ export class UserService {
                 roleId: roleId,
                 userId: user.id
             };
-            UserService._instance._userRoleRepository.add(userRole, function(entityId: string){
+            UserService._instance._userRoleRepository.add(userRole, function(entityId: string) {
                 onComplete(true, null);
-            }, function(error: Error){
+            }, function(error: Error) {
                 onComplete(false, error);
             });
-        }, function(error: Error){
+        }, function(error: Error) {
             onComplete(false, error);
         });
     }

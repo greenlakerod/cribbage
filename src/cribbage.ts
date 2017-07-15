@@ -1,4 +1,4 @@
-import * as Messages from './cribbage/messages';
+import * as Messages from "./cribbage/messages";
 
 export enum CardScore {
     None = 0,

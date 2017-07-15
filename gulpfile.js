@@ -25,7 +25,7 @@ gulp.task('default', ['watch', 'typescript']);
 gulp.task('serve', ['typescript'], function() {
     livereload.listen();
     nodemon({
-        script: 'bin/src/index.js',
+        script: 'index.js',
         ext: 'js',
     }).on('restart', function() {
         setTimeout(function() {

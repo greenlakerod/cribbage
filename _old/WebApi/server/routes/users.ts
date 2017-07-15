@@ -15,43 +15,43 @@ export class Users {
 
     public route(router: express.IRouter): void {
         router.route("/api/users")
-            .post(function(req: express.Request, res: express.Response){
+            .post(function(req: express.Request, res: express.Response) {
                 var body:Messages.CreateUser.IRequest = <Messages.CreateUser.IRequest>req.body;
                 UserService.createUser(body.username, body.email, body.password, body.roleIds, function(user:Cribbage.IUser) {
                     res.json(<Messages.CreateUser.IResponse>{ userId: user.id });
-                }, function(error: Error){
+                }, function(error: Error) {
                     res.send(error);
                 });
             })
-            .put(function(req: express.Request, res: express.Response){
+            .put(function(req: express.Request, res: express.Response) {
                 var body:Messages.ModifyUser.IRequest = <Messages.ModifyUser.IRequest>req.body;
-                UserService.editUser(body.user, function(isSuccess: boolean, error: Error){
+                UserService.editUser(body.user, function(isSuccess: boolean, error: Error) {
                     res.json(<Messages.ModifyUser.IResponse>{
                         isSuccess: isSuccess,
                         error: error
                     });
                 });
             })
-            .get(function(req: express.Request, res: express.Response){
-                UserService.getUsers(function(users: Array<Cribbage.IUser>){
+            .get(function(req: express.Request, res: express.Response) {
+                UserService.getUsers(function(users: Array<Cribbage.IUser>) {
                     res.json(<Messages.GetUsers.IResponse>{ users: users });
-                }, function(error: Error){
+                }, function(error: Error) {
                     res.send(error);
                 });
             });
 
         router.route("/api/users/:user_id")
-            .get(function(req: express.Request, res: express.Response){
+            .get(function(req: express.Request, res: express.Response) {
                 var userId = <string>req.params["user_id"];
-                UserService.getUser(userId, function(user: Cribbage.IUser){
+                UserService.getUser(userId, function(user: Cribbage.IUser) {
                     res.json(<Messages.GetUser.IResponse>{ user: user });
-                }, function(error: Error){
+                }, function(error: Error) {
                     res.send(error);
                 })
             })
-            .delete(function(req: express.Request, res: express.Response){
+            .delete(function(req: express.Request, res: express.Response) {
                 var userId = <string>req.params["user_id"];
-                UserService.deleteUser(userId, function(isSuccess: boolean, error: Error){
+                UserService.deleteUser(userId, function(isSuccess: boolean, error: Error) {
                     res.json(<Messages.DeleteUser.IResponse>{
                         isSuccess: isSuccess,
                         error: error
