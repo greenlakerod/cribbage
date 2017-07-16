@@ -2,7 +2,7 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const path = require("path");
-const indexRoute = require("./routes/index");
+const Routes = require("./routes");
 class Server {
     static bootstrap() {
         return new Server();
@@ -26,11 +26,14 @@ class Server {
         });
     }
     routes() {
-        let router;
-        router = express.Router();
-        var index = new indexRoute.Index();
-        router.get("/", index.index.bind(index.index));
+        let router = express.Router();
+        router.get("/", Routes.Index.get.bind(Routes.Index.get));
+        Routes.Matches.route(router);
+        Routes.Games.route(router);
+        Routes.Users.route(router);
+        Routes.Players.route(router);
         this.app.use(router);
+        this.app.use("/api", router);
     }
 }
 module.exports = Server.bootstrap().app;

@@ -3,15 +3,21 @@
 
 import * as express from "express";
 
-module Route {
+export class Index {
+  private static _instance: Index = new Index();
 
-  export class Index {
-
-    public index(req: express.Request, res: express.Response, next: express.NextFunction) {
-      //render page
-      res.render("index");
+  constructor() {
+    if (Index._instance) {
+        throw new Error("Instantiation failed.");
     }
   }
-}
 
-export = Route;
+  public get(req: express.Request, res: express.Response, next: express.NextFunction) {
+    //render page
+    res.render("index");
+  }
+
+  public static get(req: express.Request, res: express.Response, next: express.NextFunction): void {
+    Index._instance.get(req, res, next);
+  }
+}

@@ -6,26 +6,8 @@ import * as bodyParser from "body-parser"; //import bodyParser = require("body-p
 import * as express from "express"; //import express = require("express");
 import * as path from "path"; //import path = require("path");
 
-import * as indexRoute from "./routes/index";
-// import * as Settings from "./settings";
-// import * as Routes from "./routes";
-
-// var router = express.Router();
-// Routes.Matches.route(router);
-// Routes.Games.route(router);
-// Routes.Users.route(router);
-// Routes.Players.route(router);
-
-// var app = express();
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-// app.use("/api", router);
-
-// var port: number = process.env.PORT || Settings.Configuration.port() || 8080;
-
-// var server = app.listen(port, function() {
-//     console.log("Express server listening on port " + port);
-// });
+import * as Settings from "./settings";
+import * as Routes from "./routes";
 
 /**
  * The server.
@@ -88,7 +70,7 @@ class Server {
 
     //add static paths
     this.app.use(express.static(path.join(__dirname, "public")));
-    this.app.use(express.static(path.join(__dirname, "bower_components")));
+    this.app.use(express.static(path.join(__dirname, "bower_components"))); 
 
     // catch 404 and forward to error handler
     this.app.use(function(err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
@@ -107,20 +89,20 @@ class Server {
    */
   private routes() {
     //get router
-    let router: express.Router;
-    router = express.Router();
-
-    //create routes
-    var index: indexRoute.Index = new indexRoute.Index();
+    let router: express.Router = express.Router();
 
     //home page
-    router.get("/", index.index.bind(index.index));
+    router.get("/", Routes.Index.get.bind(Routes.Index.get));
+
+    Routes.Matches.route(router);
+    Routes.Games.route(router);
+    Routes.Users.route(router);
+    Routes.Players.route(router);
 
     //use router middleware
     this.app.use(router);
+    this.app.use("/api", router);
   }
 }
 
-// var server: Server = Server.bootstrap();
-// export = server.app;
 export = Server.bootstrap().app;
