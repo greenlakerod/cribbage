@@ -9,10 +9,10 @@ routes
 services
 settings
 typings
-npm-debug.log
 app.js
 cribbage.js
 data.js
+npm-debug.log
 routes.js
 services.js
 settings.js
