@@ -8,7 +8,7 @@ export class Deck {
         return this._cards.length > 0 ? this._cards[0] : null;
     }
     get cardIds(): string {
-        var s = "";
+        let s = "";
         this._cards.forEach(function(card, index, array) {
             if (index > 0) {
                 s += ",";
@@ -33,9 +33,9 @@ export class Deck {
     }
     public shuffle(): void {
         //http://en.wikipedia.org/wiki/Fisher-Yates_shuffle
-        for (var i = this._cards.length-1; i>0; i--) {
-            var j = getRandomInt(0, i+1);
-            var temp: ICard = this._cards[i];
+        for (let i = this._cards.length-1; i>0; i--) {
+            let j = getRandomInt(0, i+1);
+            let temp: ICard = this._cards[i];
             this._cards[i] = this._cards[j];
             this._cards[j] = temp;
         }
@@ -47,8 +47,8 @@ export class Deck {
         }
     }
     public cut(index: number): ICard {
-        var bottom = this._cards.slice(index);
-        for (var i=0; i<index; i++) {
+        let bottom = this._cards.slice(index);
+        for (let i=0; i<index; i++) {
             bottom.push(this._cards[i]);
         }
         this._cards = bottom;

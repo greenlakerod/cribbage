@@ -17,7 +17,7 @@ export class PlayerService {
 
     public static createPlayer(gameId: string, userId: string,
                                onPlayerCreated: (player: Cribbage.IPlayer) => void, onError: (error: Error) => void): void {
-        var player = <Cribbage.IPlayer>{
+        let player = <Cribbage.IPlayer>{
             gameId: gameId,
             userId: userId
         };
