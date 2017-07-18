@@ -5,3 +5,9 @@ bin
 node_modules
 typings
 npm-debug.log
+app.js
+cribbage.js
+data.js
+routes.js
+services.js
+settings.js
