@@ -2,6 +2,10 @@ _old
 _old2
 .tscache
 .vscode
+Client/obj
+Client/Client.csproj.user
+Server/obj
+Server/Server.njsproj.user
 bin
 cribbage
 data

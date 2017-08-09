@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{C397BC57-7423-417A-935A-A8703ECDF1CE}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Server", "Server\Server.njsproj", "{A621790A-4D17-4206-9D4D-6F579EDDA9E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AB20E052-7430-4285-927A-7719E44EC423}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		gulpfile.js = gulpfile.js
+		package.json = package.json
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C397BC57-7423-417A-935A-A8703ECDF1CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C397BC57-7423-417A-935A-A8703ECDF1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C397BC57-7423-417A-935A-A8703ECDF1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C397BC57-7423-417A-935A-A8703ECDF1CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A621790A-4D17-4206-9D4D-6F579EDDA9E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A621790A-4D17-4206-9D4D-6F579EDDA9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A621790A-4D17-4206-9D4D-6F579EDDA9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A621790A-4D17-4206-9D4D-6F579EDDA9E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
