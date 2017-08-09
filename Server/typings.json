@@ -1,4 +1,8 @@
 {
+  "dependencies": {
+    "body-parser": "registry:npm/body-parser#1.15.2+20161116154925",
+    "tedious": "registry:dt/tedious#1.8.0+20160915014424"
+  },
   "globalDependencies": {
     "debug": "registry:dt/debug#0.0.0+20160317120654",
     "express": "registry:dt/express#4.0.0+20160317120654",
