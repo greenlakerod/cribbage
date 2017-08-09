@@ -1,5 +1,4 @@
 import * as express from "express"; //import express = require("express");
-
 import * as Cribbage from "../cribbage";
 import * as Messages from "../cribbage/messages/users";
 import {UserService} from "../services";
@@ -16,8 +15,8 @@ export class Users {
     public route(router: express.Router): void {
         router.route("/api/users")
             // .post(function(req: express.Request, res: express.Response) {
-            //     let body:Messages.CreateUser.IRequest = <Messages.CreateUser.IRequest>req.body;
-            //     UserService.createUser(body.username, body.email, body.password, body.roleIds, function(user:Cribbage.IUser) {
+            //     let body: Messages.CreateUser.IRequest = <Messages.CreateUser.IRequest>req.body;
+            //     UserService.createUser(body.username, body.email, body.password, body.roleIds, function(user: Cribbage.IUser) {
             //         res.json(<Messages.CreateUser.IResponse>{ userId: user.id });
             //     }, function(error: Error) {
             //         res.send(error);

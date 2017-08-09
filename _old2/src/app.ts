@@ -3,11 +3,14 @@
 "use strict";
 
 import * as bodyParser from "body-parser"; //import bodyParser = require("body-parser");
+import * as cookieParser from "cookie-parser";
 import * as express from "express"; //import express = require("express");
+import * as logger from "morgan";
 import * as path from "path"; //import path = require("path");
 
 import * as Settings from "./settings";
 import * as Routes from "./routes";
+//import * as Index from "./routes/index";
 
 /**
  * The server.
@@ -57,16 +60,21 @@ class Server {
   private config() {
     //configure jade
     this.app.set("views", path.join(__dirname, "views"));
-    this.app.set("view engine", "jade");
+
+    //this.app.set("view engine", "jade");
+    this.app.set("view engine", "ejs");
+    this.app.engine("html", require("ejs").renderFile);
 
     //mount logger
-    //this.app.use(logger("dev"));
+    this.app.use(logger("dev"));
 
     //mount json form parser
     this.app.use(bodyParser.json());
 
     //mount query string parser
     this.app.use(bodyParser.urlencoded({ extended: true }));
+
+    this.app.use(cookieParser());
 
     //add static paths
     this.app.use(express.static(path.join(__dirname, "public")));
@@ -102,6 +110,9 @@ class Server {
     //use router middleware
     this.app.use(router);
     this.app.use("/api", router);
+
+    //this.app.use('/', index);
+    //this.app.use('/api/v1/', todos);
   }
 }
 
