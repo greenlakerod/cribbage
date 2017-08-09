@@ -2,6 +2,17 @@ _old
 .tscache
 .vscode
 bin
+cribbage
+data
 node_modules
+routes
+services
+settings
 typings
+app.js
+cribbage.js
+data.js
 npm-debug.log
+routes.js
+services.js
+settings.js

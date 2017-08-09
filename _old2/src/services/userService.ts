@@ -22,8 +22,8 @@ export class UserService {
                             onUserCreated: (user: Cribbage.IUser) => void, onError: (error: Error) => void): void {
         UserService._instance._userRepository.getAllBy("username", username, function(users: Array<Cribbage.IUser>) {
             if (users.length === 0) {
-                var passwordSalt = EncryptionService.createSalt();
-                var user = <Cribbage.IUser>{
+                let passwordSalt = EncryptionService.createSalt();
+                let user = <Cribbage.IUser>{
                     username: username,
                     salt: passwordSalt,
                     email: email,
@@ -79,7 +79,7 @@ export class UserService {
 
     private static addUserToRole(user: Cribbage.IUser, roleId: string, onComplete: (isSuccess: boolean, error: Error) => void): void {
         UserService._instance._roleRepository.get(roleId, function(entity: Cribbage.IRole) {
-            var userRole = <Cribbage.IUserRole>{
+            let userRole = <Cribbage.IUserRole>{
                 roleId: roleId,
                 userId: user.id
             };

@@ -17,26 +17,26 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
     protected _tableName: string;
 
     public add(entity: T, onEntityCreated: (entityId: string) => void, onError: (error: Error) => void): void {
-        var self: EntityBaseRepository<T> = this;
-        var entityId: string = "";
+        let self: EntityBaseRepository<T> = this;
+        let entityId: string = "";
         this._connection = new tedious.Connection(Settings.Configuration.dbConfig);
         this._connection.on("connect", function (err) {
             if (err) {
                 onError(err);
             } else {
-                var query = "INSERT __table__ (__fields__) OUTPUT INSERTED.id VALUES (__values__);";
-                var params = self.getInsertCommandSqlParams(entity);
+                let query = "INSERT __table__ (__fields__) OUTPUT INSERTED.id VALUES (__values__);";
+                let params = self.getInsertCommandSqlParams(entity);
                 query = query.replace("__table__", self._tableName);
                 query = query.replace("__fields__", params.properties);
                 query = query.replace("__values__", params.values);
 
-                var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>) {
+                let request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>) {
                     if (error) {
                         onError(error);
                     }
                 });
-                for (var i=0; i<params.params.length; i++) {
-                    var param = params.params[i];
+                for (let i=0; i<params.params.length; i++) {
+                    let param = params.params[i];
                     request.addParameter(param.name, param.type, param.value);
                 }
 
@@ -56,18 +56,18 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
         });
     }
     public delete(id: string, onComplete: (isSuccess: boolean, error: Error) => void): void {       
-        var self = this;
-        var entityId: string;
+        let self = this;
+        let entityId: string;
         this._connection = new tedious.Connection(Settings.Configuration.dbConfig);
         this._connection.on("connect", function (err) {
             if (err) {
                 onComplete(false, err);
             } else {
-                var query = "DELETE FROM __table__ OUTPUT INSERTED.id WHERE id = '__id__';";
+                let query = "DELETE FROM __table__ OUTPUT INSERTED.id WHERE id = '__id__';";
                 query = query.replace("__table__", self._tableName);
                 query = query.replace("__id__", id);
 
-                var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>) {
+                let request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>) {
                     if (error) {
                         onComplete(false, error);
                     }
@@ -88,18 +88,18 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
         }); 
     }
     public edit(entity: T, onComplete: (isSuccess: boolean, error: Error) => void): void {
-        var self = this;
-        var entityId: string;
+        let self = this;
+        let entityId: string;
         this._connection = new tedious.Connection(Settings.Configuration.dbConfig);
         this._connection.on("connect", function (err) {
             if (err) {
                 onComplete(false, err);
             } else {
-                var query = "UPDATE __table__ SET __fields__ OUTPUT INSERTED.id WHERE id = '__id__';";
-                var s = "";
-                var i = 0;
-                for (var prop in entity) {
-                    var value = entity[prop];
+                let query = "UPDATE __table__ SET __fields__ OUTPUT INSERTED.id WHERE id = '__id__';";
+                let s = "";
+                let i = 0;
+                for (let prop in entity) {
+                    let value = entity[prop];
                     if (i > 0) {
                         s += ", ";
                     }
@@ -115,7 +115,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
                 query = query.replace("__fields__", s);
                 query = query.replace("__id__", entity.id);
 
-                var request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>) {
+                let request: tedious.Request = new tedious.Request(query , function(error: Error, rowCount: number, rows: Array<any>) {
                     if (error) {
                         onComplete(false, error);
                     }
@@ -139,7 +139,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
         this.getSingle("select * from " + this._tableName + " where id = '" + id + "'", onEntityRetrieved, onError);
     }
     public getAll(ids: Array<string>, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void {
-        var query = "select * from " + this._tableName;
+        let query = "select * from " + this._tableName;
         if (ids && ids.length > 0) {
             if (ids.length === 1) {
                 query += " where id = '" + ids[0] + "'";
@@ -159,8 +159,8 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
         this.getMultiple(query, onEntitiesRetrieved, onError);
     } 
     public getAllBy(property: string, value: any, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void { 
-        var query = "select * from " + this._tableName + " where " + property + " = ";
-        var isString = this.isString(property);
+        let query = "select * from " + this._tableName + " where " + property + " = ";
+        let isString = this.isString(property);
         
         if (isString) {
             query += "'";
@@ -176,20 +176,20 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
     }
 
     protected getMultiple(query: string, onEntitiesRetrieved: (entities: Array<T>) => void, onError: (error: Error) => void): void {
-        var self = this;
+        let self = this;
         this._connection = new tedious.Connection(Settings.Configuration.dbConfig);
         this._connection.on("connect", function (err) {
             if (err) {
                 onError(err);
             } else {
-                var rows: Array<T> = [];
-                var request: tedious.Request = new tedious.Request(query, function(error: Error, rowCount: number, rows: Array<any>) {
+                let rows: Array<T> = [];
+                let request: tedious.Request = new tedious.Request(query, function(error: Error, rowCount: number, rows: Array<any>) {
                     if (error) {
                         onError(error);
                     }
                 });
                 request.on("row", function(columns: Array<tedious.ColumnValue>) {
-                    var row = <T>{};
+                    let row = <T>{};
                     columns.forEach(function (column: tedious.ColumnValue) {
                         row[column.metadata.colName] = column.value;
                     });
@@ -204,20 +204,20 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
         });
     }
     protected getSingle(query: string, onEntityRetrieved: (entity: T) => void, onError: (error: Error) => void): void {
-        var self = this;
+        let self = this;
         this._connection = new tedious.Connection(Settings.Configuration.dbConfig);
         this._connection.on("connect", function (err) {
             if (err) {
                 onError(err);
             } else {
-                var rows: Array<T> = [];
-                var request: tedious.Request = new tedious.Request(query, function(error: Error, rowCount: number, rows: Array<any>) {
+                let rows: Array<T> = [];
+                let request: tedious.Request = new tedious.Request(query, function(error: Error, rowCount: number, rows: Array<any>) {
                     if (error) {
                         onError(error);
                     }
                 });
                 request.on("row", function(columns: Array<tedious.ColumnValue>) {
-                    var row = <T>{};
+                    let row = <T>{};
                     columns.forEach(function (column: tedious.ColumnValue) {
                         row[column.metadata.colName] = column.value;
                     });
@@ -232,14 +232,14 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
         });
     }
     protected getInsertCommandSqlParams(entity: T): { params: Array<Data.ISqlParam>, properties: string, values: string } {
-        var insertData: { params: Array<Data.ISqlParam>, properties: string, values: string } = {
+        let insertData: { params: Array<Data.ISqlParam>, properties: string, values: string } = {
             params: [],
             properties: "",
             values: ""
         };
 
-        var params: Array<Data.ISqlParam> = [];
-        for (var property in entity) {
+        let params: Array<Data.ISqlParam> = [];
+        for (let property in entity) {
             params.push(<Data.ISqlParam>{
                 name: property,
                 type: this.getSqlType(property),
@@ -248,7 +248,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
         }
         insertData.params = params;
 
-        for (var i=0; i<params.length; i++) {
+        for (let i=0; i<params.length; i++) {
             if (i > 0) {
                 insertData.properties += ", ";
                 insertData.values += ", ";
@@ -262,7 +262,7 @@ export abstract class EntityBaseRepository<T extends IModelBase> implements IEnt
     protected abstract getSqlType(property: string): tedious.TediousType;
 
     protected isString(property: string): boolean {
-        var type = this.getSqlType(property);
+        let type = this.getSqlType(property);
         
         switch (type) {
             case tedious.TYPES.Char:

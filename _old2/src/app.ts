@@ -82,7 +82,7 @@ class Server {
 
     // catch 404 and forward to error handler
     this.app.use(function(err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
-      var error: Error = new Error("Not Found");
+      let error: Error = new Error("Not Found");
       err.status = 404;
       next(err);
     });
@@ -109,10 +109,18 @@ class Server {
 
     //use router middleware
     this.app.use(router);
+    this.app.use("/", router);
     this.app.use("/api", router);
+<<<<<<< HEAD:_old2/src/app.ts
 
     //this.app.use('/', index);
     //this.app.use('/api/v1/', todos);
+=======
+    this.app.use("/api/games", router);
+    this.app.use("/api/matches", router);
+    this.app.use("/api/players", router);
+    this.app.use("/api/users", router);
+>>>>>>> fd75765c391e877291a58fa29715e940541ec93e:src/app.ts
   }
 }
 

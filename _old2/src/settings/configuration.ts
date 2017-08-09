@@ -25,9 +25,9 @@ export class Configuration implements IAppConfig {
             throw new Error("Instantiation failed.");
         }
 
-        var appConfigFile = "../app.config.json";
+        let appConfigFile = "../app.config.json";
         if (fs.existsSync(appConfigFile)) {
-            var o = <IAppConfig>JSON.parse(fs.readFileSync(appConfigFile).toString());
+            let o = <IAppConfig>JSON.parse(fs.readFileSync(appConfigFile).toString());
             this.port = o.port;
             this.dbConfig = o.dbConfig;
         }      
