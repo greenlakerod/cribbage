@@ -4,3 +4,5 @@ https://medium.com/@tsmith18256/creating-a-mean-stack-with-angular-2-and-typescr
 
 http://www.software-architects.com/devblog/2014/06/04/Learn-by-Example-AngularJS-NodeJS-and-Typescript
 
+https://app.pluralsight.com/library/courses/angular-2-end-to-end/exercise-files
+
