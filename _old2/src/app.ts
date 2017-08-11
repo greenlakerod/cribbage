@@ -111,16 +111,13 @@ class Server {
     this.app.use(router);
     this.app.use("/", router);
     this.app.use("/api", router);
-<<<<<<< HEAD:_old2/src/app.ts
 
     //this.app.use('/', index);
     //this.app.use('/api/v1/', todos);
-=======
     this.app.use("/api/games", router);
     this.app.use("/api/matches", router);
     this.app.use("/api/players", router);
     this.app.use("/api/users", router);
->>>>>>> fd75765c391e877291a58fa29715e940541ec93e:src/app.ts
   }
 }
 
