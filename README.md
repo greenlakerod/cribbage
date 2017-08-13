@@ -6,3 +6,5 @@ http://www.software-architects.com/devblog/2014/06/04/Learn-by-Example-AngularJS
 
 https://app.pluralsight.com/library/courses/angular-2-end-to-end/exercise-files
 
+https://codelabs.developers.google.com/codelabs/firebase-web
+

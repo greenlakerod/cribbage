@@ -22,8 +22,8 @@ build/Release
 # Dependency directory
 # Commenting this out is preferred by some people, see
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
-/node_modules/
-/dist/
+client/node_modules/
+client/dist/
 
 # Users Environment Variables
 .lock-wscript
