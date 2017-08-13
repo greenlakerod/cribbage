@@ -1,8 +1,8 @@
 import * as Messages from "../../messages";
-import {IUser} from "../../../cribbage";
+import {User} from "../../../models";
 
 export interface IRequest extends Messages.IRequest {
 }
 export interface IResponse extends Messages.IResponse {
-    users: Array<IUser>;
+    users: Array<User>;
 }

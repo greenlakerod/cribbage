@@ -10,5 +10,6 @@ import {GameHand} from "../app/models/gameHand";
 import {Match} from "../app/models/match";
 import {Player} from "../app/models/player";
 import {PlayerHand} from "../app/models/playerHand";
+import {User} from "../app/models/user";
 
-export {Action, Card, CardCombination, Deck, Enums, Game, GameHand, Match, Player, PlayerHand};
+export {Action, Card, CardCombination, Deck, Enums, Game, GameHand, Match, Player, PlayerHand, User};

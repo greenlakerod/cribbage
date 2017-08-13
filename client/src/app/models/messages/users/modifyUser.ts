@@ -1,8 +1,8 @@
 import * as Messages from "../../messages";
-import {IUser} from "../../../cribbage";
+import {User} from "../../../models";
 
 export interface IRequest extends Messages.IRequest {
-    user: IUser;
+    user: User;
 }
 export interface IResponse extends Messages.IResponse {
     isSuccess: boolean;
