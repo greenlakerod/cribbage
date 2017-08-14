@@ -1,9 +1,10 @@
 import {ActionType} from "../models/enums/actionType";
 import {ActionResponseType, GameHandState, ScoreType} from "../models/enums";
 import {CardCombination} from "../models/cardCombination";
+import {Model} from "../models/modelBase";
 import {Common} from "../common";
 
-export class Action {
+export class Action extends Model {
     constructor(
         public id: string = Common.Guid.newGuid(),
         public gameHandId: string,
@@ -19,5 +20,7 @@ export class Action {
         public responseToActionId?: string,
         public responseType?: ActionResponseType,
         public responseScoreType?: ScoreType,
-    ){}
+    ){
+        super(id);
+    }
 }

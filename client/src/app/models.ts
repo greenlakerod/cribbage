@@ -8,8 +8,9 @@ import {Deck} from "../app/models/deck";
 import {Game} from "../app/models/game";
 import {GameHand} from "../app/models/gameHand";
 import {Match} from "../app/models/match";
+import {Model} from "../app/models/modelBase";
 import {Player} from "../app/models/player";
 import {PlayerHand} from "../app/models/playerHand";
 import {User} from "../app/models/user";
 
-export {Action, Card, CardCombination, Deck, Enums, Game, GameHand, Match, Player, PlayerHand, User};
+export {Action, Card, CardCombination, Deck, Enums, Game, GameHand, Match, Model, Player, PlayerHand, User};

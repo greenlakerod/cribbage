@@ -1,7 +1,8 @@
 import {Common} from "../common";
 import {GameHandState} from "../models/enums";
+import {Model} from "../models/modelBase";
 
-export class GameHand {
+export class GameHand extends Model {
     constructor(
         public id: string = Common.Guid.newGuid(),
         public gameId: string,
@@ -15,5 +16,7 @@ export class GameHand {
         public lastPlayerId?: string,
         public cribId?: string,
         public cutCardId?: string
-    ){}
+    ){
+        super(id);
+    }
 }
