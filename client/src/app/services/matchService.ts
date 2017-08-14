@@ -4,16 +4,16 @@ import {Game, Match, Player} from "../../app/models";
 import {GameService} from "../../app/services";
 
 export class MatchService {
-    private static _instance: MatchService = new MatchService();
+    // private static _instance: MatchService = new MatchService();
 
-    public static get instance(): MatchService {
-        return MatchService._instance;
-    }
+    // public static get instance(): MatchService {
+    //     return MatchService._instance;
+    // }
 
     constructor() {
-        if (MatchService._instance) {
-            throw new Error("Instantiation error");
-        }
+        // if (MatchService._instance) {
+        //     throw new Error("Instantiation error");
+        // }
     }
 
     public createMatch(userIds: Array<string>, maxGames: number = 1): Promise<Match> {
@@ -22,8 +22,8 @@ export class MatchService {
             let updates = {};
             let matchId = dbRef.child("matches").push().key;
             let match: Match = new Match(matchId, maxGames);
-
-            GameService.instance.createGame(userIds, matchId)
+            
+            new GameService().createGame(userIds, matchId) //GameService.instance.createGame(userIds, matchId)
                 .then((game: Game) => {
                     match.gameIds.push(game.id);
                     match.currentGameId = game.id;

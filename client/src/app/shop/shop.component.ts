@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-import { UserService } from '../admin/adminShared/user.service';
+import {UserService} from '../../app/services'; //import { UserService } from '../admin/adminShared/user.service';
 import { Product } from '../admin/adminShared/product';
 
 @Component({
@@ -18,12 +18,12 @@ export class ShopComponent implements OnInit {
     }
 
     getProducts(){
-        let dbRef = firebase.database().ref('products/')
-        dbRef.once('value')
-            .then((snapshot)=> {
-                let tmp: string[] = snapshot.val();
-                this.products = Object.keys(tmp).map(key => tmp[key])
-            });
+        // let dbRef = firebase.database().ref('products/')
+        // dbRef.once('value')
+        //     .then((snapshot)=> {
+        //         let tmp: string[] = snapshot.val();
+        //         this.products = Object.keys(tmp).map(key => tmp[key])
+        //     });
     }
 
     chooseProduct(prod: Product) {

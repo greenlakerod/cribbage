@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {UserService} from '../adminShared/user.service';
+import {UserService} from '../../../app/services'; //import {UserService} from '../adminShared/user.service'; 
 import { Router } from '@angular/router';
 
 
@@ -9,20 +9,34 @@ import { Router } from '@angular/router';
 })
 
 export class SignUpComponent {
+  username: string;
   email: string;
   password1: string;
   password2: string;
-  passwordFail: boolean = false;
+  passwordDoesNotMatch: boolean = false;
+  registrationFailed: boolean = false;
+  registrationFailedReason: string;
 
-  constructor(private userSVC: UserService, private router: Router){}
+  constructor(private userService: UserService, private router: Router){}
 
   signUp(){
+    this.registrationFailed = false;
+    this.registrationFailedReason = "";
+    
     if (this.password1 !== this.password2) {
-      this.passwordFail = true;
+      this.passwordDoesNotMatch = true;
     } else {
-      this.passwordFail = false;
-      this.userSVC.register(this.email, this.password1);
-      this.userSVC.verifyUser();
+      this.passwordDoesNotMatch = false;
+      this.userService.register(this.username, this.email, this.password1)
+        .then((user) => {
+          this.registrationFailed = false;
+          this.registrationFailedReason = "";
+          this.userService.verifyUser(user);
+        })
+        .catch((error) => {
+          this.registrationFailed = true;
+          this.registrationFailedReason = error.message || error;
+        });
     }
   }
 

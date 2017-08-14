@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../adminShared/user.service';
+import {UserService} from '../../../app/services'; //import {UserService} from '../adminShared/user.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { ProductAdminService } from '../adminShared/product-admin.service';
@@ -38,12 +38,12 @@ export class ProductAdminComponent implements OnInit {
     }
 
     getProducts(){
-        let dbRef = firebase.database().ref('products/');
-        dbRef.once('value')
-            .then((snapshot)=> {
-                let tmp: string[] = snapshot.val();
-                this.theProducts = Object.keys(tmp).map(key => tmp[key])
-            });
+        // let dbRef = firebase.database().ref('products/');
+        // dbRef.once('value')
+        //     .then((snapshot)=> {
+        //         let tmp: string[] = snapshot.val();
+        //         this.theProducts = Object.keys(tmp).map(key => tmp[key])
+        //     });
     }
 
     editProduct(theProduct: Product){

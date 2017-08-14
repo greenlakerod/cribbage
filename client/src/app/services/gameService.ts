@@ -3,16 +3,16 @@ import {Injectable} from "@angular/core";
 import {Game, Match, Player} from "../../app/models";
 
 export class GameService {
-    private static _instance: GameService = new GameService();
+    // private static _instance: GameService = new GameService();
 
-    public static get instance(): GameService {
-        return GameService._instance;
-    }
+    // public static get instance(): GameService {
+    //     return GameService._instance;
+    // }
 
     constructor() {
-        if (GameService._instance) {
-            throw new Error("Instantiation error");
-        }
+        // if (GameService._instance) {
+        //     throw new Error("Instantiation error");
+        // }
     }
 
     public createGame(userIds: Array<string>, matchId: string): Promise<Game> {
@@ -43,7 +43,11 @@ export class GameService {
     }
     public updateGame(): void {
     }
-    public deleteGame(): void {
+    public deleteGame(gameId: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            firebase.database().ref().child("games").child(gameId).remove().then(() => { return resolve(); })
+            .catch((e) => { return reject(e); });
+        });
     }
     public judge(): void {
     }

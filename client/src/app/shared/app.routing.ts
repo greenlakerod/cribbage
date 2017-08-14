@@ -11,10 +11,10 @@ import { CartComponent } from '../cart/cart.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
-            { path: 'cart', component: CartComponent },
-            { path: 'product/:id', component: ProductDetailComponent },
-            { path: 'shop', component: ShopComponent },
-            { path: 'post/:id', component: BlogDetailComponent },
+            // { path: 'cart', component: CartComponent },
+            // { path: 'product/:id', component: ProductDetailComponent },
+            // { path: 'shop', component: ShopComponent },
+            // { path: 'post/:id', component: BlogDetailComponent },
             { path: '' , component: HomeComponent},
             { path: '**' , component: ErrorComponent }
         ])    
@@ -23,8 +23,8 @@ import { CartComponent } from '../cart/cart.component';
         RouterModule
     ],
     declarations: [
-        BlogDetailComponent,
-        ProductDetailComponent
+        // BlogDetailComponent,
+        // ProductDetailComponent
     ]
 })
 export class AppRoutingModule {}

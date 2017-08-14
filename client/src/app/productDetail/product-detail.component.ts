@@ -24,21 +24,21 @@ import { ShoppingCartService } from '../shared/shopping-cart.service';
     }
 
     getProduct(id: string){
-        let dbRef = firebase.database().ref('products');
-        dbRef.orderByChild('id')
-            .equalTo(id)
-            .once('value')
-            .then((snapshot)=>{
-                let tmp = snapshot.val();
-                let transform = Object.keys(tmp).map(key => tmp[key]);
-                let name = transform[0].name;
-                let desc = transform[0].desc;
-                let imgTitle = transform[0].imgTitle;
-                let img = transform[0].img;
-                let price = transform[0].price;
-                let id = transform[0].id;
-                this.singleProduct = new Product (name,desc,imgTitle,img, price, id);
-            });  
+        // let dbRef = firebase.database().ref('products');
+        // dbRef.orderByChild('id')
+        //     .equalTo(id)
+        //     .once('value')
+        //     .then((snapshot)=>{
+        //         let tmp = snapshot.val();
+        //         let transform = Object.keys(tmp).map(key => tmp[key]);
+        //         let name = transform[0].name;
+        //         let desc = transform[0].desc;
+        //         let imgTitle = transform[0].imgTitle;
+        //         let img = transform[0].img;
+        //         let price = transform[0].price;
+        //         let id = transform[0].id;
+        //         this.singleProduct = new Product (name,desc,imgTitle,img, price, id);
+        //     });  
     };
 
     addProduct(id:string, name: string, price:number){

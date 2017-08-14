@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../adminShared/user.service';
+import {UserService} from '../../../app/services'; //import {UserService} from '../adminShared/user.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { BlogAdminService } from '../adminShared/blog-admin.service';
@@ -38,12 +38,12 @@ export class BlogAdminComponent implements OnInit {
     }
 
     getPosts(){
-        let dbRef = firebase.database().ref('blogPosts/');
-        dbRef.once('value')
-            .then((snapshot)=> {
-                let tmp: string[] = snapshot.val();
-                this.blogPosts = Object.keys(tmp).map(key => tmp[key])
-            });
+        // let dbRef = firebase.database().ref('blogPosts/');
+        // dbRef.once('value')
+        //     .then((snapshot)=> {
+        //         let tmp: string[] = snapshot.val();
+        //         this.blogPosts = Object.keys(tmp).map(key => tmp[key])
+        //     });
     }
 
     editPost(thePost: Blog){

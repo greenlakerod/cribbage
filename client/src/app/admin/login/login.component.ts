@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {UserService} from '../adminShared/user.service';
+import {UserService} from '../../../app/services'; //import {UserService} from '../adminShared/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,11 +11,16 @@ export class LoginComponent {
   email: string;
   password1: string;
   
-  constructor(private userSVC: UserService, private router: Router){}
+  constructor(private userService: UserService, private router: Router){}
 
   login(){
-    this.userSVC.login(this.email, this.password1);
-    this.userSVC.verifyUser();
+    this.userService.login(this.email, this.password1)
+      .then((user) => {
+        this.userService.verifyUser(user);
+      })
+      .catch((error) => {
+        alert("Unable to login. Please try again.");
+      });
   }
 
   signup(){

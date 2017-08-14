@@ -23,13 +23,12 @@ import { CartComponent } from './cart/cart.component';
         AppComponent,
         NavComponent,
         HomeComponent,
-        ErrorComponent,
-        ShopComponent,
-        CartComponent
-
+        ErrorComponent//,
+        //ShopComponent,
+        //CartComponent
     ],
     providers: [
-        ShoppingCartService
+        //ShoppingCartService
     ],
     bootstrap: [ AppComponent ]
 })
