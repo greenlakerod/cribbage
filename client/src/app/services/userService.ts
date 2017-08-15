@@ -6,8 +6,8 @@ import {User} from "../../app/models";
 @Injectable()
 export class UserService implements CanActivate {
     public userLoggedIn: boolean = false;
-    public loggedInUser: string;
-    public authUser: any;
+    public currentUser: User;
+    public authUser: firebase.User;
 
     constructor(private router: Router) {
         firebase.initializeApp({
@@ -71,10 +71,10 @@ export class UserService implements CanActivate {
                 });
         });
     }
-    public verifyUser(user?: User) {
+    public verifyUser(user: User) {
         this.authUser = firebase.auth().currentUser;
         if (this.authUser) {
-            this.loggedInUser = user ? user.username : this.authUser.email;
+            this.currentUser = user;
             this.userLoggedIn = true;
             this.router.navigate(["/admin"]);
         }

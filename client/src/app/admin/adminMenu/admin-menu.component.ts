@@ -10,14 +10,14 @@ import {Router} from "@angular/router";
 export class AdminMenuComponent implements OnInit { 
   theUser: string;
   
-  constructor( private userSVC: UserService, private router: Router ){}
+  constructor( private userService: UserService, private router: Router ){}
 
   ngOnInit(){
-    this.theUser = this.userSVC.loggedInUser;
+    this.theUser = this.userService.currentUser.username;
   }
 
   logout(){
-    this.userSVC.logout();
+    this.userService.logout();
     this.router.navigate([""]);
   }
 }

@@ -18,13 +18,13 @@ export class BlogAdminComponent implements OnInit {
     singlePost: Blog;
 
     constructor( 
-        private userSVC: UserService, 
+        private userService: UserService, 
         private router: Router, 
         private blogAdminSVC: BlogAdminService 
     ){}
 
     logout(){
-        this.userSVC.logout();
+        this.userService.logout();
         this.router.navigate([""]);
     }
 
@@ -33,7 +33,7 @@ export class BlogAdminComponent implements OnInit {
     }
 
     ngOnInit(){
-        this.theUser = this.userSVC.loggedInUser;
+        this.theUser = this.userService.currentUser.username;
         this.getPosts();
     }
 

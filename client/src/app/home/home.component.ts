@@ -1,6 +1,6 @@
+import * as firebase from "firebase";
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
-import * as firebase from "firebase";
 import {UserService} from "../../app/services";
 import {Blog} from "../admin/adminShared/blog";
 
@@ -11,7 +11,7 @@ import {Blog} from "../admin/adminShared/blog";
 export class HomeComponent implements OnInit {
     blogPosts: Blog[];
 
-    constructor( private userSVC: UserService, private router: Router ){} 
+    constructor(private userService: UserService, private router: Router){} 
 
     ngOnInit(){
         //this.getPosts();

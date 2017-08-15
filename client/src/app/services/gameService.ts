@@ -30,7 +30,10 @@ export class GameService {
     }
     public getGameIds(matchId: string): void {
     }
-    public getGames(gameIds: Array<string>): void { 
+    public getGames(gameIds: Array<string>): Array<void> {
+        return gameIds.map((id) => {
+            firebase.database().ref().child("games").child(id).on("value", s => s);
+        });
     }
     public updateGame(): void {
     }

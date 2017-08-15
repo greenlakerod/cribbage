@@ -18,13 +18,13 @@ export class ProductAdminComponent implements OnInit {
     singleProduct: Product;
 
     constructor( 
-        private userSVC: UserService, 
+        private userService: UserService, 
         private router: Router, 
         private prodAdminSVC: ProductAdminService
     ){}
 
     logout(){
-        this.userSVC.logout();
+        this.userService.logout();
         this.router.navigate([""]);
     }
 
@@ -33,7 +33,7 @@ export class ProductAdminComponent implements OnInit {
     }
 
     ngOnInit(){
-        this.theUser = this.userSVC.loggedInUser;
+        this.theUser = this.userService.currentUser.username;
         this.getProducts();
     }
 

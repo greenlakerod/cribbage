@@ -5,12 +5,14 @@ import {Model} from "../models/modelBase";
 export class Game extends Model {
     constructor(
         public id: string = Common.Guid.newGuid(),
-        public matchId : string,
+        public matchId: string,
         public state: GameState = GameState.New,
-        public allowMuggins : boolean = false,
+        public allowMuggins: boolean = false,
         public handIds: Array<string> = [],
-        public currentHandId : string = "",
-        public currentDealerId : string = ""
+        public currentHandId: string = "",
+        public currentDealerId: string = "",
+        public created: Date = new Date(),
+        public updated: Date = new Date()
     ){
         super(id);
     }

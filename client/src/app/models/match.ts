@@ -8,7 +8,9 @@ export class Match extends Model {
         public maxGames: number = 1,
         public state: MatchState = MatchState.New,
         public gameIds: Array<string> = [],
-        public currentGameId: string = ""
+        public currentGameId: string = "",
+        public created: Date = new Date(),
+        public updated: Date = new Date()
     ){
         super(id);
     }
