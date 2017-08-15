@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from '../shared/shopping-cart.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from "@angular/core";
+import {ShoppingCartService} from "../shared/shopping-cart.service";
+import {Router} from "@angular/router";
 
 @Component({
-    templateUrl: './cart.component.html',
-    styleUrls: ['./cart.component.css']
+    templateUrl: "./cart.component.html",
+    styleUrls: ["./cart.component.css"]
  })
 
 export class CartComponent implements OnInit { 
@@ -31,11 +31,11 @@ export class CartComponent implements OnInit {
 
     purchase(){
         alert(`Your Order Totaled ${this.cartTotal}`);
-        this.router.navigate(['/shop']);
+        this.router.navigate(["/shop"]);
     }
 
     cancel(){
-        this.router.navigate(['/shop']);
+        this.router.navigate(["/shop"]);
     }
 
 

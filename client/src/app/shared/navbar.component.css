@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Coiny');
-
+@import url("https://fonts.googleapis.com/css?family=Coiny");
 .top-bar-title {
-    font-family: 'Coiny', cursive;
+    font-family: "Coiny", cursive;
     font-size: 22px;
     color: #ffffff;
 }

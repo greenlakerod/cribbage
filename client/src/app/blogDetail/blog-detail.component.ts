@@ -1,11 +1,11 @@
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
-import { Blog } from '../admin/adminShared/blog';
+import {Router, ActivatedRoute, Params} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
+import * as firebase from "firebase";
+import {Blog} from "../admin/adminShared/blog";
 
 @Component({
-    templateUrl: './blog-detail.component.html',
-    styleUrls: ['./blog-detail.component.css']
+    templateUrl: "./blog-detail.component.html",
+    styleUrls: ["./blog-detail.component.css"]
  })
 
  export class BlogDetailComponent implements OnInit {
@@ -14,15 +14,15 @@ import { Blog } from '../admin/adminShared/blog';
     constructor( private route: ActivatedRoute, private router: Router ) {}
 
     ngOnInit(){
-        let postId = this.route.snapshot.params['id'];
+        let postId = this.route.snapshot.params["id"];
         this.getSingle(postId);
     }
 
     getSingle(id: string){
-        // let dbRef = firebase.database().ref('blogPosts');
-        // dbRef.orderByChild('id')
+        // let dbRef = firebase.database().ref("blogPosts");
+        // dbRef.orderByChild("id")
         //     .equalTo(id)
-        //     .once('value')
+        //     .once("value")
         //     .then((snapshot)=>{
         //         let tmp = snapshot.val();
         //         let transform = Object.keys(tmp).map(key => tmp[key]);

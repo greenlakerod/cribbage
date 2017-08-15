@@ -5,21 +5,11 @@ import {User} from "../../app/models";
 
 @Injectable()
 export class UserService implements CanActivate {
-    // private static _instance: UserService = new UserService();
-
-    // public static get instance(): UserService {
-    //     return UserService._instance;
-    // }
-
     public userLoggedIn: boolean = false;
     public loggedInUser: string;
     public authUser: any;
 
     constructor(private router: Router) {
-        // if (UserService._instance) {
-        //     throw new Error("Instantiation error");
-        // }
-        
         firebase.initializeApp({
             apiKey: "AIzaSyAs2AuhW-7iHA_TWpaI6QXDGE_SMC1maGM",
             authDomain: "glr-games-cribbage.firebaseapp.com",
@@ -44,30 +34,39 @@ export class UserService implements CanActivate {
         return new Promise((resolve, reject) => {
             firebase.database().ref().child("users").orderByChild("username").equalTo(username)
                 .on("value", (snapshot) => {
-                    if (snapshot.val() !== null){
-                        return reject(JSON.stringify(snapshot.val()));//return reject(new Error(`Username '${username}' already exists.`));
+                    if (snapshot.val() !== null){                       
+                        return reject(new Error(`Username '${username}' already exists.`));
                     } else {
+                        let then = (data: firebase.User) => {
+                            let user: User = new User(data.uid, username);
+                            firebase.database().ref().child("users").child(data.uid).set(user)
+                                .then(() => {
+                                    return resolve(user);
+                                })
+                                .catch((error) => {
+                                    return reject(error);
+                                });
+                        };
+
                         firebase.database().ref().child("users").orderByChild("username").equalTo(username)
-                            .once("value", (snapshot) => {
-                                return reject(new Error(`Username '${username}' already exists.`));
-                            }, () => {
-                                firebase.auth().createUserWithEmailAndPassword(email, password)
-                                    .then((data: firebase.User) => {
-                                        let user: User = new User(data.uid, username);
-                                        firebase.database().ref().child("users").child(data.uid).set(user)
-                                            .then(() => {
-                                                return resolve(user);
-                                            })
+                            .on("value", (snapshot) => {
+                                    if (snapshot.val() && (<Array<any>>snapshot.val()).length > 0){
+                                        return reject(new Error(`Username "${username}" already exists.`));
+                                    } else {
+                                        firebase.auth().createUserWithEmailAndPassword(email, password)
+                                            .then(then)
                                             .catch((error) => {
-                                                alert(error);
                                                 return reject(error);
                                             });
-                                    })
-                                    .catch((error) => {
-                                        alert(error);
-                                        return reject(error);
-                                    });
-                            });
+                                    }
+                                }, () => {
+                                    firebase.auth().createUserWithEmailAndPassword(email, password)
+                                        .then(then)
+                                        .catch((error) => {
+                                            alert(error);
+                                            return reject(error);
+                                        });
+                                });
                     }
                 });
         });

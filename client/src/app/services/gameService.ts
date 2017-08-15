@@ -3,16 +3,7 @@ import {Injectable} from "@angular/core";
 import {Game, Match, Player} from "../../app/models";
 
 export class GameService {
-    // private static _instance: GameService = new GameService();
-
-    // public static get instance(): GameService {
-    //     return GameService._instance;
-    // }
-
     constructor() {
-        // if (GameService._instance) {
-        //     throw new Error("Instantiation error");
-        // }
     }
 
     public createGame(userIds: Array<string>, matchId: string): Promise<Game> {

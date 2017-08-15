@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../../app/services'; //import {UserService} from '../adminShared/user.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from "@angular/core";
+import {UserService} from "../../../app/services";
+import {Router} from "@angular/router";
 
 @Component({
-  templateUrl: './admin-menu.component.html',
-  styleUrls: ['./admin-menu.component.css']
+  templateUrl: "./admin-menu.component.html",
+  styleUrls: ["./admin-menu.component.css"]
  })
  
 export class AdminMenuComponent implements OnInit { 
@@ -18,6 +18,6 @@ export class AdminMenuComponent implements OnInit {
 
   logout(){
     this.userSVC.logout();
-    this.router.navigate(['']);
+    this.router.navigate([""]);
   }
 }

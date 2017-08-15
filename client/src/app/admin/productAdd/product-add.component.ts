@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { ProductAdminService } from '../adminShared/product-admin.service';
-import { Product } from '../adminShared/product';
+import {Component} from "@angular/core";
+import {Router} from "@angular/router";
+import {ProductAdminService} from "../adminShared/product-admin.service";
+import {Product} from "../adminShared/product";
 
 
 @Component({
-    selector: 'product-menu',
-    templateUrl: './product-add.component.html',
+    selector: "product-menu",
+    templateUrl: "./product-add.component.html",
 })
 export class ProductAddComponent {
     
@@ -41,11 +41,11 @@ export class ProductAddComponent {
         );
         this.prodAdminSVC.createProduct(this.product);
         alert(`${this.name} added to posts`);
-        this.router.navigate(['/admin']);
+        this.router.navigate(["/admin"]);
     }    
 
     cancel(){
-        this.router.navigate(['/admin']);
+        this.router.navigate(["/admin"]);
     } 
 
 }

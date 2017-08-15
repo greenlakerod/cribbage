@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import {UserService} from '../../../app/services'; //import {UserService} from '../adminShared/user.service'; 
-import { Router } from '@angular/router';
+import {Component} from "@angular/core";
+import {UserService} from "../../../app/services";
+import {Router} from "@angular/router";
 
 
 @Component({
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  templateUrl: "./sign-up.component.html",
+  styleUrls: ["./sign-up.component.css"]
 })
 
 export class SignUpComponent {
@@ -41,7 +41,7 @@ export class SignUpComponent {
   }
 
   cancel(){
-    this.router.navigate(['/admin/login']);
+    this.router.navigate(["/admin/login"]);
   }
   
  }

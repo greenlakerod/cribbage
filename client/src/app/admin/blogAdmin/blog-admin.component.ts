@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../../app/services'; //import {UserService} from '../adminShared/user.service';
-import { Router } from '@angular/router';
-import * as firebase from 'firebase';
-import { BlogAdminService } from '../adminShared/blog-admin.service';
-import { Blog } from '../adminShared/blog';
+import {Component, OnInit} from "@angular/core";
+import {UserService} from "../../../app/services";
+import {Router} from "@angular/router";
+import * as firebase from "firebase";
+import {BlogAdminService} from "../adminShared/blog-admin.service";
+import {Blog} from "../adminShared/blog";
 
 @Component({
-  templateUrl: './blog-admin.component.html',
-  styleUrls: ['./blog-admin.component.css']
+  templateUrl: "./blog-admin.component.html",
+  styleUrls: ["./blog-admin.component.css"]
 })
 
 export class BlogAdminComponent implements OnInit {
@@ -25,7 +25,7 @@ export class BlogAdminComponent implements OnInit {
 
     logout(){
         this.userSVC.logout();
-        this.router.navigate(['']);
+        this.router.navigate([""]);
     }
 
     chooseMode(mode: string){
@@ -38,8 +38,8 @@ export class BlogAdminComponent implements OnInit {
     }
 
     getPosts(){
-        // let dbRef = firebase.database().ref('blogPosts/');
-        // dbRef.once('value')
+        // let dbRef = firebase.database().ref("blogPosts/");
+        // dbRef.once("value")
         //     .then((snapshot)=> {
         //         let tmp: string[] = snapshot.val();
         //         this.blogPosts = Object.keys(tmp).map(key => tmp[key])
@@ -64,9 +64,9 @@ export class BlogAdminComponent implements OnInit {
         let verify = confirm(`Are you sure you want to delete this post?`)
         if (verify == true) {
             this.blogAdminSVC.removePost(single);
-            this.router.navigate(['/admin/']);
+            this.router.navigate(["/admin/"]);
         } else {
-            alert('Nothing deleted!');
+            alert("Nothing deleted!");
         }
     }
 

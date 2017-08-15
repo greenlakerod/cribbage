@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import * as firebase from 'firebase';
-import {UserService} from '../../app/services'; //import { UserService } from '../admin/adminShared/user.service';
-import { Blog } from '../admin/adminShared/blog';
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import * as firebase from "firebase";
+import {UserService} from "../../app/services";
+import {Blog} from "../admin/adminShared/blog";
 
 @Component({
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']    
+    templateUrl: "./home.component.html",
+    styleUrls: ["./home.component.css"]    
 })
 export class HomeComponent implements OnInit {
     blogPosts: Blog[];
@@ -18,8 +18,8 @@ export class HomeComponent implements OnInit {
     }
 
     getPosts(){
-        // let dbRef = firebase.database().ref('blogPosts/')
-        // dbRef.once('value')
+        // let dbRef = firebase.database().ref("blogPosts/")
+        // dbRef.once("value")
         //     .then((snapshot)=> {
         //         let tmp: string[] = snapshot.val();
         //         this.blogPosts = Object.keys(tmp).map(key => tmp[key])
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     }
 
     choosePost(post: Blog) {
-        //this.router.navigate(['/post', post.id]);
+        //this.router.navigate(["/post", post.id]);
     }   
 
 }

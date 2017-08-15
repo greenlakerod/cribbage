@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { BlogAdminService } from '../adminShared/blog-admin.service';
-import { Blog } from '../adminShared/blog';
+import {Component} from "@angular/core";
+import {Router} from "@angular/router";
+import {BlogAdminService} from "../adminShared/blog-admin.service";
+import {Blog} from "../adminShared/blog";
 
 @Component({
-    selector: 'add-menu',
-    templateUrl: './blog-add.component.html',
+    selector: "add-menu",
+    templateUrl: "./blog-add.component.html",
 })
 export class BlogAddComponent {
     
@@ -38,11 +38,11 @@ export class BlogAddComponent {
         );
         this.blogAdminSVC.createPost(this.post);
         alert(`${this.postTitle} added to posts`);
-        this.router.navigate(['/admin']);
+        this.router.navigate(["/admin"]);
     }    
 
     cancel(){
-        this.router.navigate(['/admin']);
+        this.router.navigate(["/admin"]);
     } 
 
 }

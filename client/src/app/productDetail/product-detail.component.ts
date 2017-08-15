@@ -1,12 +1,12 @@
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
-import { Product } from '../admin/adminShared/product';
-import { ShoppingCartService } from '../shared/shopping-cart.service';
+import {Router, ActivatedRoute, Params} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
+import * as firebase from "firebase";
+import {Product} from "../admin/adminShared/product";
+import {ShoppingCartService} from "../shared/shopping-cart.service";
 
 @Component({
-    templateUrl: './product-detail.component.html',
-    styleUrls: ['./product-detail.component.css']
+    templateUrl: "./product-detail.component.html",
+    styleUrls: ["./product-detail.component.css"]
  })
 
  export class ProductDetailComponent implements OnInit {
@@ -19,15 +19,15 @@ import { ShoppingCartService } from '../shared/shopping-cart.service';
     ) {}
 
     ngOnInit(){
-        let productId = this.route.snapshot.params['id'];
+        let productId = this.route.snapshot.params["id"];
         this.getProduct(productId);
     }
 
     getProduct(id: string){
-        // let dbRef = firebase.database().ref('products');
-        // dbRef.orderByChild('id')
+        // let dbRef = firebase.database().ref("products");
+        // dbRef.orderByChild("id")
         //     .equalTo(id)
-        //     .once('value')
+        //     .once("value")
         //     .then((snapshot)=>{
         //         let tmp = snapshot.val();
         //         let transform = Object.keys(tmp).map(key => tmp[key]);

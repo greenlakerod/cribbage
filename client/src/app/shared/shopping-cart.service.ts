@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 
 @Injectable()
 
@@ -10,7 +10,7 @@ export class ShoppingCartService {
     }
 
     addProduct(id: string,name: string, price: number){
-        this.myCart.push({'id': id, 'name': name, 'price': Number(price)})
+        this.myCart.push({"id": id, "name": name, "price": Number(price)})
         alert(`${name} added to cart`);  
     }
 
