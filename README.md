@@ -8,3 +8,5 @@ https://app.pluralsight.com/library/courses/angular-2-end-to-end/exercise-files
 
 https://codelabs.developers.google.com/codelabs/firebase-web
 
+card images: http://acbl.mybigcommerce.com/52-playing-cards/
+
