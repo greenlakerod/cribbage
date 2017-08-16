@@ -6,7 +6,8 @@ export class Card {
         public id: number,
         public suit: Suit,
         public value: CardValue,
-        public points: CardScore
+        public points: CardScore,
+        public img: string
     ){}
 
     public static AceOfHearts: Card = <Card>{ id: 1, suit: Suit.Hearts, value: CardValue.Ace, points: CardScore.Ace};

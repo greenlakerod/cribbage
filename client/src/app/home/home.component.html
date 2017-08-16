@@ -6,7 +6,7 @@
 
 <div class="row spacing">
 
-    <div *ngFor="let posts of blogPosts" class="medium-4 columns">
+    <!--<div *ngFor="let posts of blogPosts" class="medium-4 columns">
 
         <div class="card text-center card-spacing">
             <img class="display-image" [src]="posts.img">
@@ -16,6 +16,19 @@
             </div>
         </div>
 
+    </div>-->
+    <div *ngFor="let card of cards.clubs" class="medium-4 columns">
+        <div class="card text-center card-spacing">
+            <img class="display-image" [src]="posts.img">
+            <div class="card-section">
+            </div>
+        </div>
     </div>
+    <!--<div class="medium-4 columns">
+    </div>
+    <div class="medium-4 columns">
+    </div>
+    <div class="medium-4 columns">
+    </div>-->
 
 </div>
