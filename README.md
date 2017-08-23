@@ -10,7 +10,7 @@ https://codelabs.developers.google.com/codelabs/firebase-web
 
 card images: http://acbl.mybigcommerce.com/52-playing-cards/
 
-progressive web apps: https://github.com/bstavroulakis/progressive-web-apps
+progressive web apps: https://github.com/bstavroulakis/progressive-web-apps, https://app.pluralsight.com/library/courses/web-apps-progressive-getting-started
 
 Material Design: 
 https://material.google.com
