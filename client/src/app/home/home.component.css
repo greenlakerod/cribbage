@@ -1,3 +1,17 @@
+.card {
+    /* padding-right: 10px;
+    padding-left: 10px; */
+    text-align: center;
+    color: #000;
+    height: 100px;
+    width: 65px;
+    background-color: #fff;
+    border-style: none;
+    /* border-color: #000;
+    border-radius: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px; */
+}
+
 .hero {
     width: 100%;
 }
