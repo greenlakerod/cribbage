@@ -1,28 +1,5 @@
-<!-- <navi-bar></navi-bar> -->
-
-<!-- <div class="row spacing"> -->
-
-    <!--<div *ngFor="let posts of blogPosts" class="medium-4 columns">
-
-        <div class="card text-center card-spacing">
-            <img class="display-image" [src]="posts.img">
-            <div class="card-section">
-                <h4 class="list-title" (click)="choosePost(posts)">{{posts.title}}</h4>
-                <p>{{posts.content | truncate:140}}</p>
-            </div>
-        </div>
-
-    </div>-->
-    <div *ngFor="let card of cards.clubs" class="medium-4 columns">
-        <div class="card">
-            <img class="display-image" src="../shared/images/cards/blue_back.png">
-        </div>
+<div *ngFor="let card of cards.clubs" class="card">
+    <div title="{{card.value}} of {{card.suit}}">
+        <img class="display-image" [src]="card.img">
     </div>
-    <!--<div class="medium-4 columns">
-    </div>
-    <div class="medium-4 columns">
-    </div>
-    <div class="medium-4 columns">
-    </div>-->
-
-<!-- </div> -->
+</div>

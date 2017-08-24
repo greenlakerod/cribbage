@@ -21,9 +21,9 @@ import {CartComponent} from "./cart/cart.component";
     ],
     declarations: [
         AppComponent,
-        //NavComponent,
         HomeComponent,
         ErrorComponent//,
+        //NavComponent,
         //ShopComponent,
         //CartComponent
     ],
