@@ -66,59 +66,63 @@ export class Card {
         public img: string
     ){}
 
-    public static AceOfHearts: Card = <Card>{ id: 1, suit: Suit.Hearts, value: CardValue.Ace, points: CardScore.Ace, img: AceHearts};
-    public static TwoOfHearts: Card = <Card>{ id: 2, suit: Suit.Hearts, value: CardValue.Two, points: CardScore.Two, img: TwoHearts};
-    public static ThreeOfHearts: Card = <Card>{ id: 3, suit: Suit.Hearts, value: CardValue.Three, points: CardScore.Three, img: ThreeHearts};
-    public static FourOfHearts: Card = <Card>{ id: 4, suit: Suit.Hearts, value: CardValue.Four, points: CardScore.Four, img: FourHearts};
-    public static FiveOfHearts: Card = <Card>{ id: 5, suit: Suit.Hearts, value: CardValue.Five, points: CardScore.Five, img: FiveHearts};
-    public static SixOfHearts: Card = <Card>{ id: 6, suit: Suit.Hearts, value: CardValue.Six, points: CardScore.Six, img: SixHearts};
-    public static SevenOfHearts: Card = <Card>{ id: 7, suit: Suit.Hearts, value: CardValue.Seven, points: CardScore.Seven, img: SevenHearts};
-    public static EightOfHearts: Card = <Card>{ id: 8, suit: Suit.Hearts, value: CardValue.Eight, points: CardScore.Eight, img: EightHearts};
-    public static NineOfHearts: Card = <Card>{ id: 9, suit: Suit.Hearts, value: CardValue.Nine, points: CardScore.Nine, img: NineHearts};
-    public static TenOfHearts: Card = <Card>{ id: 10, suit: Suit.Hearts, value: CardValue.Ten, points: CardScore.Ten, img: TenHearts};
-    public static JackOfHearts: Card = <Card>{ id: 11, suit: Suit.Hearts, value: CardValue.Jack, points: CardScore.Jack, img: JackHearts};
-    public static QueenOfHearts: Card = <Card>{ id: 12, suit: Suit.Hearts, value: CardValue.Queen, points: CardScore.Queen, img: QueenHearts};
-    public static KingOfHearts: Card = <Card>{ id: 13, suit: Suit.Hearts, value: CardValue.King, points: CardScore.King, img: KingHearts};
+    public get title(): string {
+        return `${CardValue[this.value]} of ${Suit[this.suit]}`;
+    }
 
-    public static AceOfSpades: Card = <Card>{ id: 1, suit: Suit.Spades, value: CardValue.Ace, points: CardScore.Ace, img: AceSpades};
-    public static TwoOfSpades: Card = <Card>{ id: 2, suit: Suit.Spades, value: CardValue.Two, points: CardScore.Two, img: TwoSpades};
-    public static ThreeOfSpades: Card = <Card>{ id: 3, suit: Suit.Spades, value: CardValue.Three, points: CardScore.Three, img: ThreeSpades};
-    public static FourOfSpades: Card = <Card>{ id: 4, suit: Suit.Spades, value: CardValue.Four, points: CardScore.Four, img: FourSpades};
-    public static FiveOfSpades: Card = <Card>{ id: 5, suit: Suit.Spades, value: CardValue.Five, points: CardScore.Five, img: FiveSpades};
-    public static SixOfSpades: Card = <Card>{ id: 6, suit: Suit.Spades, value: CardValue.Six, points: CardScore.Six, img: SixSpades};
-    public static SevenOfSpades: Card = <Card>{ id: 7, suit: Suit.Spades, value: CardValue.Seven, points: CardScore.Seven, img: SevenSpades};
-    public static EightOfSpades: Card = <Card>{ id: 8, suit: Suit.Spades, value: CardValue.Eight, points: CardScore.Eight, img: EightSpades};
-    public static NineOfSpades: Card = <Card>{ id: 9, suit: Suit.Spades, value: CardValue.Nine, points: CardScore.Nine, img: NineSpades};
-    public static TenOfSpades: Card = <Card>{ id: 10, suit: Suit.Spades, value: CardValue.Ten, points: CardScore.Ten, img: TenSpades};
-    public static JackOfSpades: Card = <Card>{ id: 11, suit: Suit.Spades, value: CardValue.Jack, points: CardScore.Jack, img: JackSpades};
-    public static QueenOfSpades: Card = <Card>{ id: 12, suit: Suit.Spades, value: CardValue.Queen, points: CardScore.Queen, img: QueenSpades};
-    public static KingOfSpades: Card = <Card>{ id: 13, suit: Suit.Spades, value: CardValue.King, points: CardScore.King, img: KingSpades};
+    public static AceOfHearts: Card = new Card(1, Suit.Hearts, CardValue.Ace, CardScore.Ace, AceHearts);
+    public static TwoOfHearts: Card = new Card(2, Suit.Hearts, CardValue.Two, CardScore.Two, TwoHearts);
+    public static ThreeOfHearts: Card = new Card(3, Suit.Hearts, CardValue.Three, CardScore.Three, ThreeHearts);
+    public static FourOfHearts: Card = new Card(4, Suit.Hearts, CardValue.Four, CardScore.Four, FourHearts);
+    public static FiveOfHearts: Card = new Card(5, Suit.Hearts, CardValue.Five, CardScore.Five, FiveHearts);
+    public static SixOfHearts: Card = new Card(6, Suit.Hearts, CardValue.Six, CardScore.Six, SixHearts);
+    public static SevenOfHearts: Card = new Card(7, Suit.Hearts, CardValue.Seven, CardScore.Seven, SevenHearts);
+    public static EightOfHearts: Card = new Card(8, Suit.Hearts, CardValue.Eight, CardScore.Eight, EightHearts);
+    public static NineOfHearts: Card = new Card(9, Suit.Hearts, CardValue.Nine, CardScore.Nine, NineHearts);
+    public static TenOfHearts: Card = new Card(10, Suit.Hearts, CardValue.Ten, CardScore.Ten, TenHearts);
+    public static JackOfHearts: Card = new Card(11, Suit.Hearts, CardValue.Jack, CardScore.Jack, JackHearts);
+    public static QueenOfHearts: Card = new Card(12, Suit.Hearts, CardValue.Queen, CardScore.Queen, QueenHearts);
+    public static KingOfHearts: Card = new Card(13, Suit.Hearts, CardValue.King, CardScore.King, KingHearts);
 
-    public static AceOfDiamonds: Card = <Card>{ id: 1, suit: Suit.Diamonds, value: CardValue.Ace, points: CardScore.Ace, img: AceDiamonds};
-    public static TwoOfDiamonds: Card = <Card>{ id: 2, suit: Suit.Diamonds, value: CardValue.Two, points: CardScore.Two, img: TwoDiamonds};
-    public static ThreeOfDiamonds: Card = <Card>{ id: 3, suit: Suit.Diamonds, value: CardValue.Three, points: CardScore.Three, img: ThreeDiamonds};
-    public static FourOfDiamonds: Card = <Card>{ id: 4, suit: Suit.Diamonds, value: CardValue.Four, points: CardScore.Four, img: FourDiamonds};
-    public static FiveOfDiamonds: Card = <Card>{ id: 5, suit: Suit.Diamonds, value: CardValue.Five, points: CardScore.Five, img: FiveDiamonds};
-    public static SixOfDiamonds: Card = <Card>{ id: 6, suit: Suit.Diamonds, value: CardValue.Six, points: CardScore.Six, img: SixDiamonds};
-    public static SevenOfDiamonds: Card = <Card>{ id: 7, suit: Suit.Diamonds, value: CardValue.Seven, points: CardScore.Seven, img: SevenDiamonds};
-    public static EightOfDiamonds: Card = <Card>{ id: 8, suit: Suit.Diamonds, value: CardValue.Eight, points: CardScore.Eight, img: EightDiamonds};
-    public static NineOfDiamonds: Card = <Card>{ id: 9, suit: Suit.Diamonds, value: CardValue.Nine, points: CardScore.Nine, img: NineDiamonds};
-    public static TenOfDiamonds: Card = <Card>{ id: 10, suit: Suit.Diamonds, value: CardValue.Ten, points: CardScore.Ten, img: TenDiamonds};
-    public static JackOfDiamonds: Card = <Card>{ id: 11, suit: Suit.Diamonds, value: CardValue.Jack, points: CardScore.Jack, img: JackDiamonds};
-    public static QueenOfDiamonds: Card = <Card>{ id: 12, suit: Suit.Diamonds, value: CardValue.Queen, points: CardScore.Queen, img: QueenDiamonds};
-    public static KingOfDiamonds: Card = <Card>{ id: 13, suit: Suit.Diamonds, value: CardValue.King, points: CardScore.King, img: KingDiamonds};
+    public static AceOfSpades: Card = new Card(14, Suit.Spades, CardValue.Ace, CardScore.Ace, AceSpades);
+    public static TwoOfSpades: Card = new Card(15, Suit.Spades, CardValue.Two, CardScore.Two, TwoSpades);
+    public static ThreeOfSpades: Card = new Card(16, Suit.Spades, CardValue.Three, CardScore.Three, ThreeSpades);
+    public static FourOfSpades: Card = new Card(17, Suit.Spades, CardValue.Four, CardScore.Four, FourSpades);
+    public static FiveOfSpades: Card = new Card(18, Suit.Spades, CardValue.Five, CardScore.Five, FiveSpades);
+    public static SixOfSpades: Card = new Card(19, Suit.Spades, CardValue.Six, CardScore.Six, SixSpades);
+    public static SevenOfSpades: Card = new Card(20, Suit.Spades, CardValue.Seven, CardScore.Seven, SevenSpades);
+    public static EightOfSpades: Card = new Card(21, Suit.Spades, CardValue.Eight, CardScore.Eight, EightSpades);
+    public static NineOfSpades: Card = new Card(22, Suit.Spades, CardValue.Nine, CardScore.Nine, NineSpades);
+    public static TenOfSpades: Card = new Card(23, Suit.Spades, CardValue.Ten, CardScore.Ten, TenSpades);
+    public static JackOfSpades: Card = new Card(24, Suit.Spades, CardValue.Jack, CardScore.Jack, JackSpades);
+    public static QueenOfSpades: Card = new Card(25, Suit.Spades, CardValue.Queen, CardScore.Queen, QueenSpades);
+    public static KingOfSpades: Card = new Card(26, Suit.Spades, CardValue.King, CardScore.King, KingSpades);
 
-    public static AceOfClubs: Card = <Card>{ id: 1, suit: Suit.Clubs, value: CardValue.Ace, points: CardScore.Ace, img: AceClubs};
-    public static TwoOfClubs: Card = <Card>{ id: 2, suit: Suit.Clubs, value: CardValue.Two, points: CardScore.Two, img: TwoClubs};
-    public static ThreeOfClubs: Card = <Card>{ id: 3, suit: Suit.Clubs, value: CardValue.Three, points: CardScore.Three, img: ThreeClubs};
-    public static FourOfClubs: Card = <Card>{ id: 4, suit: Suit.Clubs, value: CardValue.Four, points: CardScore.Four, img: FourClubs};
-    public static FiveOfClubs: Card = <Card>{ id: 5, suit: Suit.Clubs, value: CardValue.Five, points: CardScore.Five, img: FiveClubs};
-    public static SixOfClubs: Card = <Card>{ id: 6, suit: Suit.Clubs, value: CardValue.Six, points: CardScore.Six, img: SixClubs};
-    public static SevenOfClubs: Card = <Card>{ id: 7, suit: Suit.Clubs, value: CardValue.Seven, points: CardScore.Seven, img: SevenClubs};
-    public static EightOfClubs: Card = <Card>{ id: 8, suit: Suit.Clubs, value: CardValue.Eight, points: CardScore.Eight, img: EightClubs};
-    public static NineOfClubs: Card = <Card>{ id: 9, suit: Suit.Clubs, value: CardValue.Nine, points: CardScore.Nine, img: NineClubs};
-    public static TenOfClubs: Card = <Card>{ id: 10, suit: Suit.Clubs, value: CardValue.Ten, points: CardScore.Ten, img: TenClubs};
-    public static JackOfClubs: Card = <Card>{ id: 11, suit: Suit.Clubs, value: CardValue.Jack, points: CardScore.Jack, img: JackClubs};
-    public static QueenOfClubs: Card = <Card>{ id: 12, suit: Suit.Clubs, value: CardValue.Queen, points: CardScore.Queen, img: QueenClubs};
-    public static KingOfClubs: Card = <Card>{ id: 13, suit: Suit.Clubs, value: CardValue.King, points: CardScore.King, img: KingClubs};
+    public static AceOfDiamonds: Card = new Card(27, Suit.Diamonds, CardValue.Ace, CardScore.Ace, AceDiamonds);
+    public static TwoOfDiamonds: Card = new Card(28, Suit.Diamonds, CardValue.Two, CardScore.Two, TwoDiamonds);
+    public static ThreeOfDiamonds: Card = new Card(29, Suit.Diamonds, CardValue.Three, CardScore.Three, ThreeDiamonds);
+    public static FourOfDiamonds: Card = new Card(30, Suit.Diamonds, CardValue.Four, CardScore.Four, FourDiamonds);
+    public static FiveOfDiamonds: Card = new Card(31, Suit.Diamonds, CardValue.Five, CardScore.Five, FiveDiamonds);
+    public static SixOfDiamonds: Card = new Card(32, Suit.Diamonds, CardValue.Six, CardScore.Six, SixDiamonds);
+    public static SevenOfDiamonds: Card = new Card(33, Suit.Diamonds, CardValue.Seven, CardScore.Seven, SevenDiamonds);
+    public static EightOfDiamonds: Card = new Card(34, Suit.Diamonds, CardValue.Eight, CardScore.Eight, EightDiamonds);
+    public static NineOfDiamonds: Card = new Card(35, Suit.Diamonds, CardValue.Nine, CardScore.Nine, NineDiamonds);
+    public static TenOfDiamonds: Card = new Card(36, Suit.Diamonds, CardValue.Ten, CardScore.Ten, TenDiamonds);
+    public static JackOfDiamonds: Card = new Card(37, Suit.Diamonds, CardValue.Jack, CardScore.Jack, JackDiamonds);
+    public static QueenOfDiamonds: Card = new Card(38, Suit.Diamonds, CardValue.Queen, CardScore.Queen, QueenDiamonds);
+    public static KingOfDiamonds: Card = new Card(39, Suit.Diamonds, CardValue.King, CardScore.King, KingDiamonds);
+
+    public static AceOfClubs: Card = new Card(40, Suit.Clubs, CardValue.Ace, CardScore.Ace, AceClubs);
+    public static TwoOfClubs: Card = new Card(41, Suit.Clubs, CardValue.Two, CardScore.Two, TwoClubs);
+    public static ThreeOfClubs: Card = new Card(42, Suit.Clubs, CardValue.Three, CardScore.Three, ThreeClubs);
+    public static FourOfClubs: Card = new Card(43, Suit.Clubs, CardValue.Four, CardScore.Four, FourClubs);
+    public static FiveOfClubs: Card = new Card(44, Suit.Clubs, CardValue.Five, CardScore.Five, FiveClubs);
+    public static SixOfClubs: Card = new Card(45, Suit.Clubs, CardValue.Six, CardScore.Six, SixClubs);
+    public static SevenOfClubs: Card = new Card(46, Suit.Clubs, CardValue.Seven, CardScore.Seven, SevenClubs);
+    public static EightOfClubs: Card = new Card(47, Suit.Clubs, CardValue.Eight, CardScore.Eight, EightClubs);
+    public static NineOfClubs: Card = new Card(48, Suit.Clubs, CardValue.Nine, CardScore.Nine, NineClubs);
+    public static TenOfClubs: Card = new Card(49, Suit.Clubs, CardValue.Ten, CardScore.Ten, TenClubs);
+    public static JackOfClubs: Card = new Card(50, Suit.Clubs, CardValue.Jack, CardScore.Jack, JackClubs);
+    public static QueenOfClubs: Card = new Card(51, Suit.Clubs, CardValue.Queen, CardScore.Queen, QueenClubs);
+    public static KingOfClubs: Card = new Card(52, Suit.Clubs, CardValue.King, CardScore.King, KingClubs);
 }

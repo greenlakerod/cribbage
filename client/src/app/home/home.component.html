@@ -1,20 +1,20 @@
 <div *ngFor="let card of cards.clubs" class="card">
-    <div title="{{card.value}} of {{card.suit}}">
+    <div [title]="card.title">
         <img class="display-image" [src]="card.img">
     </div>
 </div>
 <div *ngFor="let card of cards.diamonds" class="card">
-    <div title="{{card.value}} of {{card.suit}}">
+    <div [title]="card.title">
         <img class="display-image" [src]="card.img">
     </div>
 </div>
 <div *ngFor="let card of cards.hearts" class="card">
-    <div title="{{card.value}} of {{card.suit}}">
+    <div [title]="card.title">
         <img class="display-image" [src]="card.img">
     </div>
 </div>
 <div *ngFor="let card of cards.spades" class="card">
-    <div title="{{card.value}} of {{card.suit}}">
+    <div [title]="card.title">
         <img class="display-image" [src]="card.img">
     </div>
 </div>
