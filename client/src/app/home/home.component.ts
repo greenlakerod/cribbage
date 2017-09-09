@@ -1,7 +1,7 @@
 import * as firebase from "firebase";
 import {Component, OnInit} from "@angular/core";
 import {SafeHtml, SafeUrl, SafeStyle} from "@angular/platform-browser";
-import {DomSanitizerImpl} from '@angular/platform-browser/src/security/dom_sanitization_service';
+//import {DomSanitizerImpl} from '@angular/platform-browser/src/security/dom_sanitization_service';
 import {Router} from "@angular/router";
 import {UserService} from "../../app/services";
 import {Blog} from "../admin/adminShared/blog";
@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
     //     spades: Array<Card>
     // };
 
-    constructor(private userService: UserService, private router: Router, private sanitizer: DomSanitizerImpl){} 
+    constructor(private userService: UserService, private router: Router){} 
+    //constructor(private userService: UserService, private router: Router, private sanitizer: DomSanitizerImpl){} 
  
     ngOnInit(){
         //this.getPosts();
@@ -41,9 +42,9 @@ export class HomeComponent implements OnInit {
         this.deck.shuffle();
     }
 
-    bypassSecurityTrustStyle(style: string): SafeStyle {
-        return this.sanitizer.bypassSecurityTrustStyle(style);
-    }
+    // bypassSecurityTrustStyle(style: string): SafeStyle {
+    //     return this.sanitizer.bypassSecurityTrustStyle(style);
+    // }
 
     getPosts(){
         // let dbRef = firebase.database().ref("blogPosts/")
