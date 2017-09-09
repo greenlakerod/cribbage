@@ -38,26 +38,16 @@ export class DropTargetDirective {
   
   @HostListener("drop", ["$event"])
   onDrop(event: any) {
-    const data =  JSON.parse(event.dataTransfer.getData("Text"));
-
+    //console.log("drop");
     //console.log(event);
-    event.preventDefault();
-    //var data = event.dataTransfer.getData("text");
+    const eventSource =  JSON.parse(event.dataTransfer.getData("Text"));
+
     //console.log(data);
-
     var target = $("#" + event.target.id);
-    var dragged = $("#" + data);
+    var dragged = $("#" + eventSource.id);
 
-    var card = $("<div>", { "class": "card" });
-    var cardInner = $("<div>");
+    target.append(dragged);
     
-    cardInner.append(dragged);
-    card.append(cardInner);
-
-    target.append(card);
-    
-    //event.target.appendChild($("#" + data)); //event.target.appendChild(document.getElementById(data));
-    
-    this.drop.next(data);
+    this.drop.next(eventSource);
   }
 }

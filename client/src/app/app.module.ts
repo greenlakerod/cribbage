@@ -1,6 +1,7 @@
 
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
+import {DomSanitizerImpl} from '@angular/platform-browser/src/security/dom_sanitization_service';
 import {AppComponent} from "./start/app.component";
 
 //import {NavComponent} from "./shared/navbar.component";
@@ -36,7 +37,8 @@ import {DropTargetDirective} from "./directives/dropTargetDirective";
         //CartComponent
     ],
     providers: [
-        DragService//,
+        DragService,
+        DomSanitizerImpl//,
         //ShoppingCartService
     ],
     bootstrap: [ AppComponent ]
