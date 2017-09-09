@@ -1,20 +1,28 @@
-<div *ngFor="let card of cards.clubs" class="card">
-    <div [title]="card.title">
-        <img class="display-image" [src]="card.img">
+<!-- https://www.radzen.com/blog/angular-drag-and-drop/ -->
+
+<div id="gamesurface">
+    <div *ngFor="let card of cards.clubs" class="card" [myDraggable]="{data: 'foo'}">
+        <div>
+            <img class="display-image" [src]="card.img" [id]="card.elementId" [title]="card.title" >
+        </div>
     </div>
-</div>
-<div *ngFor="let card of cards.diamonds" class="card">
-    <div [title]="card.title">
-        <img class="display-image" [src]="card.img">
+    <!-- <div *ngFor="let card of cards.diamonds" class="card">
+        <div [title]="card.title">
+            <img class="display-image" [src]="card.img">
+        </div>
     </div>
-</div>
-<div *ngFor="let card of cards.hearts" class="card">
-    <div [title]="card.title">
-        <img class="display-image" [src]="card.img">
+    <div *ngFor="let card of cards.hearts" class="card">
+        <div [title]="card.title">
+            <img class="display-image" [src]="card.img">
+        </div>
     </div>
+    <div *ngFor="let card of cards.spades" class="card">
+        <div [title]="card.title">
+            <img class="display-image" [src]="card.img">
+        </div>
+    </div> -->
 </div>
-<div *ngFor="let card of cards.spades" class="card">
-    <div [title]="card.title">
-        <img class="display-image" [src]="card.img">
-    </div>
-</div>
+
+<div id="div1" [myDropTarget]="{zone:'another'}" style="clear: both; width: 100%; height: 500px;"></div>
+<!-- <div id="div1" myDropTarget (myDrop)="onDrop($event)" style="clear: both; width: 100%; height: 500px;"></div> -->
+<!-- <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" style="clear: both; width: 100%; height: 500px;"></div> -->

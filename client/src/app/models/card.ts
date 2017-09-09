@@ -70,6 +70,10 @@ export class Card {
         return `${CardValue[this.value]} of ${Suit[this.suit]}`;
     }
 
+    public get elementId(): string {
+        return `${CardValue[this.value].toLowerCase()}_${Suit[this.suit].toLowerCase()}`;
+    }
+
     public static AceOfHearts: Card = new Card(1, Suit.Hearts, CardValue.Ace, CardScore.Ace, AceHearts);
     public static TwoOfHearts: Card = new Card(2, Suit.Hearts, CardValue.Two, CardScore.Two, TwoHearts);
     public static ThreeOfHearts: Card = new Card(3, Suit.Hearts, CardValue.Three, CardScore.Three, ThreeHearts);

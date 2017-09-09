@@ -4,9 +4,9 @@
     float: left;
     text-align: center;
     color: #000;
-    min-height: 50px;
-    min-width: 25px;
-    max-height: 300px;
+    min-height: 115px;
+    min-width: 75px;
+    max-height: 230px;
     max-width: 150px;
     /* background-color: #fff; */
     border-style: none;
@@ -16,12 +16,17 @@
     /* clear: both; */
 }
 
+[draggable=true] {
+    cursor: pointer;
+}
+
 .hero {
     width: 100%;
 }
 
 .display-image {
-    height: 200px;
+    /* height: 200px; */
+    height: 100%;
     width: 100%;
 }
 
