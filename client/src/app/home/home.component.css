@@ -1,13 +1,30 @@
+#gamesurface {
+    clear: both;
+    width: 100%;
+    /*height: 400px;*/
+    background-color: green;
+    position: relative;
+}
+
+#dropzone {
+    clear: both;
+    width: 100%;
+    height: 300px;
+    background-color: red;
+}
+
 .card {
     /* padding-right: 10px;
     padding-left: 10px; */
     float: left;
     text-align: center;
     color: #000;
-    min-height: 115px;
+    height: 115px;
+    width: 75px;
+    /*min-height: 115px;
     min-width: 75px;
     max-height: 230px;
-    max-width: 150px;
+    max-width: 150px;*/
     /* background-color: #fff; */
     border-style: none;
     /* border-color: #000;
@@ -18,6 +35,8 @@
 
 .card.deck {
     position: relative;
+    /*left: 50px;
+    top: 50px;*/
     /*top: 0;
     left: 0;
     right: 0;
@@ -32,7 +51,13 @@
     width: 100%;
 }
 
-.display-image {
+.card-image-container {
+    height: 100%;
+    width: 100%;
+    background-color: green;
+}
+
+.card-image {
     /* height: 200px; */
     height: 100%;
     width: 100%;

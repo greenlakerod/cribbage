@@ -57,13 +57,22 @@ import * as JackSpades from "../../assets/images/cards/JackSpades.png";
 import * as QueenSpades from "../../assets/images/cards/QueenSpades.png";
 import * as KingSpades from "../../assets/images/cards/KingSpades.png";
 
+import * as YellowBack from "../../assets/images/cards/yellow_back.png";
+import * as RedBack from "../../assets/images/cards/red_back.png";
+import * as PurpleBack from "../../assets/images/cards/purple_back.png";
+import * as GreenBack from "../../assets/images/cards/green_back.png";
+import * as GrayBack from "../../assets/images/cards/gray_back.png";
+import * as BlueBack from "../../assets/images/cards/blue_back.png";
+
 export class Card {
+
     constructor(
         public id: number,
         public suit: Suit,
         public value: CardValue,
         public points: CardScore,
-        public img: string
+        public img: string,
+        public backImg: string = BlueBack
     ){}
 
     public get title(): string {
@@ -129,4 +138,19 @@ export class Card {
     public static JackOfClubs: Card = new Card(50, Suit.Clubs, CardValue.Jack, CardScore.Jack, JackClubs);
     public static QueenOfClubs: Card = new Card(51, Suit.Clubs, CardValue.Queen, CardScore.Queen, QueenClubs);
     public static KingOfClubs: Card = new Card(52, Suit.Clubs, CardValue.King, CardScore.King, KingClubs);
+
+    public static All: Array<Card> = [Card.AceOfHearts,Card.TwoOfHearts,Card.ThreeOfHearts,Card.FourOfHearts,Card.FiveOfHearts,
+                                Card.SixOfHearts,Card.SevenOfHearts,Card.EightOfHearts,Card.NineOfHearts,Card.TenOfHearts,
+                                Card.JackOfHearts,Card.QueenOfHearts,Card.KingOfHearts,
+                                Card.AceOfSpades,Card.TwoOfSpades,Card.ThreeOfSpades,Card.FourOfSpades,Card.FiveOfSpades,
+                                Card.SixOfSpades,Card.SevenOfSpades,Card.EightOfSpades,Card.NineOfSpades,Card.TenOfSpades,
+                                Card.JackOfSpades,Card.QueenOfSpades,Card.KingOfSpades,
+                                Card.AceOfDiamonds,Card.TwoOfDiamonds,Card.ThreeOfDiamonds,Card.FourOfDiamonds,Card.FiveOfDiamonds,
+                                Card.SixOfDiamonds,Card.SevenOfDiamonds,Card.EightOfDiamonds,Card.NineOfDiamonds,Card.TenOfDiamonds,
+                                Card.JackOfDiamonds,Card.QueenOfDiamonds,Card.KingOfDiamonds,
+                                Card.AceOfClubs,Card.TwoOfClubs,Card.ThreeOfClubs,Card.FourOfClubs,Card.FiveOfClubs,
+                                Card.SixOfClubs,Card.SevenOfClubs,Card.EightOfClubs,Card.NineOfClubs,Card.TenOfClubs,
+                                Card.JackOfClubs,Card.QueenOfClubs,Card.KingOfClubs];
+
+    
 }

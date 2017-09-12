@@ -1,3 +1,5 @@
+/// <reference path="../../../node_modules/@types/jquery/index.d.ts" />
+
 import * as firebase from "firebase";
 import {Component, OnInit} from "@angular/core";
 import {SafeHtml, SafeUrl, SafeStyle} from "@angular/platform-browser";
@@ -5,7 +7,8 @@ import {SafeHtml, SafeUrl, SafeStyle} from "@angular/platform-browser";
 import {Router} from "@angular/router";
 import {UserService} from "../../app/services";
 import {Blog} from "../admin/adminShared/blog";
-import {Card, Deck} from "../models";
+
+import {Card, Deck, Player, PlayerHand} from "../models";
 
 @Component({
     templateUrl: "./home.component.html",
@@ -21,25 +24,42 @@ export class HomeComponent implements OnInit {
     //     spades: Array<Card>
     // };
 
+    player: PlayerHand;
+    opponent: PlayerHand;
+    crib: PlayerHand;
+
     constructor(private userService: UserService, private router: Router){} 
     //constructor(private userService: UserService, private router: Router, private sanitizer: DomSanitizerImpl){} 
  
     ngOnInit(){
+        this.player = new PlayerHand("", "", "", true, [], "");
+        this.opponent = new PlayerHand("", "", "", false, [], "");
+
         //this.getPosts();
-        this.getCards();
+        this.deal();
     }
  
-    getCards(): void{
+    deal(): Promise<any> {
         // this.cards = {
         //     clubs: [Card.AceOfClubs, Card.TwoOfClubs, Card.ThreeOfClubs, Card.FourOfClubs, Card.FiveOfClubs, Card.SixOfClubs, Card.SevenOfClubs, Card.EightOfClubs, Card.NineOfClubs, Card.TenOfClubs, Card.JackOfClubs, Card.QueenOfClubs, Card.KingOfClubs],
         //     diamonds: [Card.AceOfDiamonds, Card.TwoOfDiamonds, Card.ThreeOfDiamonds, Card.FourOfDiamonds, Card.FiveOfDiamonds, Card.SixOfDiamonds, Card.SevenOfDiamonds, Card.EightOfDiamonds, Card.NineOfDiamonds, Card.TenOfDiamonds, Card.JackOfDiamonds, Card.QueenOfDiamonds, Card.KingOfDiamonds],
         //     hearts: [Card.AceOfHearts, Card.TwoOfHearts, Card.ThreeOfHearts, Card.FourOfHearts, Card.FiveOfHearts, Card.SixOfHearts, Card.SevenOfHearts, Card.EightOfHearts, Card.NineOfHearts, Card.TenOfHearts, Card.JackOfHearts, Card.QueenOfHearts, Card.KingOfHearts],
         //     spades: [Card.AceOfSpades, Card.TwoOfSpades, Card.ThreeOfSpades, Card.FourOfSpades, Card.FiveOfSpades, Card.SixOfSpades, Card.SevenOfSpades, Card.EightOfSpades, Card.NineOfSpades, Card.TenOfSpades, Card.JackOfSpades, Card.QueenOfSpades, Card.KingOfSpades]
         // }
-        this.deck = new Deck();
-        this.deck.shuffle();
-        this.deck.shuffle();
-        this.deck.shuffle();
+        return new Promise((resolve, reject) => {
+            this.deck = new Deck();
+            this.deck.shuffle();
+            this.deck.shuffle();
+            this.deck.shuffle();
+
+            let currentPlayer = this.opponent;
+            for (let i = 0; i < 12; i++) {
+                let card = this.deck.deal();
+                currentPlayer.addCard(card.id.toString());
+                //console.log(`Player ${(currentPlayer == this.player ? '1' : '2')}: ${Card.All[card.id - 1].title}`);
+                currentPlayer = (currentPlayer == this.player ? this.opponent : this.player);
+            }
+        });
     }
 
     // bypassSecurityTrustStyle(style: string): SafeStyle {
