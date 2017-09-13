@@ -32,7 +32,7 @@ export class DraggableDirective {
   onDragStart(event: DragEvent) {
     const { zone = "zone", data = {} } = this.options;
 
-    data.target = event.srcElement.parentElement.parentElement.outerHTML;
+    data.target = event.srcElement.parentElement.parentElement.parentElement.outerHTML;
     
     this.dragService.startDrag(zone);
     event.dataTransfer.setData("Text", JSON.stringify(data));

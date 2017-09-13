@@ -23,7 +23,7 @@ export class PlayerHand {
         return Card.All[parseInt(cardId) - 1];
     }
 
-    public getCardUid(index: number): string {
+    public getCardUid(index: number, card: Card): string {
         let cardId = this.cardIds[index];
         for (let key in this._cardIdMap) {
             if (this._cardIdMap[key] == cardId) {

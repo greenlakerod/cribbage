@@ -5,27 +5,19 @@ https://gist.github.com/schadeck/2217057
 <div id="gamesurface" class="mdc-layout-grid" style="width: 100%;">
     <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9">
-            <div id="opponent" class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2" style="margin-right: 0px;" *ngFor="let card of opponent.cards; let i = index; trackBy: opponent.getCardUid" [myDraggable]="{ data: { obj: card, id: card.elementId + '_container' } }">
-                    <div class="card" [id]="card.elementId + '_container'">
-                        <div [id]="card.elementId + '_image_container'" class="card-image-container">
-                            <img class="card-image" [src]="card.backImg" [id]="card.elementId + '_image'">
+            <div id="opponent" class="mdc-layout-grid__inner" myDropTarget (myDrop)="onDrop($event)">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2" style="margin-right: 0px;" *ngFor="let card of opponent.cards; let i = index;" [id]="opponent.getCardUid(i, card) + '_cell'" [myDraggable]="{ data: { obj: card, id: opponent.getCardUid(i, card) + '_cell' } }">
+                    <div class="card" [id]="opponent.getCardUid(i, card) + '_container'">
+                        <div [id]="opponent.getCardUid(i, card) + '_image_container'" class="card-image-container">
+                            <img class="card-image" [src]="card.backImg" [id]="opponent.getCardUid(i, card) + '_image'">
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="crib" class="mdc-layout-grid__inner" myDropTarget (myDrop)="onDrop($event)">
-                <!--<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2" style="margin-right: 0px; background-color: green;" *ngFor="let key of  [1,2,3,4,5,6]">-->
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2" style="margin-right: 0px; background-color: green;">
-                    <div class="card">
-                        <div class="card-image-container">
-                            <!--<img class="card-image" [src]="card.img" [id]="card.elementId + '_image'" [title]="card.title">-->
-                        </div>
-                    </div>
-                </div>
+            <div id="crib" class="mdc-layout-grid__inner" style="margin-right: 0px; background-color: green; height: 175px;" myDropTarget (myDrop)="onDrop($event)">
             </div>
-            <div id="player" class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2" style="margin-right: 0px;" *ngFor="let card of player.cards; let i = index;" [myDraggable]="{ data: { obj: card, id: card.elementId + '_container' } }">
+            <div id="player" class="mdc-layout-grid__inner" myDropTarget (myDrop)="onDrop($event)">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2" style="margin-right: 0px;" *ngFor="let card of player.cards; let i = index;" [id]="card.elementId + '_cell'" [myDraggable]="{ data: { obj: card, id: card.elementId + '_cell' } }">
                     <div class="card" [id]="card.elementId + '_container'">
                         <div [id]="card.elementId + '_image_container'" class="card-image-container">
                             <img class="card-image" [src]="card.img" [id]="card.elementId + '_image'" [title]="card.title">
@@ -34,49 +26,7 @@ https://gist.github.com/schadeck/2217057
                 </div>
             </div>
         </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3" style="border-style:solid; border-width: 1px;">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3" style="border-style:solid; border-width: 1px; border-radius: 10px;">
         </div>
     </div>
 </div>
-<!--<div *ngFor="let card of cards.clubs" class="card" [style]="'z-index: ' + (1000 - card.id) + ';'" [id]="card.elementId + '_container'" [myDraggable]="{ data: { obj: card, id: card.elementId + '_container' } }">
-    <div [id]="card.elementId + '_image_container'">
-        <img class="display-image" [src]="card.img" [id]="card.elementId + '_image'" [title]="card.title">
-    </div>
-</div>
-<div *ngFor="let card of cards.diamonds" class="card" [style]="'z-index: ' + (1000 - card.id) + ';'" [id]="card.elementId + '_container'" [myDraggable]="{ data: { obj: card, id: card.elementId + '_container' } }">
-    <div [id]="card.elementId + '_image_container'">
-        <img class="display-image" [src]="card.img" [id]="card.elementId + '_image'" [title]="card.title">
-    </div>
-</div>
-<div *ngFor="let card of cards.hearts" class="card" [style]="'z-index: ' + (1000 - card.id) + ';'" [id]="card.elementId + '_container'" [myDraggable]="{ data: { obj: card, id: card.elementId + '_container' } }">
-    <div [id]="card.elementId + '_image_container'">
-        <img class="display-image" [src]="card.img" [id]="card.elementId + '_image'" [title]="card.title">
-    </div>
-</div>
-<div *ngFor="let card of cards.spades" class="card" [style]="'z-index: ' + (1000 - card.id) + ';'" [id]="card.elementId + '_container'" [myDraggable]="{ data: { obj: card, id: card.elementId + '_container' } }">
-    <div [id]="card.elementId + '_image_container'">
-        <img class="display-image" [src]="card.img" [id]="card.elementId + '_image'" [title]="card.title">
-    </div>
-</div>-->
-<!--<div *ngFor="let card of deck.cards" class="card" [style.z-index]="bypassSecurityTrustStyle((1000 - card.id).toString())" [id]="card.elementId + '_container'" [myDraggable]="{ data: { obj: card, id: card.elementId + '_container' } }">
-    <div [id]="card.elementId + '_image_container'">
-        <img class="display-image" [src]="card.img" [id]="card.elementId + '_image'" [title]="card.title">
-    </div>
-</div>-->
-<!--<div *ngFor="let card of deck.cards; let i=index;" class="card deck" [style.left]="(-1 * (i * 75)) + 'px'" [style.z-index]="(1000 - i).toString()" [id]="card.elementId + '_container'" [myDraggable]="{ data: { obj: card, id: card.elementId + '_container' } }">
-        <div [id]="card.elementId + '_image_container'" class="card-image-container">
-            <img class="card-image" [src]="card.img" [id]="card.elementId + '_image'" [title]="card.title">
-        </div>
-    </div>-->
-<!--<div style="width: 500px;">
-    <div style="width: 100%;" [myDraggable]="{data: 'Draggable 1'}">Drag me</div>
-    <div style="width: 100%;" [myDraggable]="{data: 'Draggable 2'}">Drag me</div>
-    <div style="width: 100%;" myDropTarget (myDrop)="onDrop($event)">Drop here</div>
-    <div style="width: 100%;" [myDropTarget]="{zone:'another'}">Drop here</div>
-</div>-->
-<!--<div id="gamesurface" myDropTarget (myDrop)="onDrop($event)">
-</div>-->
-
-<!--<div id="dropzone" [myDropTarget]="{zone:'another'}" style="clear: both; width: 100%; height: 500px; background-color: red;"></div>-->
-<!--<div id="dropzone" myDropTarget (myDrop)="onDrop($event)"></div>-->
-<!-- <div id="dropzone" ondrop="drop(event)" ondragover="allowDrop(event)" style="clear: both; width: 100%; height: 500px;"></div> -->

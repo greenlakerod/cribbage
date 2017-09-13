@@ -38,11 +38,8 @@ export class DropTargetDirective {
   
   @HostListener("drop", ["$event"])
   onDrop(event: any) {
-    //console.log("drop");
-    //console.log(event);
     const eventSource =  JSON.parse(event.dataTransfer.getData("Text"));
 
-    //console.log(data);
     var target = $("#" + event.target.id);
     var dragged = $("#" + eventSource.id);
 
