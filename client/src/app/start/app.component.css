@@ -1,4 +1,9 @@
-.center{
+.center {
     text-align: center;
     padding: 10px;
+}
+
+main {
+    position: relative;
+    background-color: green;
 }
